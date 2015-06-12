@@ -40,39 +40,66 @@
 \subsection{La síntesis de controladores}
 
 %Plan Lean
+
+%TODO ver como es el modelo de Jackson. "The World and the Machine" A Critical Perspective on Process Technology
 Cuando trabajamos en ingeniería de requerimientos, nuestra tarea es relevar y documentar los objetivos y el funcionamiento del ambiente, para elaborar un conjunto de requerimientos cuya máquina a construir debe cumplir. Teniendo estas tres componentes, podemos formular la siguiente ecuación: R, D $\vDash$ G. Donde R son los Requerimientos de la máquina, D las asunciones del dominio y G los objetivos que la máquina deberá satisfacer.
 
 Entonces, un problema clave de la ingeniería de requerimientos puede ser visto como un problema de síntesis, tal que dado un modelo de la máquina, un modelo del mundo y un conjunto de objetivos del sistema, permite construir un modelo operacional el cual satisface los objetivos. La técnica que resuelve esta ecuación mediante los modelos mencionados es llamada síntesis de controladores y ésta siendo estudiada exhaustivamente en varios aspectos de la ingeniería de los requerimientos.
 
 La construcción de dichos modelos son una de las principales herramientas en el diseño de sistemas concurrentes, debido a que nos facilita la detección de errores de diseño en las primeras etapas de desarrollo. Por otro lado, estos modelos de comportamiento pueden resultar complejos de construir. Utilizar la técnica de síntesis anteriormente mencionada facilita la construcción tomando modelos pequeños y propiedades lógicas, que suelen ser más sencillas de especificar y de validar.
 
+
+
+%TODO Es suficiente la definición del problema de control que es una composición de un LTS con la futura solucion del
+%problema para la satisfacción de los objetivos.
 Por lo tanto, un problema de control consiste en generar automáticamente una máquina que restrinja la ocurrencia de eventos controlables basado en los eventos del mundo que se producen. Es decir, teniendo la especificación de un ambiente, asunciones, objetivos y un conjunto de acciones controlables, podemos definir una máquina cuyo comportamiento concurrente con el ambiente satisfaga las asunciones y los objetivos del sistema.
 
-%ivan
-En la ingeniería de requerimientos, los requerimientos son declaraciones prescriptivas sobre el mundo expresados en termino de fenómenos sobre la interfaz entre el la máquina que queremos construir y el mundo en el cual viven los problemas que queremos resolver. Dichos problemas son capturados como declaraciones prescriptivas sobre el mundo llamadas objetivos y declaraciones prescriptivas sobre lo que asumimos que es verdad (dominio del problema).
-Los requerimientos y el dominio del problema deben satisfacer el objetivo. Cumplir los requerimientos se puede ver como un problema de síntesis, el cual busca generar automáticamente modelos de comportamiento operacional que satisfagan el objetivo.
+%Ivan
+En la ingeniería de requerimientos, los requerimientos son declaraciones prescriptivas sobre el mundo expresados en
+termino de fenómenos sobre la interfaz entre el la máquina que queremos construir y el mundo en el cual viven los
+problemas que queremos resolver. Dichos problemas son capturados como declaraciones prescriptivas sobre el mundo
+llamadas objetivos y declaraciones prescriptivas sobre lo que asumimos que es verdad (dominio del problema).
+Los requerimientos y el dominio del problema deben satisfacer el objetivo. Cumplir los requerimientos se puede ver como
+un problema de síntesis, el cual busca generar automáticamente modelos de comportamiento operacional que satisfagan el
+objetivo.
 
 \subsection{La exploración en robótica}
+
+
+%TODO esta es la motivación/relevancia en el mundo científico (obviamente mejorada)
 En la robótica, el problema de la exploración consiste en como usar al robot para maximizar el conocimiento sobre un área en particular. La utilización de robots es muy importante para la cartografía o búsqueda y rescate en lugares que son peligrosos o inaccesibles para las personas. En el caso de la utilización de robots autónomos, se utiliza la técnica de localización y modelado simultáneos, para construir un mapa de un entorno desconocido en el que se encuentra el robot, a la vez que estima su trayectoria al desplazarse dentro del entorno.
 
-% Así como el problema de síntesis de controladores trabaja con LTSs el problema de exploración puede vincularse
-% con MTSs donde la descripcion del Ambiente
-% dar la idea de lo que es un MTS
+%TODO hacer los siguientes párrafo
 
+% párrafo 1
+% Así como el problema de síntesis de controladores trabaja con LTSs el problema de exploración puede vincularse (xq es
+% vinculable)
 
-% Explicar la relavancia de la exploración en le mundo científico.
+% párrafo 2
+% Explicar que es un MTS. Como se aplica los MTSs al problema de exploración y porque es dificil usarlos.
 
-% En el problema tradicional se utilizan MTS. La solucion es trivaluada y nosotros queremos refinar
-% los resultados SOME. ALL y NONE son copados, SOME no y queremos refinarlo. Adquiriendo informacion mediante
+% párrafo 3
+% Explicar la relavancia de la exploración en le mundo científico. (está relacionado con lo que ya escribiste arriba)
+
+% párrafo 4
+% En el problema tradicional se utilizan MTS. La solución es trivaluada y nosotros queremos refinar
+% los resultados SOME. ALL y NONE son copados, SOME no y queremos refinarlo. Adquiriendo información mediante
 % la exploración es que vamos a obtener mejores resultados.
+
+% párrafo 5
 % Dar una introducción que se base en el paper \cite{DBPU12} MTSs
 
-% Explicar por qué es relevante cientificamente la solución de este problema
+
+% Hacer un resumen de lo que vamos a hacer y porque es importante. (podes usar itemize o lo que quieras)
 %  - poder obtener más resultados favorables a partir de un resulta SOME que es poco expresivo
 %  - ... 
 %  - ...
 
+% CUANDO TERMINES HASTA ACÁ HACE UN PUSH Y ESPERÁ QUE TE DEMOS UN FEEDBACK ANTES DE SEGUIR CON EL SIGUIENTE.
+
 \section{Objetivos}
+
+% Hacer un párrafo por objetivo:
 
 % objetivo 1: identificar posibles Inputs y Outputs
 % objetivo 2: identificar de que condiciones debemos proveer para garantizar que hay una solución de exploracion
@@ -85,18 +112,19 @@ En la robótica, el problema de la exploración consiste en como usar al robot par
 % Ivan
 Al explorar un área desconocida, no tenemos un modelo del entorno, por lo cual no podemos sintetizar un controlador que guíe al robot para ir desde un punto a otro. Nos gustaría que el robot vaya aprendiendo sobre el entorno de una forma inteligente, y decida si es posible llegar desde su posición hasta otra desconocida, la cual podría estar rodeada de obstáculos por los cuales el robot no puede pasar. El trabajo de esta tesis consistir'a en solucionar este problema modelando el entorno utilizando un Modal Transition System (MTS). Esta técnica nos permite modelar la incertidumbre que nos presenta el 'area a explorar. Mediante dicho modelo y el conocimiento adecuado sobre el dominio del problema, podremos sintetizar un controlador que guíe al robot hacia el lugar deseado. En caso de que aparezca un nuevo obstáculo en el camino del robot, vamos a enriquecer el modelo con la nueva informaci'on obtenida, para así sintetizar un nuevo controlador para el robot.
 
-
+% CUANDO TERMINES HASTA ACÁ HACE UN PUSH Y ESPERÁ QUE TE DEMOS UN FEEDBACK ANTES DE SEGUIR CON EL SIGUIENTE.
 
 \section{Plan de trabajo}
 
-% Leer bibliografia existente relacionada para conocer el estado del arte y relevar los casos de estudio de importancia
-% Interiorizarse con formalismos e1xistentes para la definicion de síntesis de controladores, suposiciones, etc
+% Leer bibliografía existente relacionada para conocer el estado del arte y relevar los casos de estudio de importancia
+% Interiorizarse con formalismos existentes para la definición de síntesis de controladores, suposiciones, etc
 % Interiorizarse sobre herramientas existentes. Como funcionan, que inputs tienen, que outputs ¿Realizan muchas suposiciones?
-% Intrgreación con herramienta de visualizacion grafica de transiciones.
+% Integración con herramienta de visualización gráfica de transiciones.
 % Integrar la implementación con la infraestructura para lograr probar los casos de estudio mencionados
-% Verificar la complejidad de la solucion obtenida
+% Verificar la complejidad de la solución obtenida
 % Realizar una evaluación comparativa entre los resultados obtenidos vs los ya existentes
 
+% PUSHEA QUE LO TENES TERMINADO!!
 
 \newpage
 
