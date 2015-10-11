@@ -1,0 +1,30 @@
+\documentclass{article}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,activeacute]{babel}
+
+\title{Plan de Tesis de Licenciatura}
+\author{Ivan Pasquini}
+
+
+
+\begin{document}
+
+\maketitle
+
+\section{T'ITULO DEL PROYECTO}
+``Localizaci'on y modelado simult'aneos mediante generaci'on y actualizaci'on autom'atica de controladores discretos ''
+
+\section{LA EXPLORACI'ON EN ROB'OTICA}
+En la rob'otica, el problema de la exploraci'on consiste en como usar al robot para maximizar el conocimiento sobre un 'area en particular. La utilizaci'on de robots es muy importante para la cartograf'ia o b'usqueda y rescate en lugares que son peligrosos o inaccesibles para las personas. En el caso de la utilizaci'on de robots aut'onomos, se utiliza la t'ecnica de localizaci'on y modelado simult'aneos, para construir un mapa de un entorno desconocido en el que se encuentra el robot, a la vez que estima su trayectoria al desplazare dentro del entorno.
+
+\section{LA SINTESIS DE CONTROLADORES}
+En la ingenier'ia de requerimientos, los requerimientos son declaraciones prescriptivas sobre el mundo expresados en termino de fen'omenos sobre la interfaz entre el la maquina que queremos construir y el mundo en el cual viven los problemas que queremos resolver. Dichos problemas son capturados como declaraciones prescriptivas sobre el mundo llamadas objetivos y declaraciones prescriptivas sobre lo que asumimos que es verdad (dominio del problema).
+Los requerimientos y el dominio del problema deben satisfacer el objetivo. Cumplir los requerimientos se puede ver como un problema de s'intesis, el cual busca generar autom'aticamente modelos de comportamiento operacional que satisfagan el objetivo.
+
+\section{OBJETIVOS}
+
+Al explorar un 'area desconocida, no tenemos un modelo del entorno, por lo cual no podemos sintetizar un controlador que gu'ie al robot para ir desde un punto a otro. Nos gustar'ia que el robot vaya aprendiendo sobre el entorno de una forma inteligente, y decida si es posible llegar desde su posici'on hasta otra desconocida, la cual podr'ia estar rodeada de obst'aculos por los cuales el robot no puede pasar. El trabajo de esta tesis consistir'a en solucionar este problema modelando el entorno utilizando un Modal Transition System (MTS). Esta t'ecnica nos permite modelar la incertidumbre que nos presenta el 'area a explorar. Mediante dicho modelo y el conocimiento adecuado sobre el dominio del problema, podremos sintetizar un controlador que gu'ie al robot hacia el lugar deseado. En caso de que aparezca un nuevo obst'aculo en el camino del robot, vamos a enriquecer el modelo con la nueva informaci'on obtenida, para as'i sintetizar un nuevo controlador para el robot.
+
+\end{document}

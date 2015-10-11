@@ -1,0 +1,142 @@
+\documentclass[10pt, spanish,a4paper]{article}
+
+\usepackage{a4wide}
+\usepackage[activeacute]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{pdfpages}
+\usepackage{caratula}
+\usepackage{amssymb}
+
+
+% Acomodamos algunas definiciones tipográficas.
+\parskip=1.5ex % ex es la altura de una x
+\sloppy % Tratar de no separar en sílabas.
+
+% Acomodo fancyhdr.
+\pagestyle{fancy}
+\thispagestyle{fancy}
+\rhead{Propuesta de tesis}
+\lhead{Pasquini, Ivan}
+\cfoot{\thepage /\pageref{LastPage}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% CARATULA %
+\titulo{Localización y modelado simultáneos mediante generación y actualización automática de controladores discretos}
+\fecha{\today}
+\materia{Propuesta de tesis}
+\grupo{\large{Director: Nicolas D'Ippolito} \\ \small{Mail: srdipi@gmail.com}}
+\integrante{Pasquini, Ivan}{141/09}{pasquiniivan@gmail.com}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+
+\subsection{La síntesis de controladores}
+
+%TODO ver como es el modelo de Jackson. "The World and the Machine" A Critical Perspective on Process Technology
+
+%TODO Es suficiente la definición del problema de control que es una composición de un LTS con la futura solucion del problema para la satisfacción de los objetivos.
+
+El modelo Machine-World de Michael Jackson establece un marco desde el cual aproximarse a la ingeniería de requerimientos. En este modelo, los requerimientos R son declaraciones prescriptivas sobre el mundo expresadas en términos de fenómenos sobre la interfaz entre la máquina que queremos construir y el mundo en el cual viven los problemas que queremos resolver. Dichos problemas son capturados como declaraciones prescriptivas expresadas en término de fenómenos del mundo llamados objetivos G, y declaraciones descriptivas sobre lo que nosotros asumimos que es verdad en el mundo, suposiciones de dominio D.
+
+La tarea clave de la ingeniera de requerimientos es comprender y documentar los objetivos y las características del entorno. Teniendo estos modelos se pueden formular un conjunto de requerimientos para la máquina de forma que en conjunto con el entorno satisfagan los objetivos. Más formalmente R, D $\vDash$ G.
+
+Esto puede ser formulado como un problema de síntesis. Dados un conjunto de suposiciones del dominio y un conjunto de objetivos del sistema, construir  automáticamente un modelo operacional de la maquina tal que compuesto con el modelo del entorno, los objetivos sean alcanzados. Para cumplir los objetivos, 
+el modelo restringe la ocurrencia de eventos controlables basándose en la observación de los eventos que ya ocurrieron. Este problema se conoce como el problema de síntesis de controladores y está siendo estudiado exhaustivamente en varios aspectos de la ingeniería de los requerimientos.
+
+Los Labelled Transition Systems (LTSs) son ampliamente utilizados para modelar y analizar el comportamiento de sistemas concurrentes y distribuidos. Son un sistema de transición de estados en el cual las transiciones son etiquetadas con acciones. El conjunto de acciones de un LTS se conoce como alfabeto comunicacional y constituye las interacciones que el sistema modelado puede tener con el entorno.
+
+Los fluents nos permiten especificar propiedades basadas en estados en modelos basados en eventos. FLTL es una lógica temporal lineal que nos permite razonar sobre fluents. Un fluent está compuesto por un conjunto de acciones  que lo activa, un conjunto de acciones que lo terminan y un valor booleano que indica si comienza activo o no.
+
+Podemos describir la síntesis de controladores de la siguiente forma. Dados un LTS que describe el comportamiento del entorno, un conjunto de acciones controlables, un conjunto de fórmulas FLTL que representan las suposiciones del dominio y un conjunto de fórmulas FLTL que representan los objetivos del sistema, el problema de control de LTS es encontrar un LTS que solo restrinja la ocurrencia de acciones controlables y garantice que la composición en paralelo entre el ambiente y el LTS es deadlock free y que si las suposiciones de dominio se satisfacen, entonces los objetivos del sistema también son satisfechos.
+
+\subsection{La exploración en robótica}
+
+% párrafo 3
+% Explicar la relavancia de la exploración en le mundo científico. (está relacionado con lo que ya escribiste arriba)
+
+En la robótica, el problema de la exploración consiste en como usar al robot para maximizar el conocimiento sobre un área en particular. La utilización de robots es muy importante para la cartografía o búsqueda y rescate en lugares que son peligrosos o inaccesibles para las personas. En el caso de la utilización de robots autónomos, se utiliza la técnica de localización y modelado simultáneos, para construir un mapa de un entorno desconocido en el que se encuentra el robot, a la vez que estima su trayectoria al desplazarse dentro del entorno.
+
+% párrafo 2
+% Explicar que es un MTS. Como se aplica los MTSs al problema de exploración y porque es dificil usarlos.
+
+Los MTSs son nociones abstractas de los LTSs. Extienden los LTSs distinguiendo entre dos conjuntos de transiciones. Un MTS describe un conjunto de posibles LTSs describiendo un conjunto máximo y un conjunto mínimo de transiciones para cada estado. Un MTSs describe transiciones requeridas, que deben existir, y transiciones posibles, que pueden existir. Por eliminación, las otras transiciones no pueden existir.
+
+Hay una relación de refinamiento entre MTSs. Un LTS se puede ver como un MTS en donde la función de transición de las acciones posibles es igual que la función de transición de las acciones requeridas. Los LTSs que refinan un MTS son descripciones completas del comportamiento del sistema y se llaman implementaciones.
+
+% párrafo 1
+% Así como el problema de síntesis de controladores trabaja con LTSs el problema de exploración puede vincularse (xq es vinculable)
+
+Cuando comenzamos la exploración, la información que tenemos sobre el mundo es parcial. Podemos codificarla en un MTS en donde la información que tenemos son transiciones requeridas y la información que podemos adquirir mediante exploración son transiciones posibles. El mundo puede representarse como un LTS que refina nuestro MTS inicial.
+
+% párrafo 4
+% En el problema tradicional se utilizan MTS. La solución es trivaluada y nosotros queremos refinar
+% los resultados SOME. ALL y NONE son copados, SOME no y queremos refinarlo. Adquiriendo información mediante
+% la exploración es que vamos a obtener mejores resultados.
+
+% párrafo 5
+% Dar una introducción que se base en el paper \cite{DBPU12} MTSs
+
+El problema de la síntesis de controladores para MTSs consiste en ver si todas, alguna o ninguna de sus implementaciones pueden ser controladas por un controlador LTS. Al responder esta pregunta, también estamos respondiendo la pregunta de si el problema es realizable, ya que si la respuesta es ninguno el problema no es realizable.
+
+Cuando exploramos, lo hacemos para poder realizar un objetivo. Si intentamos sintetizar una maquina tal que al componerla con el MTS que representa nuestro conocimiento del mundo, para todas las implementaciones posibles, el objetivo es alcanzable, sabemos que podemos cumplir el objetivo, ya que el mundo puede representarse como un LTS que refina nuestro modelo. Cuando no es posible sintetizar un controlador que pueda garantizar que los objetivos se alcanzen para ninguna de las implementaciones de nuestro modelo, podemos afirmar que el objetivo no es realizable en el mundo. Pero si para algunas de las implementaciones existe un controlador, y para otras no, no podemos afirmar nada sobre nuestro objetivo.
+
+% Hacer un resumen de lo que vamos a hacer y porque es importante. (podes usar itemize o lo que quieras)
+%  - poder obtener más resultados favorables a partir de un resulta SOME que es poco expresivo
+%  - ... 
+%  - ...
+
+El trabajo de esta tesis consistirá en:
+
+\begin{itemize}
+  \item Construir una herramienta que nos permita explorar para refinar nuestro conocimiento inicial.
+  \item Identificar que condiciones se deben cumplir para poder afirmar si nuestro objetivo es realizable o no.
+  \item Dar una respuesta en caso de que las condiciones se cumplan.
+	\item Analizar cuanto fue necesario refinar para poder dar la respuesta.
+\end{itemize}
+
+% CUANDO TERMINES HASTA ACÁ HACE UN PUSH Y ESPERÁ QUE TE DEMOS UN FEEDBACK ANTES DE SEGUIR CON EL SIGUIENTE.
+
+\section{Objetivos}
+
+% Hacer un párrafo por objetivo:
+
+% objetivo 1: identificar posibles Inputs y Outputs
+% objetivo 2: identificar de que condiciones debemos proveer para garantizar que hay una solución de exploracion
+% objetivo 3: definir formalmente el problema de exploración
+% objetivo 4: elaborar la implementación que resuelve computacionalmente el problema definido
+% objetivo 5: probar casos de uso relevantes a la solucion propuesta (sacar casos de estudio de bibliografia)
+% Para comparar la implementación tomamos ejemplos de la literatura que resuelve problemas afines.
+
+
+% Ivan
+Al explorar un área desconocida, no tenemos un modelo del entorno, por lo cual no podemos sintetizar un controlador que guíe al robot para ir desde un punto a otro. Nos gustaría que el robot vaya aprendiendo sobre el entorno de una forma inteligente, y decida si es posible llegar desde su posición hasta otra desconocida, la cual podría estar rodeada de obstáculos por los cuales el robot no puede pasar. El trabajo de esta tesis consistir'a en solucionar este problema modelando el entorno utilizando un Modal Transition System (MTS). Esta técnica nos permite modelar la incertidumbre que nos presenta el 'area a explorar. Mediante dicho modelo y el conocimiento adecuado sobre el dominio del problema, podremos sintetizar un controlador que guíe al robot hacia el lugar deseado. En caso de que aparezca un nuevo obstáculo en el camino del robot, vamos a enriquecer el modelo con la nueva informaci'on obtenida, para así sintetizar un nuevo controlador para el robot.
+
+% CUANDO TERMINES HASTA ACÁ HACE UN PUSH Y ESPERÁ QUE TE DEMOS UN FEEDBACK ANTES DE SEGUIR CON EL SIGUIENTE.
+
+\section{Plan de trabajo}
+
+% Leer bibliografía existente relacionada para conocer el estado del arte y relevar los casos de estudio de importancia
+% Interiorizarse con formalismos existentes para la definición de síntesis de controladores, suposiciones, etc
+% Interiorizarse sobre herramientas existentes. Como funcionan, que inputs tienen, que outputs ¿Realizan muchas suposiciones?
+% Integración con herramienta de visualización gráfica de transiciones.
+% Integrar la implementación con la infraestructura para lograr probar los casos de estudio mencionados
+% Verificar la complejidad de la solución obtenida
+% Realizar una evaluación comparativa entre los resultados obtenidos vs los ya existentes
+
+% PUSHEA QUE LO TENES TERMINADO!!
+
+\newpage
+
+\bibliographystyle{abbrv}
+\bibliography{pasquini}
+
+
+\end{document}
+
