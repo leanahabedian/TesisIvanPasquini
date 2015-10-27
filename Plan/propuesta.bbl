@@ -1,3 +1,46 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{Bloem:2012:SRD:2160191.2160503}
+R.~Bloem, B.~Jobstmann, N.~Piterman, A.~Pnueli, and Y.~Saar.
+\newblock Synthesis of reactive(1) designs.
+\newblock {\em J. Comput. Syst. Sci.}, 78(3):911--938, May 2012.
+
+\bibitem{4639371}
+N.~D'~Ippolito, D.~Fischbein, M.~Chechik, and S.~Uchitel.
+\newblock Mtsa: The modal transition system analyser.
+\newblock In {\em Automated Software Engineering, 2008. ASE 2008. 23rd IEEE/ACM
+  International Conference on}, pages 475--476, Sept 2008.
+
+\bibitem{D'Ippolito:2010:SLB:1882291.1882305}
+N.~R. D'~Ippolito, V.~Braberman, N.~Piterman, and S.~Uchitel.
+\newblock Synthesis of live behaviour models.
+\newblock In {\em Proceedings of the Eighteenth ACM SIGSOFT International
+  Symposium on Foundations of Software Engineering}, FSE '10, pages 77--86, New
+  York, NY, USA, 2010. ACM.
+
+\bibitem{DBPU12}
+N.~D'Ippolito, V.~Braberman, N.~Piterman, and S.~Uchitel.
+\newblock The modal transition system control problem.
+\newblock In {\em 19th International Symposium on Formal Methods}, volume 7436,
+  pages 155--170, Paris, France, 2012.
+
+\bibitem{Giannakopoulou:2003:FMC:940071.940106}
+D.~Giannakopoulou and J.~Magee.
+\newblock Fluent model checking for event-based systems.
+\newblock In {\em Proceedings of the 9th European Software Engineering
+  Conference Held Jointly with 11th ACM SIGSOFT International Symposium on
+  Foundations of Software Engineering}, ESEC/FSE-11, pages 257--266, New York,
+  NY, USA, 2003. ACM.
+
+\bibitem{Gradel:2002:ALI:938135}
+E.~Gr\"{a}del, W.~Thomas, and T.~Wilke, editors.
+\newblock {\em Automata Logics, and Infinite Games: A Guide to Current
+  Research}.
+\newblock Springer-Verlag New York, Inc., New York, NY, USA, 2002.
+
+\bibitem{Magee:2000:CSM:332036}
+J.~Magee and J.~Kramer.
+\newblock {\em Concurrency: State Models \&Amp; Java Programs}.
+\newblock John Wiley \& Sons, Inc., New York, NY, USA, 1999.
 
 \end{thebibliography}

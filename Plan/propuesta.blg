@@ -1,5 +1,51 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: propuesta.aux
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: propuesta.aux
 The style file: abbrv.bst
-I found no \citation commands---while reading file propuesta.aux
 Database file #1: pasquini.bib
-(There was 1 error message)
+Warning--string name "lncs" is undefined
+--line 95 of file pasquini.bib
+Warning--string name "springer" is undefined
+--line 97 of file pasquini.bib
+You've used 7 entries,
+            2118 wiz_defined-function locations,
+            552 strings with 5397 characters,
+and the built_in function-call counts, 2978 in all, are:
+= -- 296
+> -- 142
+< -- 5
++ -- 56
+- -- 48
+* -- 206
+:= -- 467
+add.period$ -- 23
+call.type$ -- 7
+change.case$ -- 43
+chr.to.int$ -- 0
+cite$ -- 7
+duplicate$ -- 126
+empty$ -- 228
+format.name$ -- 48
+if$ -- 655
+int.to.chr$ -- 0
+int.to.str$ -- 7
+missing$ -- 8
+newline$ -- 38
+num.names$ -- 15
+pop$ -- 53
+preamble$ -- 1
+purify$ -- 38
+quote$ -- 0
+skip$ -- 95
+stack$ -- 0
+substring$ -- 173
+swap$ -- 43
+text.length$ -- 5
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 24
+warning$ -- 0
+while$ -- 26
+width$ -- 8
+write$ -- 87
+(There were 2 warnings)
