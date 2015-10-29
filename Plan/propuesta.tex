@@ -39,11 +39,10 @@
 
 \subsection{La síntesis de controladores}
 
-%TODO ver como es el modelo de Jackson. "The World and the Machine" A Critical Perspective on Process Technology
-
+%TODO ver como es el modelo de Jackson. "The World and the Machine" A Critical Perspective on Process Technol
 %TODO Es suficiente la definición del problema de control que es una composición de un LTS con la futura solucion del problema para la satisfacción de los objetivos.
 
-El modelo Machine-World de Michael Jackson establece un marco desde el cual aproximarse a la ingeniería de requerimientos. En este modelo, los requerimientos R son declaraciones prescriptivas sobre el mundo expresadas en términos de fenómenos sobre la interfaz entre la máquina que queremos construir y el mundo en el cual viven los problemas que queremos resolver. Dichos problemas son capturados como declaraciones prescriptivas expresadas en término de fenómenos del mundo llamados objetivos G, y declaraciones descriptivas sobre lo que nosotros asumimos que es verdad en el mundo, suposiciones de dominio D.
+El modelo del mundo y la máquina de Michael Jackson establece un marco desde el cual aproximarse a la ingeniería de requerimientos. En este modelo, los requerimientos R son declaraciones prescriptivas sobre el mundo expresadas en términos de fenómenos sobre la interfaz entre la máquina que queremos construir y el mundo en el cual viven los problemas que queremos resolver. Dichos problemas son capturados como declaraciones prescriptivas expresadas en término de fenómenos del mundo llamados objetivos G, y declaraciones descriptivas sobre lo que nosotros asumimos que es verdad en el mundo, suposiciones de dominio D.
 
 La tarea clave de la ingeniera de requerimientos es comprender y documentar los objetivos y las características del entorno. Teniendo estos modelos se pueden formular un conjunto de requerimientos para la máquina de forma que en conjunto con el entorno satisfagan los objetivos. Más formalmente R, D $\vDash$ G.
 
@@ -61,14 +60,25 @@ Podemos describir la síntesis de controladores de la siguiente forma. Dados un L
 % párrafo 3
 % Explicar la relavancia de la exploración en le mundo científico. (está relacionado con lo que ya escribiste arriba)
 
-En la robótica, el problema de la exploración consiste en como usar al robot para maximizar el conocimiento sobre un área en particular. La utilización de robots es muy importante para la cartografía o búsqueda y rescate en lugares que son peligrosos o inaccesibles para las personas. En el caso de la utilización de robots autónomos, se utiliza la técnica de localización y modelado simultáneos, para construir un mapa de un entorno desconocido en el que se encuentra el robot, a la vez que estima su trayectoria al desplazarse dentro del entorno.
+En el área de robótica, el problema de la exploración consiste en recorrer mediante un vehículo autónomo una zona
+desconocida para obtener el conocimiento total de este o en caso de no poder reconocerlo en su totalidad, maximizar el
+espacio explorado. La utilización de robots es muy importante para la
+cartografía o búsqueda y rescate en lugares que son peligrosos o inaccesibles para las personas. En el caso de la
+utilización de robots autónomos, se utiliza la técnica de localización y modelado simultáneos, para construir un mapa de
+un entorno desconocido en el que se encuentra el robot, a la vez que estima su trayectoria al desplazarse dentro del
+entorno.
 
 % párrafo 2
 % Explicar que es un MTS. Como se aplica los MTSs al problema de exploración y porque es dificil usarlos.
 
-Los MTSs son nociones abstractas de los LTSs. Extienden los LTSs distinguiendo entre dos conjuntos de transiciones. Un MTS describe un conjunto de posibles LTSs describiendo un conjunto máximo y un conjunto mínimo de transiciones para cada estado. Un MTSs describe transiciones requeridas, que deben existir, y transiciones posibles, que pueden existir. Por eliminación, las otras transiciones no pueden existir.
+Nuestro modelo matemático para atacar dichos problemas consiste en los MTS (Modal Transition System), que son nociones
+abstractas de los LTSs. Extienden a los LTSs ya que las transiciones que los MTSs poseen pueden denotar eventos 
+requeridos o bien posibles. Debido a esta particularidad de los MTSs, es que podemos modelar mediante este formalismo
+información parcial del mundo.
 
-Hay una relación de refinamiento entre MTSs. Un LTS se puede ver como un MTS en donde la función de transición de las acciones posibles es igual que la función de transición de las acciones requeridas. Los LTSs que refinan un MTS son descripciones completas del comportamiento del sistema y se llaman implementaciones.
+Hay una relación de refinamiento entre los MTSs y los LTSs. Un LTS se puede ver como un MTS en donde la función de
+transición de las acciones posibles es igual que la función de transición de las acciones requeridas. Los LTSs que
+refinan un MTS son descripciones completas del comportamiento del sistema y se llaman implementaciones.
 
 % párrafo 1
 % Así como el problema de síntesis de controladores trabaja con LTSs el problema de exploración puede vincularse (xq es vinculable)
