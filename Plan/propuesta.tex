@@ -10,8 +10,14 @@
 \usepackage{caratula}
 \usepackage{amssymb}
 
+% for coloring tables
+\usepackage{xcolor,colortbl}
+\definecolor{light-gray}{gray}{0.70}
+\newcommand{\task}{\cellcolor{light-gray}}  %{0.9}
 
-% Acomodamos algunas definiciones tipográficas.
+
+
+% Acomodamos algunas definicines tipográficas.
 \parskip=1.5ex % ex es la altura de una x
 \sloppy % Tratar de no separar en sílabas.
 
@@ -24,7 +30,7 @@
 \renewcommand{\footrulewidth}{0.4pt}
 
 % CARATULA %
-\titulo{Localización y modelado simultáneos mediante generación y actualización automática de controladores discretos}
+\titulo{Localización y modelado simultáneos \mbox{mediante} generación y actualización \mbox{automática} de controladores discretos}
 \fecha{\today}
 \materia{Propuesta de tesis}
 \grupo{\large{Director: Nicolas D'Ippolito} \\ \small{Mail: srdipi@gmail.com}}
@@ -132,20 +138,39 @@ Al explorar un área desconocida, no tenemos un modelo del entorno, por lo cual n
 
 \section{Plan de trabajo}
 
-% Leer bibliografía existente relacionada para conocer el estado del arte y relevar los casos de estudio de importancia
-% Interiorizarse con formalismos existentes para la definición de síntesis de controladores, suposiciones, etc
-% Interiorizarse sobre herramientas existentes. Como funcionan, que inputs tienen, que outputs ¿Realizan muchas suposiciones?
-% Integración con herramienta de visualización gráfica de transiciones.
-% Integrar la implementación con la infraestructura para lograr probar los casos de estudio mencionados
-% Verificar la complejidad de la solución obtenida
-% Realizar una evaluación comparativa entre los resultados obtenidos vs los ya existentes
+Presentamos un plan de trabajo cascada simplificado que tiene como objetivo mostrar las tareas que se llevan la mayor parte del esfuerzo en cada momento. En la práctica, se utiliza un proceso iterativo. Representaremos a continuación de una manera abstracta las siguiente tareas candidatas:
 
-% PUSHEA QUE LO TENES TERMINADO!!
+\begin{itemize}
+	\item Formalización del problema identificando distintos escenarios posibles [Formalización]
+	\item Diseño, prueba e implementación de algoritmos correctos para el problema en cada escenario [Implementación]
+	\item Validación de la técnica en casos de estudio [Validación]
+	\item Aplicaciones motivadoras [Aplicaciones]
+\end{itemize}
 
-\newpage
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		& \multicolumn{12}{|c|}{Meses} \\
+		\hline
+		Actividad & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12  \\
+		\hline
+		Implementación & \task & \task & \task & \task & \task & \task & \task & \task & \task & \task & & \\
+		\hline
+		Formalización & & & & \task & \task & \task & \task & \task & \task & \task & \task & \\
+		\hline
+		Validación & & & & & & & \task & \task & \task & \task & \task & \task \\
+		\hline
+		Aplicaciones & & & & & & & & & & & \task & \task \\
+		\hline
+	\end{tabular}
+\end{center}
+
+2\newpage
 
 \bibliographystyle{abbrv}
 \bibliography{pasquini}
+\nocite{*}
 
 
 \end{document}
