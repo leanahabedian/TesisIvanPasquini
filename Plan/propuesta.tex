@@ -124,15 +124,32 @@ El trabajo de esta tesis consistirá en:
 % Hacer un párrafo por objetivo:
 
 % objetivo 1: identificar posibles Inputs y Outputs
+Nuestro primer objetivo es identificar los posibles inputs y outputs.
+Necesitamos saber que información es necesario proporcionarle al robot para que pueda explorar, y en que forma vamos a proporcionarle dicha información.
+También es importante definir que esperamos obtener de la exploración y como vamos a mostrarlo.
+
 % objetivo 2: identificar de que condiciones debemos proveer para garantizar que hay una solución de exploracion
+Lo siguiente es identificar que condiciones debemos proveer para garantizar que hay una solución de exploración.
+Tenemos que averiguar si podemos garantizarlo, si requerimos cumplir algunas condiciones para que esto ocurra, y en que casos serían necesarias estas condiciones.
+
 % objetivo 3: definir formalmente el problema de exploración
+El próximo paso es definir formalmente el problema de exploración.
+Necesitamos un modelo sobre el cual demostrar nuestros teoremas sobre la exploración.
+
 % objetivo 4: elaborar la implementación que resuelve computacionalmente el problema definido
+Vamos a elaborar la implementación que resuelva computacionalmente el problema definido.
+Lo haremos sobre la herramienta MTSA. Necesitamos una herramienta que nos permita investigar la exploración en detalle.
+
 % objetivo 5: probar casos de uso relevantes a la solucion propuesta (sacar casos de estudio de bibliografia)
+Por ultimo vamos a probar casos de uso relevantes a la solución propuesta.
+Serán casos que consideremos útiles para ver las particularidades de la exploración, y casos de estudio de la bibliografía.
+
+
 % Para comparar la implementación tomamos ejemplos de la literatura que resuelve problemas afines.
 
 
 % Ivan
-Al explorar un área desconocida, no tenemos un modelo del entorno, por lo cual no podemos sintetizar un controlador que guíe al robot para ir desde un punto a otro. Nos gustaría que el robot vaya aprendiendo sobre el entorno de una forma inteligente, y decida si es posible llegar desde su posición hasta otra desconocida, la cual podría estar rodeada de obstáculos por los cuales el robot no puede pasar. El trabajo de esta tesis consistir'a en solucionar este problema modelando el entorno utilizando un Modal Transition System (MTS). Esta técnica nos permite modelar la incertidumbre que nos presenta el 'area a explorar. Mediante dicho modelo y el conocimiento adecuado sobre el dominio del problema, podremos sintetizar un controlador que guíe al robot hacia el lugar deseado. En caso de que aparezca un nuevo obstáculo en el camino del robot, vamos a enriquecer el modelo con la nueva informaci'on obtenida, para así sintetizar un nuevo controlador para el robot.
+%Al explorar un área desconocida, no tenemos un modelo del entorno, por lo cual no podemos sintetizar un controlador que guíe al robot para ir desde un punto a otro. Nos gustaría que el robot vaya aprendiendo sobre el entorno de una forma inteligente, y decida si es posible llegar desde su posición hasta otra desconocida, la cual podría estar rodeada de obstáculos por los cuales el robot no puede pasar. El trabajo de esta tesis consistir'a en solucionar este problema modelando el entorno utilizando un Modal Transition System (MTS). Esta técnica nos permite modelar la incertidumbre que nos presenta el 'area a explorar. Mediante dicho modelo y el conocimiento adecuado sobre el dominio del problema, podremos sintetizar un controlador que guíe al robot hacia el lugar deseado. En caso de que aparezca un nuevo obstáculo en el camino del robot, vamos a enriquecer el modelo con la nueva informaci'on obtenida, para así sintetizar un nuevo controlador para el robot.
 
 % CUANDO TERMINES HASTA ACÁ HACE UN PUSH Y ESPERÁ QUE TE DEMOS UN FEEDBACK ANTES DE SEGUIR CON EL SIGUIENTE.
 
