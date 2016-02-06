@@ -3,5 +3,5 @@
 \contentsline {section}{\numberline {1.1}Infancia y juventud}{1}
 \contentsline {section}{\numberline {1.2}Rescate de la princesa}{1}
 \contentsline {section}{\numberline {1.3}Sacrificio y victoria}{1}
-\contentsline {chapter}{\numberline {2.}El imperio contraataca}{3}
-\contentsline {chapter}{\numberline {3.}El regreso del Jedi}{5}
+\contentsline {chapter}{\numberline {2.}El imperio contraataca}{2}
+\contentsline {chapter}{\numberline {3.}El regreso del Jedi}{3}
