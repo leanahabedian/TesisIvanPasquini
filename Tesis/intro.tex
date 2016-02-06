@@ -1,0 +1,54 @@
+\chapter{Introdución}
+
+\section{La síntesis de controladores}
+
+El modelo del mundo y la máquina de Michael Jackson establece un marco desde el cual aproximarse a la ingeniería de requerimientos. En este modelo, los requerimientos R son declaraciones prescriptivas sobre el mundo expresadas en términos de fenómenos sobre la interfaz entre la máquina que queremos construir y el mundo en el cual viven los problemas que queremos resolver.\\
+Dichos problemas son capturados como declaraciones prescriptivas expresadas en término de fenómenos del mundo llamados objetivos G, y declaraciones descriptivas sobre lo que nosotros asumimos que es verdad en el mundo, suposiciones de dominio D.
+
+\vspace{\baselineskip}
+La tarea clave de la ingeniera de requerimientos es comprender y documentar los objetivos y las características del entorno. Teniendo estos modelos se pueden formular un conjunto de requerimientos para la máquina de forma que en conjunto con el entorno satisfagan los objetivos. Más formalmente R, D $\vDash$ G.
+
+\vspace{\baselineskip}
+Esto puede ser formulado como un problema de síntesis. Dados un conjunto de suposiciones del dominio y un conjunto de objetivos del sistema, construir  automáticamente un modelo operacional de la maquina tal que compuesto con el modelo del entorno, los objetivos sean alcanzados.\\
+Para cumplir los objetivos, el modelo restringe la ocurrencia de eventos controlables basándose en la observación de los eventos que ya ocurrieron.
+Este problema se conoce como el problema de síntesis de controladores y está siendo estudiado exhaustivamente en varios aspectos de la ingeniería de los requerimientos.
+
+\subsection{Labelled Transition Systems}
+Los Labelled Transition Systems (LTSs) son ampliamente utilizados para modelar y analizar el comportamiento de sistemas concurrentes y distribuidos. Son un sistema de transición de estados en el cual las transiciones son etiquetadas con acciones. El conjunto de acciones de un LTS se conoce como alfabeto comunicacional y constituye las interacciones que el sistema modelado puede tener con el entorno.
+
+\subsection{Fluent Linear Temporal Logic}
+Los fluents nos permiten especificar propiedades basadas en estados, en modelos basados en eventos. FLTL es una lógica temporal lineal que nos permite razonar sobre fluents. Un fluent está compuesto por un conjunto de acciones  que lo activa, un conjunto de acciones que lo terminan y un valor booleano que indica si comienza activo o no.
+
+\subsection{Síntesis de controladores en LTSs}
+Podemos describir la síntesis de controladores de la siguiente forma. Dados un LTS que describe el comportamiento del entorno, un conjunto de acciones controlables, un conjunto de fórmulas FLTL que representan las suposiciones del dominio y un conjunto de fórmulas FLTL que representan los objetivos del sistema, el problema de control de LTS es encontrar un LTS que solo restrinja la ocurrencia de acciones controlables y garantice que la composición en paralelo entre el ambiente y el LTS es deadlock free y que si las suposiciones de dominio se satisfacen, entonces los objetivos del sistema también son satisfechos.
+
+\subsection{Modal Transition System}
+Los MTS (Modal Transition System), son nociones abstractas de los LTSs. Extienden a los LTSs ya que las transiciones 
+que los MTSs poseen, pueden denotar eventos requeridos o bien posibles. Debido a esta particularidad de los MTSs, es 
+que podemos modelar mediante este formalismo información parcial del mundo.
+
+\vspace{\baselineskip}
+Hay una relación de refinamiento entre los MTSs y los LTSs. Un LTS se puede ver como un MTS en donde la función de
+transición de las acciones posibles es igual que la función de transición de las acciones requeridas. Los LTSs que
+refinan un MTS son descripciones completas del comportamiento del sistema y se llaman implementaciones.
+
+\subsection{Síntesis de controladores en MTSs}
+El problema de la síntesis de controladores para MTSs consiste en ver si todas, alguna o ninguna de sus implementaciones pueden ser controladas por un controlador LTS. Al responder esta pregunta, también estamos respondiendo la pregunta de si el problema es realizable, ya que si la respuesta es ninguno el problema no es realizable.
+
+\section{La exploración en robótica}
+
+En el área de robótica, el problema de la exploración consiste en recorrer, mediante un vehículo autónomo, una zona
+desconocida para obtener el conocimiento total de esta, o en caso de no poder reconocerla en su totalidad, maximizar el
+espacio explorado. La utilización de robots es muy importante para la cartografía o búsqueda y rescate en lugares que
+son peligrosos o inaccesibles para las personas.\\
+En el caso de la utilización de robots autónomos, se utiliza la técnica de localización y modelado simultáneos, para 
+construir un mapa de una zona desconocida en la que se encuentra el robot, a la vez que estima su trayectoria al 
+desplazarse dentro de la misma.
+
+\vspace{\baselineskip}
+Para atacar los problemas de la exploración, utilizaremos los MTS como modelos matemáticos.
+Cuando comenzamos la exploración, la información que tenemos sobre el mundo es parcial. Podemos codificarla en un MTS en donde la información que tenemos son transiciones requeridas y la información que podemos adquirir mediante exploración son transiciones posibles. El mundo puede representarse como un LTS que refina nuestro MTS inicial.
+
+\vspace{\baselineskip}
+Cuando exploramos, lo hacemos para poder realizar un objetivo. Si intentamos sintetizar una maquina tal que al componerla con el MTS que representa nuestro conocimiento del mundo, para todas las implementaciones posibles, el objetivo es alcanzable, sabemos que podemos cumplir el objetivo, ya que el mundo puede representarse como un LTS que refina nuestro modelo.\\
+Cuando no es posible sintetizar un controlador que pueda garantizar que los objetivos se alcanzen para ninguna de las implementaciones de nuestro modelo, podemos afirmar que el objetivo no es realizable en el mundo. Pero si para algunas de las implementaciones existe un controlador, y para otras no, no podemos afirmar nada sobre nuestro objetivo.
