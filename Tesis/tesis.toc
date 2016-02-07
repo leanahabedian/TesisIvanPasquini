@@ -1,9 +1,18 @@
 \select@language {spanish}
 \contentsline {chapter}{\numberline {1.}Introduci\IeC {\'o}n}{1}
 \contentsline {section}{\numberline {1.1}La s\IeC {\'\i }ntesis de controladores}{1}
-\contentsline {subsection}{\numberline {1.1.1}Labelled Transition Systems}{1}
-\contentsline {subsection}{\numberline {1.1.2}Fluent Linear Temporal Logic}{1}
-\contentsline {subsection}{\numberline {1.1.3}S\IeC {\'\i }ntesis de controladores en LTSs}{1}
-\contentsline {subsection}{\numberline {1.1.4}Modal Transition System}{2}
-\contentsline {subsection}{\numberline {1.1.5}S\IeC {\'\i }ntesis de controladores en MTSs}{2}
+\contentsline {subsection}{\numberline {1.1.1}Fluent Linear Temporal Logic}{1}
+\contentsline {subsection}{\numberline {1.1.2}Labelled Transition Systems}{1}
+\contentsline {subsection}{\numberline {1.1.3}Modal Transition System}{2}
 \contentsline {section}{\numberline {1.2}La exploraci\IeC {\'o}n en rob\IeC {\'o}tica}{2}
+\contentsline {chapter}{\numberline {2.}Problema}{3}
+\contentsline {section}{\numberline {2.1}Definici\IeC {\'o}n formal}{3}
+\contentsline {section}{\numberline {2.2}Algoritmo}{3}
+\contentsline {subsection}{\numberline {2.2.1}Inputs}{4}
+\contentsline {subsubsection}{View}{4}
+\contentsline {subsubsection}{Model}{5}
+\contentsline {subsubsection}{Goal}{5}
+\contentsline {subsection}{\numberline {2.2.2}Inicializaci\IeC {\'o}n}{5}
+\contentsline {subsection}{\numberline {2.2.3}S\IeC {\'\i }ntesis}{6}
+\contentsline {section}{\numberline {2.3}Estrategia Synthesis New Action}{8}
+\contentsline {subsection}{\numberline {2.3.1}Ejecuci\IeC {\'o}n}{10}

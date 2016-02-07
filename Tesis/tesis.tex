@@ -5,6 +5,11 @@
 \usepackage[spanish]{babel}
 \usepackage[left=3cm,right=3cm,bottom=3.5cm,top=3.5cm]{geometry}
 \usepackage{amssymb}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+
+\titleformat*{\subsubsection}{\large\bfseries}
 
 \begin{document}
 
@@ -35,6 +40,12 @@
 \pagestyle{headings}
 
 \input{intro.tex}
+
+\input{problema.tex}
+
+\includepdf[pages=-]{Manual.pdf}
+
+\includepdf[pages=-]{Ejemplo.pdf}
 
 %%%% BIBLIOGRAFIA
 \backmatter

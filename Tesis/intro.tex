@@ -13,13 +13,13 @@ Esto puede ser formulado como un problema de síntesis. Dados un conjunto de sup
 Para cumplir los objetivos, el modelo restringe la ocurrencia de eventos controlables basándose en la observación de los eventos que ya ocurrieron.
 Este problema se conoce como el problema de síntesis de controladores y está siendo estudiado exhaustivamente en varios aspectos de la ingeniería de los requerimientos.
 
-\subsection{Labelled Transition Systems}
-Los Labelled Transition Systems (LTSs) son ampliamente utilizados para modelar y analizar el comportamiento de sistemas concurrentes y distribuidos. Son un sistema de transición de estados en el cual las transiciones son etiquetadas con acciones. El conjunto de acciones de un LTS se conoce como alfabeto comunicacional y constituye las interacciones que el sistema modelado puede tener con el entorno.
-
 \subsection{Fluent Linear Temporal Logic}
 Los fluents nos permiten especificar propiedades basadas en estados, en modelos basados en eventos. FLTL es una lógica temporal lineal que nos permite razonar sobre fluents. Un fluent está compuesto por un conjunto de acciones  que lo activa, un conjunto de acciones que lo terminan y un valor booleano que indica si comienza activo o no.
 
-\subsection{Síntesis de controladores en LTSs}
+\subsection{Labelled Transition Systems}
+Los Labelled Transition Systems (LTSs) son ampliamente utilizados para modelar y analizar el comportamiento de sistemas concurrentes y distribuidos. Son un sistema de transición de estados en el cual las transiciones son etiquetadas con acciones. El conjunto de acciones de un LTS se conoce como alfabeto comunicacional y constituye las interacciones que el sistema modelado puede tener con el entorno.
+
+\vspace{\baselineskip}
 Podemos describir la síntesis de controladores de la siguiente forma. Dados un LTS que describe el comportamiento del entorno, un conjunto de acciones controlables, un conjunto de fórmulas FLTL que representan las suposiciones del dominio y un conjunto de fórmulas FLTL que representan los objetivos del sistema, el problema de control de LTS es encontrar un LTS que solo restrinja la ocurrencia de acciones controlables y garantice que la composición en paralelo entre el ambiente y el LTS es deadlock free y que si las suposiciones de dominio se satisfacen, entonces los objetivos del sistema también son satisfechos.
 
 \subsection{Modal Transition System}
@@ -32,7 +32,7 @@ Hay una relación de refinamiento entre los MTSs y los LTSs. Un LTS se puede ver
 transición de las acciones posibles es igual que la función de transición de las acciones requeridas. Los LTSs que
 refinan un MTS son descripciones completas del comportamiento del sistema y se llaman implementaciones.
 
-\subsection{Síntesis de controladores en MTSs}
+\vspace{\baselineskip}
 El problema de la síntesis de controladores para MTSs consiste en ver si todas, alguna o ninguna de sus implementaciones pueden ser controladas por un controlador LTS. Al responder esta pregunta, también estamos respondiendo la pregunta de si el problema es realizable, ya que si la respuesta es ninguno el problema no es realizable.
 
 \section{La exploración en robótica}
