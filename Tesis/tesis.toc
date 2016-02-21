@@ -1,18 +1,33 @@
 \select@language {spanish}
 \contentsline {chapter}{\numberline {1.}Introduci\IeC {\'o}n}{1}
-\contentsline {section}{\numberline {1.1}La s\IeC {\'\i }ntesis de controladores}{1}
-\contentsline {subsection}{\numberline {1.1.1}Fluent Linear Temporal Logic}{1}
-\contentsline {subsection}{\numberline {1.1.2}Labelled Transition Systems}{1}
-\contentsline {subsection}{\numberline {1.1.3}Modal Transition System}{2}
-\contentsline {section}{\numberline {1.2}La exploraci\IeC {\'o}n en rob\IeC {\'o}tica}{2}
-\contentsline {chapter}{\numberline {2.}Problema}{3}
-\contentsline {section}{\numberline {2.1}Definici\IeC {\'o}n formal}{3}
-\contentsline {section}{\numberline {2.2}Algoritmo}{3}
-\contentsline {subsection}{\numberline {2.2.1}Inputs}{4}
-\contentsline {subsubsection}{View}{4}
-\contentsline {subsubsection}{Model}{5}
-\contentsline {subsubsection}{Goal}{5}
-\contentsline {subsection}{\numberline {2.2.2}Inicializaci\IeC {\'o}n}{5}
-\contentsline {subsection}{\numberline {2.2.3}S\IeC {\'\i }ntesis}{6}
-\contentsline {section}{\numberline {2.3}Estrategia Synthesis New Action}{8}
-\contentsline {subsection}{\numberline {2.3.1}Ejecuci\IeC {\'o}n}{10}
+\contentsline {section}{\numberline {1.1}Motivaci\IeC {\'o}n}{1}
+\contentsline {section}{\numberline {1.2}Resumen de la contribuci\IeC {\'o}n}{1}
+\contentsline {section}{\numberline {1.3}Modal Transition System Analyser}{2}
+\contentsline {chapter}{\numberline {2.}Fundamentos te\IeC {\'o}ricos}{3}
+\contentsline {section}{\numberline {2.1}El mundo y la maquina}{3}
+\contentsline {section}{\numberline {2.2}Labelled Transition Systems}{3}
+\contentsline {section}{\numberline {2.3}Composici\IeC {\'o}n en paralelo}{4}
+\contentsline {section}{\numberline {2.4}LTS Legal}{4}
+\contentsline {section}{\numberline {2.5}Traza}{4}
+\contentsline {section}{\numberline {2.6}Modal Transition System}{4}
+\contentsline {section}{\numberline {2.7}Refinamiento}{4}
+\contentsline {section}{\numberline {2.8}Implementaci\IeC {\'o}n}{5}
+\contentsline {section}{\numberline {2.9}Fluent Linear Temporal Logic}{5}
+\contentsline {section}{\numberline {2.10}Generalised Reactivity (1)}{5}
+\contentsline {section}{\numberline {2.11}S\IeC {\'\i }ntesis de controladores}{5}
+\contentsline {subsection}{\numberline {2.11.1}LTS control problem}{6}
+\contentsline {subsection}{\numberline {2.11.2}MTS control problem}{6}
+\contentsline {chapter}{\numberline {3.}Problema}{7}
+\contentsline {section}{\numberline {3.1}Definici\IeC {\'o}n formal}{7}
+\contentsline {section}{\numberline {3.2}Algoritmo}{7}
+\contentsline {subsection}{\numberline {3.2.1}Inputs}{8}
+\contentsline {subsubsection}{View}{8}
+\contentsline {subsubsection}{Model}{9}
+\contentsline {subsubsection}{Goal}{9}
+\contentsline {subsection}{\numberline {3.2.2}Inicializaci\IeC {\'o}n}{9}
+\contentsline {subsection}{\numberline {3.2.3}S\IeC {\'\i }ntesis}{10}
+\contentsline {subsection}{\numberline {3.2.4}Estrategia Synthesis New Action}{11}
+\contentsline {subsection}{\numberline {3.2.5}Ejecuci\IeC {\'o}n}{13}
+\contentsline {chapter}{\numberline {4.}Ap\IeC {\'e}ndice}{15}
+\contentsline {subsubsection}{Manual de usuario}{15}
+\contentsline {subsubsection}{Ejemplo de exploraci\IeC {\'o}n en MTSA}{15}

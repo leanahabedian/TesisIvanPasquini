@@ -1,0 +1,149 @@
+\chapter{Fundamentos teóricos}
+
+\section{El mundo y la maquina}
+El modelo del mundo y la máquina de Michael Jackson es una abstracción que permite formular rigurosamente algunas nociones
+fundamentales de la ingeniería de requerimientos. En este modelo, los fenómenos son hechos, situaciones o eventos cuya
+existencia puede observarse, la maquina es una porción del sistema a desarrollar o modificar y el mundo es una porción de
+la realidad afectada por la máquina. El mundo y la máquina interactúan en la interfaz de la máquina. Un problema del mundo 
+describe una parte del mundo real que nosotros queremos mejorar construyendo la solución como una máquina.
+
+\vspace{\baselineskip} 
+En este modelo, los requerimientos R son declaraciones prescriptivas (propiedades deseadas que pueden cumplirse o no) sobre 
+el mundo expresadas en términos de fenómenos sobre la interfaz entre la máquina que queremos construir y el mundo en el cual 
+viven los problemas que queremos resolver. Los requerimientos deben ser forzados por la maquina independientemente de cómo 
+se comporte el mundo. Los problemas del mundo son capturados como declaraciones prescriptivas expresadas en término de 
+fenómenos del mundo llamados objetivos G, y declaraciones descriptivas (propiedades sobre el sistema que se mantienen 
+independientes a cómo se comporta el sistema) sobre lo que nosotros asumimos que es verdad en el mundo, suposiciones 
+de dominio D. Las suposiciones de dominio podrían no mantenerse y deben ser satisfechas por el mundo. 
+
+\vspace{\baselineskip}
+La tarea clave de la ingeniera de requerimientos es comprender y documentar los objetivos y las características del entorno.
+Teniendo estos modelos se pueden formular un conjunto de requerimientos para la máquina de forma que en conjunto con el
+entorno satisfagan los objetivos. Más formalmente R, D $\vDash$ G.
+Esto puede ser formulado como un problema de síntesis. Dados un conjunto de suposiciones del dominio y un conjunto de
+objetivos del sistema, construir  automáticamente un modelo operacional de la maquina tal que compuesto con el modelo del
+entorno, los objetivos sean alcanzados.
+
+\vspace{\baselineskip}
+Diremos que un evento es controlable si es controlable por la máquina. Una evento es monitoreable o no controlable si es
+controlable por el mundo. 
+Para cumplir los objetivos, el modelo operacional restringe la ocurrencia de eventos controlables basándose en la observación
+de los eventos que ya ocurrieron.
+Este problema se conoce como el problema de síntesis de controladores y está siendo estudiado exhaustivamente en varios
+aspectos de la ingeniería de los requerimientos.
+
+\section{Labelled Transition Systems}
+Los Labelled Transition Systems (LTSs) son ampliamente utilizados para modelar y analizar el comportamiento de sistemas
+concurrentes y distribuidos. Son un sistema de transición de estados en el cual las transiciones son etiquetadas con
+acciones. El conjunto de acciones de un LTS se conoce como alfabeto comunicacional y constituye las interacciones que
+el sistema modelado puede tener con el entorno.
+
+\vspace{\baselineskip}
+Sea $Estados$ el conjunto universal de estados y $Acciones$ el conjunto universal de etiquetas de acciones.
+Un Labelled Transition System es una tupla $E = (S_{E}, A_{E}, \Delta_{E}, s_{0})$ en donde
+$S_{E} \subseteq Estados$ es un conjunto finito de estados, $A_{E} \subseteq Acciones$ es un alfabeto finito,
+$\Delta_{E} \subseteq (S_{E}$ x $A_{E}$ x $S_{E})$ es una relación de transición y $s_{0} \subseteq S_{E}$ 
+es el estado inicial.
+
+\vspace{\baselineskip}
+Dado $(s, l, s$’$) \subseteq \Delta_{E}$ decimos que $l$ está habilitada desde $s$ en $E$. Decimos que un LTS es
+determinístico si desde un estado, al realizar una acción, hay solo un estado posible al que llegamos.
+
+\section{Composición en paralelo}
+
+Sean $M$ y $E$ dos LTSs. La composición en paralelo $\parallel$ es un operador simétrico que crea un nuevo LTS $M\parallel$$E$, 
+tal que sus estados son el producto cartesiano de los estados de $M$ y $E$, sus acciones la unión de las acciones de $M$ y $E$, 
+y su función de transición sincroniza el movimiento de las dos máquinas en las acciones compartidas, mientras que se 
+mueven independientemente en sus acciones propias.
+
+\section{LTS Legal}
+Dados dos LTSs $E$ y $M$, y $A_{Eu} \subseteq A_{E}$, decimos que $M$ es un Legal LTS para $E$ respecto a $A_{Eu}$ si por cada
+estado en $E\parallel$$M$, realizar una acción perteneciente a $A_{Eu}$ es igual a realizar la acción en $E$.
+Intuitivamente, en la composición una acción es deshabilitada si y solo si también es deshabilitada en el LTS original.
+En otras palabras, $M$ no restringe a $E$ respecto a $A_{Eu}$.
+
+\section{Traza}
+
+Dado un LTS $E$, una secuencia $\pi = l_{0}, l_{1}, ...$ es una traza en $E$ si existe una secuencia 
+$s_{0}, l_{0}, s_{1}, l_{1}, s_{2}, ...$ en donde $(s_{i}, l_{i}, s_{i + 1})$ está en la función de transición de $E$.
+
+\section{Modal Transition System}
+Los MTS (Modal Transition System), son nociones abstractas de los LTSs. Extienden a los LTSs ya que las transiciones 
+que los MTSs poseen, pueden denotar eventos requeridos o bien posibles. Debido a esta particularidad de los MTSs, es 
+que podemos modelar mediante este formalismo información parcial del mundo.
+
+\vspace{\baselineskip}
+La definición es la misma que para LTSs, pero la función de transición se divide en dos para separar las acciones
+requeridas de las posibles. Las posibles incluyen a las requeridas.
+Más formalmente, un MTS es una quintupla compuesta por $(S, A, \Delta^r, \Delta^p, s_{0})$ en donde $S$ es el
+conjunto de estados, $A$ el conjunto de acciones, $\Delta^r$ las transiciones requeridas, $\Delta^p$  las
+transiciones posibles y $s_{0}$ el estado inicial.
+
+\section{Refinamiento}
+
+Hay una relación de refinamiento entre los MTSs y los LTSs. Un LTS se puede ver como un MTS en donde la función de
+transición de las acciones posibles es igual que la función de transición de las acciones requeridas. Los LTSs que
+refinan un MTS son descripciones completas del comportamiento del sistema y se llaman implementaciones.
+
+\vspace{\baselineskip}
+Sean $E$ y $N$ dos MTSs. $N$ refina a $E$ si cada transición requerida de $E$ son requeridas en $N$ y cada posible
+transición de $N$ también es posible en $E$.
+
+\section{Implementación}
+
+Un LTS $L$ es una implementación de un MTS $M$ si y solo si $L$ refina a $M$. Una implementación es deadlock free
+si todos sus estados tienen transiciones salientes. Un MTS es determinístico si ninguna de sus acciones conduce
+desde un estado a más de un estado.
+
+\section{Fluent Linear Temporal Logic}
+Los fluents nos permiten especificar propiedades basadas en estados, en modelos basados en eventos. FLTL es una
+lógica temporal lineal que nos permite razonar sobre fluents. Un fluent es de la forma $Fl = <I_{fl}, T_{fl}, Init_{fl}>$.
+$I_{fl}$ y $T_{fl}$ pertenecen al conjunto de acciones. $I_{fl}$ son las acciones que inicializan, $T_{fl}$ las que
+terminan y $Init_{fl}$ indica el estado inicial.
+
+\vspace{\baselineskip}
+Una formula FLTL está compuesta por la lógica de primer orden y los operadores temporales $X$ (next) y $U$ (strong until).
+También se utilizan $\Diamond$ (eventually) y $\square$ (always) como azúcar sintáctico.
+Dada una traza, por cada posición en la traza podemos decidir si el fluent está activo o no.
+
+\vspace{\baselineskip}
+
+
+\section{Generalised Reactivity (1)}
+
+Dada una secuencia infinita de estados, una formula GR(1) denota cuales han ocurrido infinitamente. 
+Más formalmente, $\phi = (A, B)$ en donde $A$ y $B$ son conjuntos de subconjuntos de estados en donde o bien alguno de los
+subconjuntos de $A$ no contiene ningún estado que se visita infinitamente, o bien todos los subconjuntos de $B$ contienen 
+al menos un estado que se visita infinitamente.
+
+\section{Síntesis de controladores}
+
+La síntesis de controladores se encarga de producir automáticamente una máquina que restringe la ocurrencia de eventos
+controlables basándose en la observación de los eventos que ya ocurrieron. Cuando esta máquina es desplegada en un ambiente
+adecuado garantiza la satisfacción de un conjunto de objetivos dado. La satisfacción de estos objetivos depende de la
+satisfacción de las asunciones sobre el entorno.
+
+\vspace{\baselineskip}
+Podemos describir la síntesis de controladores de la siguiente forma. Dados un LTS que describe el comportamiento
+del entorno, un conjunto de acciones controlables, un conjunto de fórmulas FLTL que representan las suposiciones
+del dominio y un conjunto de fórmulas FLTL que representan los objetivos del sistema, el problema de control de
+LTS es encontrar un LTS que solo restrinja la ocurrencia de acciones controlables y garantice que la composición
+en paralelo entre el ambiente y el LTS es deadlock free y que si las suposiciones de dominio se satisfacen, entonces
+los objetivos del sistema también son satisfechos.
+
+\subsection{LTS control problem}
+
+Dado un LTS determinístico $E$, un conjunto de acciones controlables $A_{c}$ y una formula FLTL $\phi$, una solución 
+para el LTS control problem $\epsilon = <E, \phi, A_{c}>$ es un LTS $M$ legal para $E$ tal que para cada estado las
+acciones son las mismas que para su estado correspondiente en $E$, $E\parallel$$M$ es deadlock free y toda traza en
+$E\parallel$$M$ cumple $\phi$. El LTS Control Problem es decidible en tiempo exponencial y en caso de ser decidible,
+se encuentra la solución con la misma complejidad. Para esto es necesario que el modelo sea determinístico.
+
+\subsection{MTS	control problem}
+
+El problema de la síntesis de controladores para MTSs consiste en ver si todas, alguna o ninguna de sus implementaciones
+pueden ser controladas por un controlador LTS. Al responder esta pregunta, también estamos respondiendo la pregunta de
+si el problema es realizable, ya que si la respuesta es ninguno el problema no es realizable. Para decidir este problema,
+primero se intenta encontrar un controlador para la implementación del MTS que tiene todas las acciones posibles controlables.
+Si se lo encuentra, se tiene un controlador para todas las posibles implementaciones. Se hace lo mismo con el que tiene la
+mínima cantidad de acciones controlables y así se obtiene la respuesta.
