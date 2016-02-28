@@ -8,8 +8,12 @@
 \usepackage{float}
 \usepackage{titlesec}
 \usepackage{pdfpages}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
 
 \titleformat*{\subsubsection}{\large\bfseries}
+\newcommand*{\fvtextcolor}[2]{\textcolor[HTML]{#1}{#2}}
+\DefineVerbatimEnvironment{Code}{Verbatim}{fontfamily=courier}
 
 \begin{document}
 
@@ -42,10 +46,11 @@
 \input{intro.tex}
 \input{fundamentos.tex}
 \input{problema.tex}
+\input{resultados.tex}
 \input{apendice.tex}
 
-\includepdf[pages=-]{Manual.pdf}
-\includepdf[pages=-]{Ejemplo.pdf}
+\includepdf[pages = -]{Manual.pdf}
+\includepdf[pages = -, landscape = true]{Ejemplo.pdf}
 
 %%%% BIBLIOGRAFIA
 \backmatter

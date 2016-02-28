@@ -9,14 +9,15 @@
 \contentsline {section}{\numberline {2.3}Composici\IeC {\'o}n en paralelo}{4}
 \contentsline {section}{\numberline {2.4}LTS Legal}{4}
 \contentsline {section}{\numberline {2.5}Traza}{4}
-\contentsline {section}{\numberline {2.6}Modal Transition System}{4}
-\contentsline {section}{\numberline {2.7}Refinamiento}{4}
-\contentsline {section}{\numberline {2.8}Implementaci\IeC {\'o}n}{5}
-\contentsline {section}{\numberline {2.9}Fluent Linear Temporal Logic}{5}
-\contentsline {section}{\numberline {2.10}Generalised Reactivity (1)}{5}
-\contentsline {section}{\numberline {2.11}S\IeC {\'\i }ntesis de controladores}{5}
-\contentsline {subsection}{\numberline {2.11.1}LTS control problem}{6}
-\contentsline {subsection}{\numberline {2.11.2}MTS control problem}{6}
+\contentsline {section}{\numberline {2.6}Bisimilaridad}{4}
+\contentsline {section}{\numberline {2.7}Modal Transition System}{4}
+\contentsline {section}{\numberline {2.8}Refinamiento}{5}
+\contentsline {section}{\numberline {2.9}Implementaci\IeC {\'o}n}{5}
+\contentsline {section}{\numberline {2.10}Fluent Linear Temporal Logic}{5}
+\contentsline {section}{\numberline {2.11}Generalised Reactivity (1)}{5}
+\contentsline {section}{\numberline {2.12}S\IeC {\'\i }ntesis de controladores}{6}
+\contentsline {subsection}{\numberline {2.12.1}LTS control problem}{6}
+\contentsline {subsection}{\numberline {2.12.2}MTS control problem}{6}
 \contentsline {chapter}{\numberline {3.}Problema}{7}
 \contentsline {section}{\numberline {3.1}Definici\IeC {\'o}n formal}{7}
 \contentsline {section}{\numberline {3.2}Algoritmo}{7}
@@ -26,8 +27,14 @@
 \contentsline {subsubsection}{Goal}{9}
 \contentsline {subsection}{\numberline {3.2.2}Inicializaci\IeC {\'o}n}{9}
 \contentsline {subsection}{\numberline {3.2.3}S\IeC {\'\i }ntesis}{10}
-\contentsline {subsection}{\numberline {3.2.4}Estrategia Synthesis New Action}{11}
+\contentsline {subsection}{\numberline {3.2.4}Estrategia S\IeC {\'\i }ntesis - Nueva acci\IeC {\'o}n}{11}
 \contentsline {subsection}{\numberline {3.2.5}Ejecuci\IeC {\'o}n}{13}
-\contentsline {chapter}{\numberline {4.}Ap\IeC {\'e}ndice}{15}
-\contentsline {subsubsection}{Manual de usuario}{15}
-\contentsline {subsubsection}{Ejemplo de exploraci\IeC {\'o}n en MTSA}{15}
+\contentsline {chapter}{\numberline {4.}Resultados}{15}
+\contentsline {section}{\numberline {4.1}Laberinto de 25 posiciones}{15}
+\contentsline {subsection}{\numberline {4.1.1}Especificaci\IeC {\'o}n en MTSA}{16}
+\contentsline {subsection}{\numberline {4.1.2}An\IeC {\'a}lisis preliminar}{17}
+\contentsline {subsection}{\numberline {4.1.3}An\IeC {\'a}lisis de los modelos}{18}
+\contentsline {subsection}{\numberline {4.1.4}Variantes}{19}
+\contentsline {chapter}{\numberline {5.}Ap\IeC {\'e}ndice}{20}
+\contentsline {subsubsection}{Manual de usuario}{20}
+\contentsline {subsubsection}{Ejemplo de exploraci\IeC {\'o}n en MTSA}{20}
