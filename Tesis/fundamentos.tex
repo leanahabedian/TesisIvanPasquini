@@ -67,6 +67,22 @@ En otras palabras, $M$ no restringe a $E$ respecto a $A_{Eu}$.
 Dado un LTS $E$, una secuencia $\pi = l_{0}, l_{1}, ...$ es una traza en $E$ si existe una secuencia 
 $s_{0}, l_{0}, s_{1}, l_{1}, s_{2}, ...$ en donde $(s_{i}, l_{i}, s_{i + 1})$ está en la función de transición de $E$.
 
+\section{Bisimilaridad}
+La equivalencia entre LTSs se define mediante la noción de bisimilaridad, la cual es una relación de equivalencia.
+Dos LTS $M$ y $N$ son bisimilares si y solo si contienen dos estados $m \in S_{M}$ y $n \in S_{N}$ tales que para cada
+acción $a \in \Delta_{M}$, $b \in \Delta_{N}$:
+\begin{itemize}
+
+\item
+Cada vez que se ejecuta la acción $a$ desde el estado $n$ pasando al estado $n'$, debe ser posible que se ejecute 
+la misma acción en el estado $m$ pasando al estado $m'$, y $n'$ y $m'$ deben mantener esta propiedad.
+
+\item
+Cada vez que se ejecuta la acción $b$ desde el estado $m$ pasando al estado $m''$, debe ser posible que se ejecute 
+la misma acción en el estado $n$ pasando al estado $n''$, y $m''$ y $n''$ deben mantener esta propiedad.
+
+\end{itemize}
+
 \section{Modal Transition System}
 Los MTS (Modal Transition System), son nociones abstractas de los LTSs. Extienden a los LTSs ya que las transiciones 
 que los MTSs poseen, pueden denotar eventos requeridos o bien posibles. Debido a esta particularidad de los MTSs, es 

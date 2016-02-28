@@ -32,7 +32,7 @@ contamos y tener un objetivo que cumplir.
 \textbf{View} es una lista de LTSs. Representa el mundo sobre el cual se mueve el robot.
 El primer LTS de la lista representa el mapa del ambiente, el cual regula como se mueve el robot por el mundo. Indica que acciones
 puede realizar en cada posición, y a que lugar lo llevan dichas acciones.
-Los otros LTSs representan el comportamiento de los actores externos que interactúan con el ambiente. Pueden bloquear y habilitar
+Los otros LTSs representan el comportamiento de los agentes externos que interactúan con el ambiente. Pueden bloquear y habilitar
 acciones en una determinada posición. El robot no tiene influencia sobre ellos.
 El robot solo puede observar el estado actual del \textbf{View} mediante sus sensores. Sobre el mapa, solo puede saber en que posición está
 y que acciones puede ejecutar en dicha posición. Sobre los agentes externos, solo puede observar su estado actual.
@@ -106,31 +106,31 @@ punto sin retorno.
 Por ultimo, si la síntesis puede generar un controlador para algunas de las implementaciones del MTS que armamos, pero para otras no, significa que no tenemos
 suficiente información sobre el entorno como para decidir sobre el objetivo, y necesitamos seguir explorando para refinar el \textbf{Knowledge}.
 
-\subsection{Estrategia Synthesis New Action}
+\subsection{Estrategia Síntesis - Nueva acción}
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{Imagenes/Algoritmo/Algoritmo_elegir.png}
-  \caption{Algoritmo de la estrategia Synthesis New Action}
+  \caption{Algoritmo de la estrategia Síntesis - Nueva acción}
   \label{fig:Algoritmo_elegir}
 \end{figure}
 
 En caso de que sea necesario seguir explorando, necesitamos que la estrategia decida la próxima acción a ejecutar. El algoritmo esta preparado para que,
 al utilizar múltiples estrategias, detecte si alguna entra en un ciclo infinito y la reemplace por otra. En esta tesis vamos a presentar únicamente
-la estrategia Synthesis New Action, la cual no entra en ciclos. Dicha estrategia es la composición de la estrategia Synthesis, que busca evitar caer
-en zonas inseguras utilizando la información proporcionada por \textbf{Model}, y la estrategia New Action, que busca siempre adquirir conocimiento nuevo
+la estrategia Síntesis - Nueva acción, la cual no entra en ciclos. Dicha estrategia es la composición de la estrategia Síntesis, que busca evitar caer
+en zonas inseguras utilizando la información proporcionada por \textbf{Model}, y la estrategia Nueva acción, que busca siempre adquirir conocimiento nuevo
 utilizando información proporcionada por \textbf{Knowledge}.
 
 \vspace{\baselineskip}
 Estamos por elegir una acción. Hacemos esto porque el intento de síntesis para generar un controlador que garantice \textbf{Goal} nos dio como resultado que
 existe un controlador para algunos refinamientos pero no para otros. En particular existe un controlador para el refinamiento más optimista, llamado
-controlador optimista. La estrategia Synthesis aprovecha este hecho, ya que por construcción, el controlador optimista evitara las zonas inseguras. Lo que
+controlador optimista. La estrategia Síntesis aprovecha este hecho, ya que por construcción, el controlador optimista evitara las zonas inseguras. Lo que
 hace la estrategia es elegir de entre las acciones posibles, una acción que esté en el estado inicial del controlador optimista. En cambio, la estrategia
-Synthesis New Action lo utiliza para filtrar de entre las acciones posibles, cuales son las acciones seguras, y así elegir mediante la estrategia New Action
+Síntesis - Nueva acción lo utiliza para filtrar de entre las acciones posibles, cuales son las acciones seguras, y así elegir mediante la estrategia Nueva acción
 una acción entre las seguras.
 
 \vspace{\baselineskip}
-La estrategia New Action tiene como objetivo ejecutar acciones nuevas, o en otras palabras, que no hayan sido ejecutadas anteriormente en su estado asociado.
+La estrategia Nueva acción tiene como objetivo ejecutar acciones nuevas, o en otras palabras, que no hayan sido ejecutadas anteriormente en su estado asociado.
 Si siempre ejecutamos acciones nuevas, siempre adquiriremos conocimiento nuevo, y como el entorno a explorar es finito, terminaremos por reconocerlo completamente
 de seguir esta estrategia.
 La estrategia se divide en varias etapas. Lo primero que debemos hacer es saber si, entre las acciones disponibles, existe alguna que no haya sido ejecutada
