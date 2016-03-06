@@ -10,7 +10,12 @@
 \usepackage{pdfpages}
 \usepackage{fancyvrb}
 \usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{cite}
 
+\theoremstyle{definition}
+\newtheorem{definition}{Definición}[section]
 \titleformat*{\subsubsection}{\large\bfseries}
 \newcommand*{\fvtextcolor}[2]{\textcolor[HTML]{#1}{#2}}
 \DefineVerbatimEnvironment{Code}{Verbatim}{fontfamily=courier}
@@ -54,6 +59,7 @@
 
 %%%% BIBLIOGRAFIA
 \backmatter
-%\bibliography{tesis}
+\bibliographystyle{plain}
+\bibliography{bibliografia}
 
 \end{document}

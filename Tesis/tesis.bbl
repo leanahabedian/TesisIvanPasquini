@@ -1,0 +1,39 @@
+\begin{thebibliography}{1}
+
+\bibitem{MTSControl}
+N.~D’Ippolito, Braberman V., N.~Piterman, and S.~Uchitel.
+\newblock The modal transition system control problem.
+\newblock {\em ????}, 2012.
+
+\bibitem{LTSControl}
+N.~D’Ippolito, Braberman V., N.~Piterman, and S.~Uchitel.
+\newblock Synthesising non-anomalous event-based controllers for liveness
+  goals.
+\newblock {\em TOSEM}, 2013.
+
+\bibitem{FLTL}
+D.~Giannakopoulou and J.~Magee.
+\newblock Fluent model checking for event-based systems.
+\newblock {\em Proc. ESEC/FSE-11, ACM}, 2003.
+
+\bibitem{MundoMaquina}
+M~Jackson.
+\newblock The world and the machine.
+\newblock {\em ICSE ’95, ACM}, 1995.
+
+\bibitem{LTS}
+R.M. Keller.
+\newblock Formal verification of parallel programs.
+\newblock {\em Comm. ACM 19.}, 1976.
+
+\bibitem{MTS}
+K.~Larsen and B.~Thomsen.
+\newblock A modal process logic.
+\newblock {\em Proc. LICS’88. IEEE}, 1988.
+
+\bibitem{Sintesis}
+A.~Pnueli and R.~Rosner.
+\newblock On the synthesis of a reactive module.
+\newblock {\em POPL, ACM}, 1989.
+
+\end{thebibliography}
