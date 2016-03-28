@@ -37,6 +37,18 @@
 \contentsline {subsection}{\numberline {4.1.2}An\IeC {\'a}lisis preliminar}{21}
 \contentsline {subsection}{\numberline {4.1.3}An\IeC {\'a}lisis de los modelos}{22}
 \contentsline {subsection}{\numberline {4.1.4}Variantes}{23}
-\contentsline {chapter}{\numberline {5.}Ap\IeC {\'e}ndice}{24}
-\contentsline {subsubsection}{Manual de usuario}{24}
-\contentsline {subsubsection}{Ejemplo de exploraci\IeC {\'o}n en MTSA}{24}
+\contentsline {section}{\numberline {4.2}Zonas inseguras}{24}
+\contentsline {subsection}{\numberline {4.2.1}Especificaci\IeC {\'o}n en MTSA}{24}
+\contentsline {subsection}{\numberline {4.2.2}An\IeC {\'a}lisis de los modelos}{25}
+\contentsline {section}{\numberline {4.3}Laberinto que baja}{26}
+\contentsline {subsection}{\numberline {4.3.1}Especificaci\IeC {\'o}n en MTSA}{26}
+\contentsline {subsection}{\numberline {4.3.2}An\IeC {\'a}lisis de los modelos}{28}
+\contentsline {subsection}{\numberline {4.3.3}Resultado}{29}
+\contentsline {section}{\numberline {4.4}Laberinto con puente}{30}
+\contentsline {subsection}{\numberline {4.4.1}Especificaci\IeC {\'o}n en MTSA}{31}
+\contentsline {subsection}{\numberline {4.4.2}An\IeC {\'a}lisis de los modelos}{32}
+\contentsline {subsection}{\numberline {4.4.3}An\IeC {\'a}lisis de la traza}{32}
+\contentsline {chapter}{\numberline {5.}Conclusiones}{34}
+\contentsline {chapter}{\numberline {6.}Ap\IeC {\'e}ndice}{36}
+\contentsline {subsubsection}{Manual de usuario}{36}
+\contentsline {subsubsection}{Ejemplo de exploraci\IeC {\'o}n en MTSA}{36}
