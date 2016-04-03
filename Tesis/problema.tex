@@ -1,6 +1,6 @@
-\chapter{Problema}
+\chapter{Problema de síntesis de controladores en entornos parcialmente conocidos}
 
-Nuestro problema consiste en un robot, situado en un entorno parcialmente desconocido. Tenemos un objetivo, pero no 
+Nuestro problema consiste en un robot, situado en un entorno parcialmente conocido. Tenemos un objetivo, pero no 
 sabemos lo suficiente sobre el entorno como para decidir si podemos satisfacerlo o no.
 Debemos obtener el conocimiento necesario sobre el entorno para poder decidir sobre el objetivo. Para lograrlo, vamos
 a utilizar los sensores del robot, los cuales nos aportan información, y una estrategia que utilice
@@ -8,21 +8,21 @@ el conocimiento que adquirido para obtener conocimiento nuevo.
 
 \section{Definición}
 
-La solución al problema de la síntesis de controladores en entornos desconocidos es un LTS x tal que M $\parallel$ x $\models$ G, 
-en donde M es el MTS que modela el entorno y G son los objetivos de tipo GR(1). Mediante la síntesis de controladores sobre MTS,
-podemos intentar generar automáticamente el x. La síntesis tiene tres escenarios posibles:
+La solución al problema de la síntesis de controladores en entornos parcialmente conocidos es un LTS x (llamado controlador) tal que 
+M $\parallel$ x $\models$ G, en donde M es el MTS que modela el entorno y G son los objetivos de tipo GR(1). Mediante la 
+síntesis de controladores sobre MTS, podemos intentar generar automáticamente el LTS x. La síntesis tiene tres escenarios posibles:
 
 \begin{itemize}
 
 \item
-Si se puede sintetizar x para cualquier implementación de M, obtenemos el controlador que necesitamos, el cual es la
+Si es posible sintetizar el LTS x para cualquier implementación de M, obtenemos el controlador que necesitamos, el cual es la
 solución a nuestro problema.
 
 \item
-Si no se puede sintetizar x para ninguna implementación de M, sabemos que nuestro problema no tiene solución.
+Si no es posible sintetizar el LTS x para ninguna implementación de M, sabemos que nuestro problema no tiene solución.
 
 \item
-Si se puede sintetizar x para algunas implementaciones de M, pero no se puede sintetizar para otras implementaciones de M,
+Si es posible sintetizar el LTS x para algunas implementaciones de M, pero no se puede sintetizar para otras implementaciones de M,
 no sabemos si es posible sintetizar un controlador para la implementación de M que representa al mundo real, la cual no conocemos.
 
 \end{itemize}

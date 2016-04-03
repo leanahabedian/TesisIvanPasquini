@@ -41,8 +41,8 @@ el sistema modelado puede tener con el entorno.
 \begin{definition}{(Labelled Transition System)}
 Sea $Estados$ el conjunto universal de estados y $Acciones$ el conjunto universal de etiquetas de acciones. Un Labelled
 Transition System es una tupla $E = (S_{E}, A_{E}, \Delta_{E}, s_{0}^{E})$ en donde $S_{E} \subseteq Estados$ es un conjunto
-finito de estados, $A_{E} \subseteq Acciones$ es un alfabeto finito, $\Delta_{E} \subseteq (S_{E}$ x $A_{E}$ x $S_{E})$ es una
-relación de transición y $s_{0}^{E} \subseteq S_{E}$ es el estado inicial.
+finito de estados, $A_{E} \subseteq Acciones$ es un alfabeto finito, $\Delta_{E} \subseteq (S_{E} \times A_{E} \times S_{E})$ es una
+relación de transición y $s_{0}^{E} \in S_{E}$ es el estado inicial.
 \end{definition}
 
 Dado $(s, l, s$’$) \subseteq \Delta_{E}$ decimos que $l$ está habilitada desde $s$ en $E$. Decimos que un LTS es
@@ -58,7 +58,7 @@ mueven independientemente en sus acciones propias.
 \begin{definition}{(Composición en paralelo)}
 Sean $M = (S_{M}, A_{M}, \Delta_{M}, s_{0}^{M})$ y\\
 $N = (S_{N}, A_{N}, \Delta_{N}, s_{0}^{N})$ dos LTSs. Composición en paralelo $\parallel$ es un operador simétrico tal que 
-$M \parallel N$ es el LTS $P = (S_{M}$ x $S_{N}, A_{M} \cup A_{N}, \Delta_{P}, (s_{0}^{M}, s_{0}^{N}))$, donde $\Delta_{P}$ es
+$M \parallel N$ es el LTS $P = (S_{M} \times S_{N}, A_{M} \cup A_{N}, \Delta_{P}, (s_{0}^{M}, s_{0}^{N}))$, donde $\Delta_{P}$ es
 la menor relación que satisface las siguientes reglas:
 
 \vspace{\baselineskip}
@@ -78,7 +78,7 @@ Intuitivamente, en la composición una acción es deshabilitada si y solo si tam
 En otras palabras, $M$ no restringe a $N$ respecto a $A_{N_{u}}$.
 
 \begin{definition}{(LTS Legal)}
-Sean $M = (S_{M}, A_{M}, \Delta_{M}, s_{0}^{M})$ y $N = (S_{N}, A_{N}, \Delta_{N}, s_{0}^{N})$ dos LTSs y sea $A_{N_{u}} \in A_{E}$.
+Sean $M = (S_{M}, A_{M}, \Delta_{M}, s_{0}^{M})$ y $N = (S_{N}, A_{N}, \Delta_{N}, s_{0}^{N})$ dos LTSs y sea $A_{N_{u}} \in A_{N}$ un estado.
 Decimos que $M$ es un LTS legal para $N$ respecto a $A_{N_{u}}$, si para todo ($s_{n}, s_{m}) \in E \parallel M$ pasa que 
 $\Delta_{E \parallel M}((s_{n}, s_{m})) \cap A_{N_{u}} = \Delta_{N}(s_{N}) \cap A_{N_{u}}$.
 \end{definition}
@@ -95,17 +95,18 @@ secuencia $s_{0}, l_{0}, s_{1}, l_{1}, ...$ en donde para todo $i \geq 0$ vale $
 La equivalencia entre LTSs se define mediante la noción de bisimilaridad, la cual es una relación de equivalencia.
 
 \begin{definition}{(Bisimilaridad)}
-Dos LTS $M$ y $N$ son bisimilares si y solo si contienen dos estados $m \in S_{M}$ y $n \in S_{N}$ tales que para cada
-acción $a \in \Delta_{M}$, $b \in \Delta_{N}$:
+Sean $M = (S_{M}, A_{M}, \Delta_{M}, s_{0}^{M})$ y\\
+$N = (S_{N}, A_{N}, \Delta_{N}, s_{0}^{N})$ dos LTSs. Decimos que $M$ y $N$ son bisimilares si y solo si contienen dos
+estados $m \in S_{M}$ y $n \in S_{N}$ tales que:
 \begin{itemize}
 
 \item
-Cada vez que se ejecuta la acción $a$ desde el estado $n$ pasando al estado $n'$, debe ser posible que se ejecute 
-la misma acción en el estado $m$ pasando al estado $m'$, y $n'$ y $m'$ deben mantener esta propiedad.
+$\forall a \in A_{M}, m' \in S_{M}$, si $(m, a, m') \in \Delta_{M}$, entonces $\exists n' \in S_{N}$ tal que 
+$(n, a, n') \in \Delta_{N}$, y $m'$ y $n'$ deben mantener esta propiedad.
 
 \item
-Cada vez que se ejecuta la acción $b$ desde el estado $m$ pasando al estado $m''$, debe ser posible que se ejecute 
-la misma acción en el estado $n$ pasando al estado $n''$, y $m''$ y $n''$ deben mantener esta propiedad.
+$\forall a \in A_{N}, n' \in S_{N}$, si $(n, a, n') \in \Delta_{N}$, entonces $\exists m' \in S_{M}$ tal que 
+$(m, a, m') \in \Delta_{M}$, y $n'$ y $m'$ deben mantener esta propiedad.
 
 \end{itemize}
 \end{definition}
@@ -123,8 +124,8 @@ requeridas de las posibles. Las posibles incluyen a las requeridas.
 Sea $Estados$ el conjunto universal de estados y $Acciones$ el conjunto universal de etiquetas de acciones. Un Modal
 Transition System es una tupla $M = (S_{M}, A_{M}, \Delta_{M}^{r}, \Delta_{M}^{p}, s_{0}^{M})$ en donde $S_{M} \subseteq Estados$
 es un conjunto finito de estados, $A_{M} \subseteq Acciones$ es un alfabeto finito, 
-$\Delta_{M}^{r} \subseteq \Delta_{M}^{p} \subseteq (S_{M}$ x $A_{M}$ x $S_{M})$ son las relaciones de transición requeridas
-y posibles respectivamente, y $s_{0}^{M} \subseteq S_{M}$ es el estado inicial.
+$\Delta_{M}^{r} \subseteq \Delta_{M}^{p} \subseteq (S_{M} \times A_{M} \times S_{M})$ son las relaciones de transición requeridas
+y posibles respectivamente, y $s_{0}^{M} \in S_{M}$ es el estado inicial.
 \end{definition}
 
 \section{Refinamiento}
@@ -134,7 +135,7 @@ refinan un MTS son descripciones completas del comportamiento del sistema y se l
 
 \begin{definition}{(Refinamiento)}
 Sean $M = (S_{M}, A, \Delta_{M}^{r}, \Delta_{M}^{p}, s_{0}^{M})$ y\\
-$N = (S_{N}, A, \Delta_{N}^{r}, \Delta_{N}^{p}, s_{0}^{N})$ dos MTSs. La relación $H \subseteq S_{M}$ $x$ $S_{N}$ es un refinamiento
+$N = (S_{N}, A, \Delta_{N}^{r}, \Delta_{N}^{p}, s_{0}^{N})$ dos MTSs. La relación $H \subseteq S_{M} \times S_{N}$ es un refinamiento
 entre $M$ y $N$ si para todo $l \in A$, $(s_{M}, s_{N}) \in H$ se cumple:
 
 \begin{itemize}
@@ -197,14 +198,21 @@ $\exists j \in \mathbb{N} \cdot (j \leq i \land l_{j} \in I_{Fl}) \land (\forall
 
 \end{itemize}
 
-\begin{figure}[H]
-	\centering
-		\includegraphics{Imagenes/Otros/ltl.png}
-	\caption{Semántica para el operador de satisfacción $\vDash$.}
-	\label{fig:ltl}
-\end{figure}
+Dada una traza infinita $\pi$, la satisfacción de una formula $\varphi$ en la posición $i$, denotada $\pi, i\vDash \varphi$ se define de la siguiente forma:
 
-Dada una traza infinita $\pi$, la satisfacción de una formula $\varphi$ en la posición $i$, denotada $\pi, i\vDash \varphi$ se define como en la figura 2.1.
+\begin{itemize}
+\item
+$\pi, i\vDash Fl \triangleq \pi, i\vDash Fl$
+\item
+$\pi, i\vDash \neg\varphi \triangleq \neg(\pi, i\vDash \varphi)$
+\item
+$\pi, i\vDash \varphi \lor \psi \triangleq (\pi, i\vDash \varphi) \lor (\pi, i\vDash \psi)$
+\item
+$\pi, i\vDash \textbf{X}\varphi \triangleq \pi, 1\vDash \varphi$
+\item
+$\pi, i\vDash \varphi\textbf{U}\psi \triangleq \exists j \geq i \cdot \pi, j \vDash \psi \land \forall i \leq k < j \cdot \pi, k \vDash \varphi$
+\end{itemize}
+
 Decimos que $\varphi$ se sostiene en $\pi$ si $\pi, 0\vDash \varphi$. Una formula $\varphi \in FLTL$ se sostiene en un LTS $E$ si se sostiene en cada traza
 infinita producida por $E$.
 
@@ -222,7 +230,7 @@ al menos un estado que se visita infinitamente.
 Sea $Estados$ el conjunto universal de estados. Dada una secuancia infinita de estados $p$, sean $inf(p)$ los estados que
 ocurren infinitamente en $p$. Sea $\phi_{1}, ..., \phi_{n}$ y $\varUpsilon_{1}, ..., \varUpsilon_{m}$ subconjuntos de $Estados$. Sea\\
 $gr((\phi_{1}, ..., \phi_{n}), (\varUpsilon_{1}, ..., \varUpsilon_{m}))$ el conjunto de infinitas secuencias $p$ tales que
-o bien para algun $i$ vale $inf(p)\cap\phi_{i} = \varnothing$ o para todo $j$ vale $inf(p)\cap\varUpsilon_{j} \neq \varnothing$
+o bien para algun $i$ vale $inf(p)\cap\phi_{i} = \varnothing$ o para todo $j$ vale $inf(p)\cap\varUpsilon_{j} \neq \varnothing$.
 \end{definition}
 
 \section{Síntesis de controladores}

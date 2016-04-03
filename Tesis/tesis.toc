@@ -19,7 +19,7 @@
 \contentsline {section}{\numberline {2.13}S\IeC {\'\i }ntesis de controladores}{7}
 \contentsline {subsection}{\numberline {2.13.1}LTS control problem}{7}
 \contentsline {subsection}{\numberline {2.13.2}MTS control problem}{8}
-\contentsline {chapter}{\numberline {3.}Problema}{9}
+\contentsline {chapter}{\numberline {3.}Problema de s\IeC {\'\i }ntesis de controladores en entornos parcialmente conocidos}{9}
 \contentsline {section}{\numberline {3.1}Definici\IeC {\'o}n}{9}
 \contentsline {section}{\numberline {3.2}Algoritmo}{10}
 \contentsline {section}{\numberline {3.3}Inputs}{10}
