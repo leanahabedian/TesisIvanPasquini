@@ -1,10 +1,11 @@
 \chapter{Problema de síntesis de controladores en entornos parcialmente conocidos}
 
-Nuestro problema consiste en un robot, situado en un entorno parcialmente conocido. Tenemos un objetivo, pero no 
-sabemos lo suficiente sobre el entorno como para decidir si podemos satisfacerlo o no.
-Debemos obtener el conocimiento necesario sobre el entorno para poder decidir sobre el objetivo. Para lograrlo, vamos
-a utilizar los sensores del robot, los cuales nos aportan información, y una estrategia que utilice
-el conocimiento que adquirido para obtener conocimiento nuevo.
+Nuestro problema consiste en un robot, situado en un entorno parcialmente conocido.
+El entorno puede ser tanto estático como dinámico. Será dinámico en caso de que sea afectado por el comportamiento
+de agentes externos. Tenemos un objetivo, pero no sabemos lo suficiente sobre el entorno como para decidir si podemos
+satisfacerlo o no. Debemos obtener el conocimiento necesario sobre el entorno para poder decidir sobre el objetivo.
+Para lograrlo, vamos a utilizar los sensores del robot, los cuales nos aportan información, y una estrategia que
+utilice el conocimiento que adquirido para obtener conocimiento nuevo.
 
 \section{Definición}
 
@@ -15,15 +16,14 @@ síntesis de controladores sobre MTS, podemos intentar generar automáticamente 
 \begin{itemize}
 
 \item
-Si es posible sintetizar el LTS x para cualquier implementación de M, obtenemos el controlador que necesitamos, el cual es la
-solución a nuestro problema.
+Es posible sintetizar el LTS x para cualquier implementación de M.
 
 \item
-Si no es posible sintetizar el LTS x para ninguna implementación de M, sabemos que nuestro problema no tiene solución.
+No es posible sintetizar el LTS x para ninguna implementación de M.
 
 \item
-Si es posible sintetizar el LTS x para algunas implementaciones de M, pero no se puede sintetizar para otras implementaciones de M,
-no sabemos si es posible sintetizar un controlador para la implementación de M que representa al mundo real, la cual no conocemos.
+Es posible sintetizar el LTS x para algunas implementaciones de M, pero no se puede sintetizar para otras implementaciones de M.
+Por lo tanto, no sabemos si es posible sintetizar un controlador para la implementación de M que representa al mundo real, la cual no conocemos.
 
 \end{itemize}
 
@@ -145,22 +145,20 @@ punto sin retorno.
 Por ultimo, si la síntesis puede generar un controlador para algunas de las implementaciones del MTS que armamos, pero para otras no, significa que no tenemos
 suficiente información sobre el entorno como para decidir sobre el objetivo, y necesitamos seguir explorando para refinar el \textbf{Knowledge}.
 
-\section{Estrategia Síntesis - Nueva acción}
+\section{Estrategia}
 
 \begin{figure}[H]
   \centering
-    \includegraphics[width=1.0\textwidth]{Imagenes/Algoritmo/Algoritmo_elegir.png}
-  \caption{Algoritmo de la estrategia Síntesis - Nueva acción.}
-  \label{fig:Algoritmo_elegir}
+    \includegraphics[width=1.0\textwidth]{Imagenes/Algoritmo/Algoritmo_elegir_1.png}
+  \caption{Elección de estrategia}
+  \label{fig:Algoritmo_elegir_1}
 \end{figure}
 
 En caso de que sea necesario seguir explorando, necesitamos que la estrategia decida la próxima acción a ejecutar. El algoritmo esta preparado para que,
-al utilizar múltiples estrategias, detecte si alguna entra en un ciclo infinito y la reemplace por otra. En esta tesis vamos a presentar únicamente
-la estrategia Síntesis - Nueva acción, la cual no entra en ciclos. Dicha estrategia es la composición de la estrategia Síntesis, que busca evitar caer
-en zonas inseguras utilizando la información proporcionada por \textbf{Model}, y la estrategia Nueva acción, que busca siempre adquirir conocimiento nuevo
-utilizando información proporcionada por \textbf{Knowledge}.
+al utilizar múltiples estrategias, detecte si alguna entra en un ciclo infinito y la reemplace por otra.
 
-\vspace{\baselineskip}
+\subsection{Síntesis}
+
 Estamos por elegir una acción. Hacemos esto porque el intento de síntesis para generar un controlador que garantice \textbf{Goal} nos dio como resultado que
 existe un controlador para algunos refinamientos pero no para otros. En particular existe un controlador para el refinamiento más optimista, llamado
 controlador optimista. La estrategia Síntesis aprovecha este hecho, ya que por construcción, el controlador optimista evitara las zonas inseguras. Lo que
@@ -168,7 +166,8 @@ hace la estrategia es elegir de entre las acciones posibles, una acción que est
 Síntesis - Nueva acción lo utiliza para filtrar de entre las acciones posibles, cuales son las acciones seguras, y así elegir mediante la estrategia Nueva acción
 una acción entre las seguras.
 
-\vspace{\baselineskip}
+\subsection{Nueva acción}
+
 La estrategia Nueva acción tiene como objetivo ejecutar acciones nuevas, o en otras palabras, que no hayan sido ejecutadas anteriormente en su estado asociado.
 Si siempre ejecutamos acciones nuevas, siempre adquiriremos conocimiento nuevo, y como el entorno a explorar es finito, terminaremos por reconocerlo completamente
 de seguir esta estrategia.
@@ -195,6 +194,19 @@ Si no existen estados con acciones controlables no ejecutadas anteriormente, lo 
 anteriormente, y esperar a que los agentes externos nos permitan ejecutarla. Seguimos el mismo procedimiento de síntesis utilizado anteriormente. Si existe el camino,
 elegimos la acción que nos permita acercarnos, en caso contrario eligiéremos esperar, ya que es necesaria la interacción de algún agente externo para poder continuar
 explorando.
+
+\subsection{Síntesis - Nueva acción}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1.0\textwidth]{Imagenes/Algoritmo/Algoritmo_elegir_2.png}
+  \caption{Algoritmo de la estrategia Síntesis - Nueva acción.}
+  \label{fig:Algoritmo_elegir_2}
+\end{figure}
+
+En esta tesis vamos a presentar únicamente la estrategia Síntesis - Nueva acción, la cual no entra en ciclos. Dicha estrategia es la composición de la estrategia
+Síntesis, que busca evitar caer en zonas inseguras utilizando la información proporcionada por \textbf{Model}, y la estrategia Nueva acción, que busca siempre
+adquirir conocimiento nuevo utilizando información proporcionada por \textbf{Knowledge}.
 
 \section{Ejecución}
 
