@@ -91,24 +91,34 @@ Sea $E = (S_{E}, A_{E}, \Delta_{E}, s_{0}^{E})$ un LTS. Una secuencia $\pi = l_{
 secuencia $s_{0}, l_{0}, s_{1}, l_{1}, ...$ en donde para todo $i \geq 0$ vale $(s_{i}, l_{i}, s_{i + 1}) \in \Delta_{E}$.
 \end{definition}
 
-\section{Bisimilaridad}
-La equivalencia entre LTSs se define mediante la noción de bisimilaridad, la cual es una relación de equivalencia.
+\section{Bisimulación}
 
-\begin{definition}{(Bisimilaridad)}
-Sean $M = (S_{M}, A_{M}, \Delta_{M}, s_{0}^{M})$ y\\
-$N = (S_{N}, A_{N}, \Delta_{N}, s_{0}^{N})$ dos LTSs. Decimos que $M$ y $N$ son bisimilares si y solo si contienen dos
-estados $m \in S_{M}$ y $n \in S_{N}$ tales que:
+La bisimulación es una relación de equivalencia entre LTSs.
+
+\begin{definition}{(Bisimulación)}
+Sea $L$ el universo de todos los LTSs. Una relación binaria $R \subseteq L \times L$ es una bisimulación sí y solo sí cuando 
+$(P, Q) \in R$ entonces para cada acción $a \in A_{P} \cup A_{Q}$:
+
 \begin{itemize}
 
 \item
-$\forall a \in A_{M}, m' \in S_{M}$, si $(m, a, m') \in \Delta_{M}$, entonces $\exists n' \in S_{N}$ tal que 
-$(n, a, n') \in \Delta_{N}$, y $m'$ y $n'$ deben mantener esta propiedad.
+$(P \xrightarrow{a} P') \Rightarrow (\exists Q' \cdot Q \xrightarrow{a} Q' \land (P', Q') \in R)$
 
 \item
-$\forall a \in A_{N}, n' \in S_{N}$, si $(n, a, n') \in \Delta_{N}$, entonces $\exists m' \in S_{M}$ tal que 
-$(m, a, m') \in \Delta_{M}$, y $n'$ y $m'$ deben mantener esta propiedad.
+$(Q \xrightarrow{a} Q') \Rightarrow (\exists P' \cdot P \xrightarrow{a} P' \land (P', Q') \in R)$
 
 \end{itemize}
+
+\end{definition}
+
+
+\section{Bisimilaridad}
+
+La equivalencia entre LTSs se define mediante la noción de bisimilaridad.
+
+\begin{definition}{(Bisimilaridad)}
+Sea $L$ el universo de todos los LTSs. Dos LTSs $P, Q \in L$ son bisimilares sí y solo sí existe una bisimulación $R$ tal que $(P, Q) \in R$.
+
 \end{definition}
 
 \section{Modal Transition System}
@@ -221,7 +231,7 @@ infinita producida por $E$.
 
 \section{Generalised Reactivity (1)}
 
-Dada una secuencia infinita de estados, una formula GR(1) denota cuales han ocurrido infinitamente. 
+Dada una secuencia infinita de estados, una formula GR(1) \cite{SRD} denota cuales han ocurrido infinitamente. 
 Más formalmente, $\phi = (A, B)$ en donde $A$ y $B$ son conjuntos de subconjuntos de estados en donde o bien alguno de los
 subconjuntos de $A$ no contiene ningún estado que se visita infinitamente, o bien todos los subconjuntos de $B$ contienen 
 al menos un estado que se visita infinitamente.
@@ -247,7 +257,9 @@ del entorno, un conjunto de acciones controlables, un conjunto de fórmulas FLTL
 del dominio y un conjunto de fórmulas FLTL que representan los objetivos del sistema, el problema de control de
 LTS \cite{LTSControl} es encontrar un LTS que solo restrinja la ocurrencia de acciones controlables y garantice que la composición
 en paralelo entre el ambiente y el LTS es deadlock free y que si las suposiciones de dominio se satisfacen, entonces
-los objetivos del sistema también son satisfechos.
+los objetivos del sistema también son satisfechos. Intuitivamente, al resolver un problema de síntesis, buscamos evitar alcanzar
+estados para los cuales no se puedan satisfacer los objetivos. Estos estados no deseables los vamos a llamar estados perdedores.
+Las zonas inseguras son conjuntos de estados perdedores.
 
 \begin{definition}{(LTS control)}
 Dado un modelo del domino en forma de un LTS determinístico $E = (S_{E}, A_{E}, \Delta_{E}, s_{0}^{E})$, un conjunto de
@@ -288,3 +300,7 @@ $\varepsilon = \langle M, \varphi, A_{c} \rangle$ es responder:
 \end{itemize}
 
 \end{definition}
+
+\section{Finite State Process}
+El Finite State Process (FSP) \cite{FSP} es un lenguaje de especificación semántica bien definida en términos de LTSs que nos permite describirlos en
+forma concisa. El lenguaje puede extenderse para poder describir MTSs.
