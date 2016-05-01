@@ -1,39 +1,57 @@
 \begin{thebibliography}{1}
 
+\bibitem{SRD}
+Roderick Bloem, Barbara Jobstmann, Nir Piterman, Amir Pnueli, and Yaniv Saar.
+\newblock Synthesis of reactive(1) designs.
+\newblock {\em J. Comput. Syst. Sci.}, 78(3):911--938, May 2012.
+
 \bibitem{MTSControl}
-N.~D’Ippolito, Braberman V., N.~Piterman, and S.~Uchitel.
+Nicol\'{a}s D'ippolito, Victor Braberman, Nir Piterman, and Sebasti\'{a}n
+  Uchitel.
 \newblock The modal transition system control problem.
-\newblock {\em ????}, 2012.
+\newblock In {\em 18th International Symposium on Formal Methods FM 2012},
+  volume 7436 of {\em Lecture Notes in Computer Science}, pages 155--170.
+  Springer Verlag, 2012.
+\newblock FM 2012 - Paris, Francia, Agosto 2012.
 
 \bibitem{LTSControl}
-N.~D’Ippolito, Braberman V., N.~Piterman, and S.~Uchitel.
-\newblock Synthesising non-anomalous event-based controllers for liveness
-  goals.
-\newblock {\em TOSEM}, 2013.
+Nicol\'{a}s D'ippolito, Victor Braberman, Nir Piterman, and Sebasti\'{a}n
+  Uchitel.
+\newblock Synthesizing nonanomalous event-based controllers for liveness goals.
+\newblock {\em ACM Trans. Softw. Eng. Methodol.}, 22(1):9:1--9:36, March 2013.
 
 \bibitem{FLTL}
-D.~Giannakopoulou and J.~Magee.
+Dimitra Giannakopoulou and Jeff Magee.
 \newblock Fluent model checking for event-based systems.
-\newblock {\em Proc. ESEC/FSE-11, ACM}, 2003.
+\newblock {\em SIGSOFT Softw. Eng. Notes}, 28(5):257--266, September 2003.
 
 \bibitem{MundoMaquina}
-M~Jackson.
+Michael Jackson.
 \newblock The world and the machine.
-\newblock {\em ICSE ’95, ACM}, 1995.
+\newblock In {\em Proceedings of the 17th International Conference on Software
+  Engineering}, ICSE '95, pages 283--292, New York, NY, USA, 1995. ACM.
 
 \bibitem{LTS}
-R.M. Keller.
+Robert~M. Keller.
 \newblock Formal verification of parallel programs.
-\newblock {\em Comm. ACM 19.}, 1976.
+\newblock {\em Commun. ACM}, 19(7):371--384, July 1976.
 
 \bibitem{MTS}
-K.~Larsen and B.~Thomsen.
+K.~G. Larsen and B.~Thomsen.
 \newblock A modal process logic.
-\newblock {\em Proc. LICS’88. IEEE}, 1988.
+\newblock In {\em Logic in Computer Science, 1988. LICS '88., Proceedings of
+  the Third Annual Symposium on}, pages 203--210, 1988.
+
+\bibitem{FSP}
+Jeff Magee and Jeff Kramer.
+\newblock {\em Concurrency: State Models \&Amp; Java Programs}.
+\newblock John Wiley \& Sons, Inc., New York, NY, USA, 1999.
 
 \bibitem{Sintesis}
 A.~Pnueli and R.~Rosner.
 \newblock On the synthesis of a reactive module.
-\newblock {\em POPL, ACM}, 1989.
+\newblock In {\em Proceedings of the 16th ACM SIGPLAN-SIGACT Symposium on
+  Principles of Programming Languages}, POPL '89, pages 179--190, New York, NY,
+  USA, 1989. ACM.
 
 \end{thebibliography}
