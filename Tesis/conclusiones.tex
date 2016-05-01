@@ -35,6 +35,16 @@ El tercer tema interesante surge del ejemplo del laberinto que baja. En los MTSs
 de especificar que podemos volver exactamente al mismo estado del cual sale la transición posible. Seria de bastante utilidad, como
 trabajo a futuro, extender los MTSs de alguna forma que permita especificar estos detalles.
 
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=1.0\textwidth]{Imagenes/Otros/Limitaciones.png}
+	\caption{Limitaciones del modelado con MTSs}
+	\label{fig:Limitaciones}
+\end{figure}
+
+Como se puede ver en la imagen, el MTS no se puede refinar al primero de los LTSs, sino que los LTSs que pueden ser refinados a partir
+del MTS son de la forma del segundo LTS en adelante.
+
 \vspace{\baselineskip}
 Por ultimo, el cuarto tema fundamental a tener en cuenta es la estrategia presentada. La estrategia resuelve el problema de salir de
 un laberinto, incluso con la participación de agentes externos que influyen sobre el entorno. Pero lo único que busca la estrategia
