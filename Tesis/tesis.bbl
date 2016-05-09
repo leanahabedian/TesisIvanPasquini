@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{SRD}
 Roderick Bloem, Barbara Jobstmann, Nir Piterman, Amir Pnueli, and Yaniv Saar.
@@ -25,6 +25,13 @@ Dimitra Giannakopoulou and Jeff Magee.
 \newblock Fluent model checking for event-based systems.
 \newblock {\em SIGSOFT Softw. Eng. Notes}, 28(5):257--266, September 2003.
 
+\bibitem{TP5}
+C.~M. Gifford, R.~Webb, J.~Bley, D.~Leung, M.~Calnon, J.~Makarewicz, B.~Banz,
+  and A.~Agah.
+\newblock Low-cost multi-robot exploration and mapping.
+\newblock In {\em 2008 IEEE International Conference on Technologies for
+  Practical Robot Applications}, pages 74--79, Nov 2008.
+
 \bibitem{MundoMaquina}
 Michael Jackson.
 \newblock The world and the machine.
@@ -35,6 +42,13 @@ Michael Jackson.
 Robert~M. Keller.
 \newblock Formal verification of parallel programs.
 \newblock {\em Commun. ACM}, 19(7):371--384, July 1976.
+
+\bibitem{TP1}
+Benjamin Kuipers and Yung-Tai Byun.
+\newblock Toward learning robots.
+\newblock In Walter Van~de Velde, editor, {\em Toward Learning Robots}, chapter
+  A Robot Exploration and Mapping Strategy Based on a Semantic Hierarchy of
+  Spatial Representations, pages 47--63. MIT Press, Cambridge, MA, USA, 1993.
 
 \bibitem{MTS}
 K.~G. Larsen and B.~Thomsen.
@@ -53,5 +67,28 @@ A.~Pnueli and R.~Rosner.
 \newblock In {\em Proceedings of the 16th ACM SIGPLAN-SIGACT Symposium on
   Principles of Programming Languages}, POPL '89, pages 179--190, New York, NY,
   USA, 1989. ACM.
+
+\bibitem{TP2}
+Jun Tani and Jun Yamamoto.
+\newblock On the dynamics of robot exploration learning.
+\newblock {\em Cogn. Syst. Res.}, 3(3):459--470, September 2002.
+
+\bibitem{TP3}
+S.~Thrun.
+\newblock Learning metric-topological maps for indoor mobile robot navigation.
+\newblock {\em Artificial Intelligence}, 99(1):21--71, 1998.
+
+\bibitem{TP4}
+H.~Wang, M.~Jenkin, and P.~Dymond.
+\newblock Enhancing exploration in graph-like worlds.
+\newblock In {\em Computer and Robot Vision, 2008. CRV '08. Canadian Conference
+  on}, pages 53--60, May 2008.
+
+\bibitem{TP6}
+Wenhua Yang, Chang Xu, Yepang Liu, Chun Cao, Xiaoxing Ma, and Jian Lu.
+\newblock Verifying self-adaptive applications suffering uncertainty.
+\newblock In {\em Proceedings of the 29th ACM/IEEE International Conference on
+  Automated Software Engineering}, ASE '14, pages 199--210, New York, NY, USA,
+  2014. ACM.
 
 \end{thebibliography}
