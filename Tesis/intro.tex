@@ -1,66 +1,72 @@
-\chapter{Introdución}
+\chapter{Introducción}
 
 \section{Motivación}
 
-En el área de robótica, el problema de la exploración consiste en recorrer, mediante un robot autónomo, una zona
-desconocida para obtener el conocimiento total de esta, o en caso de no poder reconocerla en su totalidad, maximizar
+En el área de robótica, el problema de la exploración consiste en recorrer, mediante un robot autónomo, una zona 
+desconocida para obtener el conocimiento total de esta, o en caso de no poder reconocerla en su totalidad, maximizar 
 el espacio explorado. 
 
 \vspace{\baselineskip}
 La utilización de robots es muy importante para la cartografía o búsqueda y rescate en lugares que son peligrosos o 
-inaccesibles para las personas. Hay muchos ejemplos de exploración con robots autónomos, como las sondas espaciales
+inaccesibles para las personas. Hay muchos ejemplos de exploración con robots autónomos, como las sondas espaciales 
 no tripuladas que exploran lugares antes de que lleguen los astronautas, o robots que ingresan en estructuras colapsadas 
 para crear una reconstrucción del entorno y reconocer exactamente el lugar en el que se encuentran las víctimas.
 
 \vspace{\baselineskip}
-Los robots autónomos necesitan un mapa para poder operar en un entorno particular. Por esta razon, se utiliza la técnica
-de localización y modelado simultáneos, para construir un mapa de una zona desconocida en la que se encuentra el robot,
+Los robots autónomos necesitan un mapa para poder operar en un entorno particular. Por esta razón, se utiliza la técnica 
+de localización y modelado simultáneos, para construir un mapa de una zona desconocida en la que se encuentra el robot, 
 a la vez que estima su trayectoria al desplazarse dentro de la misma.
 
 \vspace{\baselineskip}
-En este trabajo vamos a mostrar una nueva forma de realizar localización y modelado simultáneos mediante la utilización
-de los MTS (Modal Transition System) como modelos matemáticos.
+Existen trabajos previos que logran generar un mapa mediante exploración, trabajando sobre entornos estáticos. 
+Se utilizan diversas técnicas para el aprendizaje sobre el entorno, como por ejemplo redes neuronales \cite{TP2}, 
+grafos \cite{TP4} o múltiples robots \cite{TP5}. Algunos trabajos dejan abierta la pregunta sobre como explorar 
+entornos dinámicos \cite{TP1} \cite{TP3}. También existen trabajos previos que contemplan cambios en el entorno \cite{TP6}.
+
+\vspace{\baselineskip}
+En este trabajo vamos a mostrar una nueva forma de realizar localización y modelado simultáneos mediante la utilización 
+de los MTS (Modal Transition System) como modelos matemáticos sobre entornos dinámicos.
 
 \section{Resumen de la contribución}
 
-Cuando comenzamos la exploración, la información que tenemos sobre el mundo es parcial. Los MTS nos permiten codificar 
+Cuando comenzamos la exploración, la información que tenemos sobre el mundo es parcial. Los MTSs nos permiten codificar 
 la incertidumbre, ya que podemos distinguir la información que poseemos como transiciones requeridas y la información 
 que podemos adquirir mediante exploración como transiciones posibles. El mundo real, el cual estamos explorando, puede 
 representarse como un LTS (Labelled Transition System) que refina nuestro MTS inicial.
 
 \vspace{\baselineskip}
 Cuando exploramos, lo hacemos para poder realizar un objetivo. Mediante la síntesis de controladores, podemos intentar 
-generar automáticamente una maquina, tal que al componerla en paralelo con el MTS que representa nuestro conocimiento 
-del mundo, garantice el cumplimiento del objetivo.
+generar automáticamente una máquina, tal que al componerla en paralelo con el MTS que representa nuestro conocimiento 
+del mundo, garantice el cumplimiento del objetivo. 
 Si para todas las implementaciones posibles, el objetivo es alcanzable, sabemos que podemos garantizar el objetivo, ya 
-que el mundo puede representarse como un LTS que refina nuestro modelo.
-Cuando no es posible sintetizar un controlador que pueda garantizar que los objetivos se alcancen para ninguna de las
+que el mundo puede representarse como un LTS que refina nuestro modelo. 
+Cuando no es posible sintetizar un controlador que pueda garantizar que los objetivos se alcancen para ninguna de las 
 implementaciones de nuestro modelo, podemos afirmar que el objetivo no es realizable en el mundo. Pero si para algunas 
 de las implementaciones existe un controlador, y para otras no, no podemos afirmar nada sobre nuestro objetivo.
 
 \vspace{\baselineskip}
-Lo que queremos es poder dar una respuesta certera a si es posible garantizar el cumplimiento del objetivo.
-Para lograrlo necesitamos explorar para adquirir nueva información en caso de que la información que poseemos no sea
-suficiente para dar una respuesta. Extenderemos la herramienta MTSA (Modal Transition System Analyser) para dar soporte
+Lo que queremos es poder dar una respuesta certera a si es posible garantizar el cumplimiento del objetivo. 
+Para lograrlo necesitamos explorar para adquirir nueva información en caso de que la información que poseemos no sea 
+suficiente para dar una respuesta. Extenderemos la herramienta MTSA (Modal Transition System Analyser) para dar soporte 
 a la exploración y presentaremos una estrategia que nos permita dar una respuesta certera sobre la posibilidad de 
 cumplimiento del objetivo.
 
 \section{Esquema de la tesis}
 
-En el capitulo 2, Fundamentos teóricos, introduciremos la teoría sobre la cual se sustenta nuestra solución al problema.
-En este capitulo definiremos formalmente las herramientas necesarias que posteriormente vamos a utilizar.
+En el capítulo 2, Fundamentos teóricos, introduciremos la teoría sobre la cual se sustenta nuestra solución al problema. 
+En este capítulo definiremos formalmente las herramientas necesarias que posteriormente vamos a utilizar.
 
 \vspace{\baselineskip}
-En el capitulo 3, Problema, describiremos formalmente el problema a resolver, presentaremos un algoritmo que lo resuelve
+En el capítulo 3, Problema, describiremos formalmente el problema a resolver, presentaremos un algoritmo que lo resuelve 
 y una posible estrategia de exploración que garantice encontrar una respuesta a nuestra pregunta.
 
 \vspace{\baselineskip}
-En el capitulo 4, Resultados, mostraremos como se comportan nuestro algoritmo y nuestra estrategia frente a una serie
+En el capítulo 4, Resultados, mostraremos como se comportan nuestro algoritmo y nuestra estrategia frente a una serie 
 de problemas que servirán para mostrar las características de nuestra implementación.
 
 \vspace{\baselineskip}
-En el capitulo 5, Conclusiones, analizaremos el algoritmo y la estrategia, y plantearemos que trabajos a futuro podrían
+En el capítulo 5, Conclusiones, analizaremos el algoritmo y la estrategia, y plantearemos que trabajos a futuro podrían 
 hacerse a partir de esta tesis. 
 
 \vspace{\baselineskip}
-En el capitulo 6, Apéndice, se encuentran el manual de usuario para exploración en la herramienta MTSA, y un ejemplo de exploración.
+En el capítulo 6, Apéndice, se encuentran el manual de usuario para exploración en la herramienta MTSA, y un ejemplo de exploración.

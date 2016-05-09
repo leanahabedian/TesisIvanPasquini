@@ -1,12 +1,12 @@
 \chapter{Resultados}
 
-A continuación vamos a plantear algunos casos de estudio para analizar en detalle el comportamiento del algoritmo.
+A continuación, vamos a plantear algunos casos de estudio para analizar en detalle el comportamiento del algoritmo. 
 Para este análisis utilizaremos la estrategia Síntesis - Nueva acción.
 
 \section{Laberinto de 25 posiciones}
 
-El primer entorno que presentamos es un laberinto de 25 posiciones. En cada posición el robot puede tener hasta 4
-acciones disponibles, las cuales son norte, sur, este y oeste. El entorno no tiene agentes externos. El objetivo de
+El primer entorno que presentamos es un laberinto de 25 posiciones. En cada posición el robot puede tener hasta 4 
+acciones disponibles, las cuales son norte, sur, este y oeste. El entorno no tiene agentes externos. El objetivo de 
 este caso de estudio es ver como el robot encuentra la salida en un laberinto complejo sin información previa.
 
 \begin{figure}[H]
@@ -67,7 +67,7 @@ este caso de estudio es ver como el robot encuentra la salida en un laberinto co
 
 \subsection{Análisis preliminar}
 
-El robot logra salir del laberinto en 116 pasos, pasando en promedio 4.64 veces por cada posición.
+El robot logra salir del laberinto en 116 pasos, pasando en promedio 4.64 veces por cada posición. 
 Podemos observar a simple vista que las posiciones más visitadas forman parte del camino hacia la salida.
 
 \begin{figure}[H]
@@ -81,8 +81,8 @@ Podemos observar a simple vista que las posiciones más visitadas forman parte d
 
 \subsection{Análisis de los modelos}
 
-Para lograr dar una respuesta sobre si es posible o no garantizar el cumplimiento del objetivo fue necesario
-explorar el entorno casi por completo. Las únicas dos acciones no ejecutadas fueron norte y oeste desde la posición
+Para lograr dar una respuesta sobre si es posible o no garantizar el cumplimiento del objetivo fue necesario 
+explorar el entorno casi por completo. Las únicas dos acciones no ejecutadas fueron norte y oeste desde la posición 
 final, por lo cual en el modelo del conocimiento van hacia \textit{La nube}.
 
 \begin{figure}[H]
@@ -103,13 +103,14 @@ final, por lo cual en el modelo del conocimiento van hacia \textit{La nube}.
 
 \subsection{Variantes}
 
-Si eliminamos la acción salir, el robot descubre que el laberinto no tiene salida en 122 pasos, formando un modelo
-de conocimiento en cual una de sus dos componentes conexas es bisimilar al LTS que representa al mapa, siendo su
-otra componente conexa \textit{La nube}.
+Si eliminamos la acción salir, el robot descubre que el laberinto no tiene salida en 122 pasos, formando un modelo 
+de conocimiento de dos componentes conexas, en cual una componente conexa es bisimilar al LTS que representa al mapa, 
+mientras que la otra componente conexa \textit{La nube}.
 
 \vspace{\baselineskip}
-Si modificamos el mapa para que la acción salir se encuentre en \textcolor[HTML]{0000A0}{P08} en vez de en \textcolor[HTML]{0000A0}{P25},
-el robot logra salir del laberinto en tan solo 9 pasos, siendo su modelo del conocimiento mucho más reducido que el modelo del mapa.
+Si modificamos el mapa para que la acción salir se encuentre en \textcolor[HTML]{0000A0}{P08} en vez de encontrarse 
+en \textcolor[HTML]{0000A0}{P25}, el robot logra salir del laberinto en solamente 9 pasos, siendo su modelo del conocimiento 
+mucho más reducido que el modelo del mapa.
 
 \begin{figure}[H]
 	\centering
@@ -170,7 +171,7 @@ En este ejemplo veremos como la estrategia Síntesis utiliza nuestro conocimient
 	\label{fig:unsafe_inicio}
 \end{figure}
 
-En la figura 4.7 podemos observar nuestro conocimiento sobre el entorno al iniciar la exploración. Los estados 0, 1 y 2 perteneces a \textit{La nube},
+En la figura 4.7 podemos observar nuestro conocimiento sobre el entorno al iniciar la exploración. Los estados 0, 1 y 2 pertenecen a \textit{La nube}, 
 el estado 3 es el estado inicial.
 
 \begin{figure}[H]
@@ -180,7 +181,7 @@ el estado 3 es el estado inicial.
 	\label{fig:unsafe_nueva_accion}
 \end{figure}
 
-Si utilizamos la estrategia Nueva Acción, lo único que importa es elegir una acción nueva. En el caso de la figura 4.8, la estrategia eligió primero norte,
+Si utilizamos la estrategia Nueva Acción, lo único que importa es elegir una acción nueva. En el caso de la figura 4.8, la estrategia eligió primero norte, 
 llegando así a un estado sin salida. Fue necesario realizar un reset para luego elegir sur y llegar a un estado ganador.
 
 \begin{figure}[H]
@@ -190,14 +191,14 @@ llegando así a un estado sin salida. Fue necesario realizar un reset para luego
 	\label{fig:unsafe_sintesis}
 \end{figure}
 
-En cambio, utilizando la estrategia Síntesis - Nueva Acción, por construcción, el controlador optimista evita las zonas inseguras. Al elegir la acción,
+En cambio, utilizando la estrategia Síntesis - Nueva Acción, por construcción, el controlador optimista evita las zonas inseguras. Al elegir la acción, 
 se descarta norte, por lo cual el robot llega a un estado ganador sin la necesidad de realizar un reset, como puede observarse en la figura 4.9.
 
 \clearpage
 
 \section{Laberinto que baja}
 
-En este ejemplo, el robot se puede mover libremente en forma horizontal, ya que si se mueve a izquierda o derecha, siempre puede regresar a la posición en la que estaba.
+En este ejemplo, el robot se puede mover libremente en forma horizontal, ya que si se mueve a izquierda o derecha, siempre puede regresar a la posición en la que estaba. 
 Si el robot se mueve hacia abajo no puede volver a subir. La salida no se encuentra en el nivel inferior, por lo cual todos los estados del nivel inferior son estados perdedores.
 
 \begin{figure}[H]
@@ -295,13 +296,13 @@ Vamos a utilizar como modelo del conocimiento inicial un MTS que represente esta
 	\label{fig:down_modelo}
 \end{figure}
 
-El problema esta en que no podemos modelar la siguiente condición:
+El problema está en que no podemos modelar la siguiente condición:
 \begin{itemize}
 \item
 Si podemos movernos una posición horizontalmente, también vamos a poder movernos a \textbf{la misma} posición de la que partimos.
 \end{itemize}
 
-Por carecer de esta condición, no podemos saber que las acciones de movimiento horizontal son más seguras que la acción bajar,
+Por carecer de esta condición, no podemos saber que las acciones de movimiento horizontal son más seguras que la acción bajar, 
 ya que la acción bajar nos puede llevar a un estado perdedor desde un estado ganador, cosa que no puede pasar con las acciones horizontales.
 
 \clearpage
@@ -315,16 +316,16 @@ ya que la acción bajar nos puede llevar a un estado perdedor desde un estado ga
 	\label{fig:down_calor}
 \end{figure}
 
-El robot logra salir del laberinto en 58 pasos, para lo cual fue necesario realizar un reset en 4 oportunidades.
-Al no poder distinguir los estados seguros de los que nos pueden llevar a estados perdedores, la estrategia elige arbitrariamente cualquier acción nueva,
-cayendo varias veces en estados perdedores.
+El robot logra salir del laberinto en 58 pasos, para lo cual fue necesario realizar un reset en 4 oportunidades. 
+Al no poder distinguir los estados seguros de los que nos pueden llevar a estados perdedores, la estrategia elige arbitrariamente 
+cualquier acción nueva, cayendo varias veces en estados perdedores.
 
 \clearpage
 
 \section{Laberinto con puente}
 
-En este ejemplo, el robot puede moverse libremente entre todas las posiciones contiguas, pero entre las posiciones 7 y 8 hay un puente controlado por un agente externo,
-quien puede cerrar el paso.
+En este ejemplo, el robot puede moverse libremente entre todas las posiciones contiguas, pero entre las posiciones 7 y 8 hay un puente 
+controlado por un agente externo, quien puede cerrar el paso.
 
 \begin{figure}[H]
 	\centering
@@ -341,16 +342,16 @@ Este ejemplo introduce un agente externo, por lo cual vamos a necesitar definir:
 Un LTS que represente el comportamiento del agente externo. Indica que acciones puede realizar el agente externo en cada momento.
 
 \item
-Un MTS que represente nuestro conocimiento inicial sobre el comportamiento del agente externo.
+Un MTS que represente nuestro conocimiento inicial sobre el comportamiento del agente externo. 
 El robot adquirirá conocimiento sobre el agente externo a medida que pueda observar sus acciones.
 
 \item
-Una suposición de dominio sobre el comportamiento del agente externo, la cual garantice que el agente externo no va a impedir que alcancemos
-nuestro objetivo.
+Una suposición de dominio sobre el comportamiento del agente externo, la cual garantice que el agente externo no va a impedir 
+que alcancemos nuestro objetivo.
 
 \item
-Aunque es opcional, vamos a utilizar una lista de acciones que ejecutará el agente externo cíclicamente.
-De esta forma especificamos su comportamiento para este ejemplo.
+Aunque es opcional, vamos a utilizar una lista de acciones que ejecutará el agente externo cíclicamente. 
+De esta forma, especificamos su comportamiento para este ejemplo.
 
 En caso de que hubiera más de un agente externo, deberíamos definir estos cuatro items para cada uno de ellos.
 
@@ -411,7 +412,7 @@ En caso de que hubiera más de un agente externo, deberíamos definir estos cuat
 
 \subsection{Análisis de los modelos}
 
-Como el robot observa todas las acciones del agente externo, al final de la exploración, el MTS que representa su comportamiento esta completamente refinado.
+Como el robot observa todas las acciones del agente externo, al final de la exploración, el MTS que representa su comportamiento está completamente refinado.
 
 \begin{figure}[H]
 	\centering
@@ -431,13 +432,13 @@ En cuanto al mapa, la única acción no ejecutada es cruzar desde el estado 8 al
 
 \subsection{Análisis de la traza}
 
-El robot logra salir del laberinto en 30 pasos. Podemos observar que cuando el robot termina de explorar completamente los estados 1 a 7,
-va hasta el estado 7 a esperar que el agente externo abra el puente, en vez de esperarlo en su estado actual, ya que solo desde el estado 7
+El robot logra salir del laberinto en 30 pasos. Podemos observar que cuando el robot termina de explorar completamente los estados 1 a 7, 
+va hasta el estado 7 a esperar que el agente externo abra el puente, en vez de esperarlo en su estado actual, ya que solamente desde el estado 7 
 puede beneficiarse de las acciones del agente externo.
 
 \vspace{\baselineskip}
 
-El robot sabe que el agente externo va a abrir el puente por la suposición de dominio que tenemos. En caso de no tener esta suposición,
+El robot sabe que el agente externo va a abrir el puente por la suposición de dominio que tenemos. En caso de no tener esta suposición, 
 en vez de esperar, el robot asumiría que no se puede garantizar el cumplimiento del objetivo, ya que el agente externo podría no abrir el puente nunca.
 
 \begin{figure}[H]
