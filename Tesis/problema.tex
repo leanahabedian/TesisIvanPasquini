@@ -9,21 +9,21 @@ utilice el conocimiento adquirido para obtener conocimiento nuevo.
 
 \section{Definición}
 
-La solución al problema de la síntesis de controladores en entornos parcialmente conocidos es un LTS x (llamado controlador) tal que 
-M $\parallel$ x $\models$ G, en donde M es el MTS que modela el entorno y G son los objetivos de tipo GR(1). Mediante la 
-síntesis de controladores sobre MTS, podemos intentar generar automáticamente el LTS x. La síntesis tiene tres escenarios posibles:
+La solución al problema de la síntesis de controladores en entornos parcialmente conocidos es un LTS $x$ (llamado controlador) tal que 
+$M$ $\parallel$ $x$ $\models$ $G$, en donde $M$ es el MTS que modela el entorno y $G$ son los objetivos de tipo GR(1). Mediante la 
+síntesis de controladores sobre MTS, podemos intentar generar automáticamente el LTS $x$. La síntesis tiene tres escenarios posibles:
 
 \begin{itemize}
 
 \item
-Es posible sintetizar el LTS x para cualquier implementación de M.
+Es posible sintetizar el LTS $x$ para cualquier implementación de $M$.
 
 \item
-No es posible sintetizar el LTS x para ninguna implementación de M.
+No es posible sintetizar el LTS $x$ para ninguna implementación de $M$.
 
 \item
-Es posible sintetizar el LTS x para algunas implementaciones de M, pero no se puede sintetizar para otras implementaciones de M.
-Por lo tanto, no sabemos si es posible sintetizar un controlador para la implementación de M que representa al mundo real, la cual no conocemos.
+Es posible sintetizar el LTS $x$ para algunas implementaciones de $M$, pero no se puede sintetizar para otras implementaciones de $M$.
+Por lo tanto, no sabemos si es posible sintetizar un controlador para la implementación de $M$ que representa al mundo real, el cual no conocemos.
 
 \end{itemize}
 
@@ -39,6 +39,14 @@ no habíamos estado, podemos despejar la incertidumbre en nuestro modelo del ent
 mediante un algoritmo, el cual se basa en ciclos de adquisición de conocimiento. Si nuestra información sobre el entorno es insuficiente, 
 movemos al robot para que pueda aprender algo nuevo. Repetimos el ciclo hasta poder dar una respuesta.
 
+Más formalmente podemos definir el problema síntesis de controladores en entornos parcialmente conocidos de la siguiente manera:
+
+\begin{definition}{(Síntesis de Controladores en Entornos Parcialmente Conocidos)}
+Sea $G$ una fórmula en FLTL que representa los requerimientos del sistema y $M$ es un MTS que representa las suposiciones del dominio conocidas en el momento inicial. Resolver el problema de Síntesis de Controladores en Entornos Parcialemente Conocidos es decidir si existe un LTS $x$ tal que $M' \| x \models G$ donde $M' \prec M$ que representa el conocimiento inicial del entorno más todo el conocimiento adquirido por la exploración.
+\end{definition}
+
+
+
 \section{Algoritmo}
 
 \begin{figure}[H]
@@ -50,7 +58,7 @@ movemos al robot para que pueda aprender algo nuevo. Repetimos el ciclo hasta po
 
 \section{Inputs}
 
-Para resolver el problema necesitamos poder observar al ambiente a medida que nos movemos, saber con que información inicial 
+Para resolver el problema necesitamos poder observar al entorno a medida que nos movemos, saber con que información inicial 
 contamos y tener un objetivo que cumplir.
 
 \subsection{View}
