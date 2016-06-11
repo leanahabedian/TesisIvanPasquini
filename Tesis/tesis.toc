@@ -31,9 +31,9 @@
 \contentsline {section}{\numberline {3.4}Inicializaci\IeC {\'o}n}{11}
 \contentsline {section}{\numberline {3.5}S\IeC {\'\i }ntesis}{12}
 \contentsline {section}{\numberline {3.6}Estrategia}{13}
-\contentsline {subsection}{\numberline {3.6.1}S\IeC {\'\i }ntesis}{14}
+\contentsline {subsection}{\numberline {3.6.1}Optimista}{14}
 \contentsline {subsection}{\numberline {3.6.2}Nueva acci\IeC {\'o}n}{14}
-\contentsline {subsection}{\numberline {3.6.3}S\IeC {\'\i }ntesis - Nueva acci\IeC {\'o}n}{15}
+\contentsline {subsection}{\numberline {3.6.3}Optimista - Nueva acci\IeC {\'o}n}{15}
 \contentsline {section}{\numberline {3.7}Ejecuci\IeC {\'o}n}{16}
 \contentsline {section}{\numberline {3.8}Ciclo de exploraci\IeC {\'o}n}{17}
 \contentsline {chapter}{\numberline {4.}Resultados}{19}

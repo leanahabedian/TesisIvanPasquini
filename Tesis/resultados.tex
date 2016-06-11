@@ -1,7 +1,7 @@
 \chapter{Resultados}
 
 A continuación, vamos a plantear algunos casos de estudio para analizar en detalle el comportamiento del algoritmo. 
-Para este análisis utilizaremos la estrategia Síntesis - Nueva acción.
+Para este análisis utilizaremos la estrategia Optimista - Nueva acción.
 
 \section{Laberinto de 25 posiciones}
 
@@ -123,7 +123,7 @@ mucho más reducido que el modelo del mapa.
 
 \section{Zonas inseguras}
 
-En este ejemplo veremos como la estrategia Síntesis utiliza nuestro conocimiento previo para evitar las zonas inseguras.
+En este ejemplo veremos como la estrategia Optimista utiliza nuestro conocimiento previo para evitar las zonas inseguras.
 
 \begin{figure}[H]
 	\centering
@@ -187,11 +187,11 @@ llegando así a un estado sin salida. Fue necesario realizar un reset para luego
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=1.0\textwidth]{Imagenes/Laberintos/unsafe_sintesis.png}
-	\caption{MTS que representa al conocimiento adquirido sobre el laberinto con zona insegura, utilizando la estrategia Síntesis - Nueva Acción.}
+	\caption{MTS que representa al conocimiento adquirido sobre el laberinto con zona insegura, utilizando la estrategia Optimista - Nueva Acción.}
 	\label{fig:unsafe_sintesis}
 \end{figure}
 
-En cambio, utilizando la estrategia Síntesis - Nueva Acción, por construcción, el controlador optimista evita las zonas inseguras. Al elegir la acción, 
+En cambio, utilizando la estrategia Optimista - Nueva Acción, por construcción, el controlador optimista evita las zonas inseguras. Al elegir la acción, 
 se descarta norte, por lo cual el robot llega a un estado ganador sin la necesidad de realizar un reset, como puede observarse en la figura 4.9.
 
 \clearpage

@@ -158,14 +158,14 @@ Si $(s_{N}, l, s_{N}') \in \Delta_{N}^{p}$ entonces existe $s_{M}'$ tal que $(s_
 
 \end{itemize}
 
-Decimos que $N$ refina a $M$ si existe una relación de refinamiento $H$ entre $M$ y $N$ tal que $(s_{0}^{M}, s_{0}^{N}) \in H$.
+Decimos que $N$ refina a $M$ si existe una relación de refinamiento $H$ entre $M$ y $N$ tal que $(s_{0}^{M}, s_{0}^{N}) \in H$, denotada como $M \preceq N$.
 
 \end{definition}
 
 \section{Implementación}
 
 \begin{definition}{(Implementación)}
-Un LTS $L$ es una implementación de un MTS $M$ si y sólo si $L$ refina a $M$.
+Un LTS $L$ es una implementación de un MTS $M$ si y sólo si $M \preceq L$.
 \end{definition}
 
 Una implementación es deadlock free si todos sus estados tienen transiciones salientes. 
@@ -246,7 +246,7 @@ o bien para algun $i$ vale $inf(p)\cap\phi_{i} = \varnothing$ o para todo $j$ va
 \section{Síntesis de controladores}
 
 La síntesis de controladores se encarga de producir automáticamente una máquina que restringe la ocurrencia de eventos 
-controlables basándose en la observación de los eventos que ya ocurrieron. Cuando esta máquina es desplegada en un ambiente 
+controlables basándose en la observación de los eventos que ya ocurrieron. Cuando esta máquina es desplegada en un entorno 
 adecuado garantiza la satisfacción de un conjunto de objetivos dado. La satisfacción de estos objetivos depende de la 
 satisfacción de las asunciones sobre el entorno.
 
@@ -256,7 +256,7 @@ Podemos describir la síntesis de controladores de la siguiente forma. Dados un 
 del entorno, un conjunto de acciones controlables, un conjunto de fórmulas FLTL que representan las suposiciones 
 del dominio y un conjunto de fórmulas FLTL que representan los objetivos del sistema, el problema de control de 
 LTS \cite{LTSControl} es encontrar un LTS que sólo restrinja la ocurrencia de acciones controlables y garantice que la composición 
-en paralelo entre el ambiente y el LTS es deadlock free y que si las suposiciones de dominio se satisfacen, entonces 
+en paralelo entre el entorno y el LTS es deadlock free y que si las suposiciones de dominio se satisfacen, entonces 
 los objetivos del sistema también son satisfechos. Intuitivamente, al resolver un problema de síntesis, buscamos evitar alcanzar 
 estados para los cuales no se puedan satisfacer los objetivos. Estos estados no deseables los vamos a llamar estados perdedores. 
 Las zonas inseguras son conjuntos de estados perdedores.

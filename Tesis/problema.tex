@@ -41,11 +41,9 @@ movemos al robot para que pueda aprender algo nuevo. Repetimos el ciclo hasta po
 
 Más formalmente podemos definir el problema síntesis de controladores en entornos parcialmente conocidos de la siguiente manera:
 
-\begin{definition}{(Síntesis de Controladores en Entornos Parcialmente Conocidos)}
-Sea $G$ una fórmula en FLTL que representa los requerimientos del sistema y $M$ es un MTS que representa las suposiciones del dominio conocidas en el momento inicial. Resolver el problema de Síntesis de Controladores en Entornos Parcialemente Conocidos es decidir si existe un LTS $x$ tal que $M' \| x \models G$ donde $M' \prec M$ que representa el conocimiento inicial del entorno más todo el conocimiento adquirido por la exploración.
+\begin{definition}{(Síntesis de controladores en entornos parcialmente conocidos)}
+Sea $G$ una fórmula en FLTL que representa los requerimientos del sistema y $M$ es un MTS que representa las suposiciones del dominio conocidas en el momento inicial. Resolver el problema de síntesis de controladores en entornos parcialmente conocidos es decidir si existe un LTS $x$ tal que $M' \| x \models G$ donde $M' \prec M$ que representa el conocimiento inicial del entorno más todo el conocimiento adquirido por la exploración.
 \end{definition}
-
-
 
 \section{Algoritmo}
 
@@ -63,9 +61,9 @@ contamos y tener un objetivo que cumplir.
 
 \subsection{View}
 \textbf{View} es una lista de LTSs. Representa el mundo sobre el cual se mueve el robot. 
-El primer LTS de la lista representa el mapa del ambiente, el cual regula como se mueve el robot por el mundo. Indica que acciones 
+El primer LTS de la lista representa el mapa del entorno, el cual regula como se mueve el robot por el mundo. Indica que acciones 
 puede realizar en cada posición, y a que lugar lo llevan dichas acciones. 
-Los otros LTSs representan el comportamiento de los agentes externos que interactúan con el ambiente. Pueden bloquear y habilitar 
+Los otros LTSs representan el comportamiento de los agentes externos que interactúan con el entorno. Pueden bloquear y habilitar 
 acciones en una determinada posición. El robot no tiene influencia sobre ellos. 
 El robot solamente puede observar el estado actual del \textbf{View} mediante sus sensores. Sobre el mapa, solamente puede saber en qué posición 
 está y que acciones puede ejecutar en dicha posición. Sobre los agentes externos, solamente puede observar su estado actual.
@@ -165,13 +163,13 @@ suficiente información sobre el entorno como para decidir sobre el objetivo, y 
 En caso de que sea necesario seguir explorando, necesitamos que la estrategia decida la próxima acción a ejecutar. El algoritmo está preparado para que, 
 al utilizar múltiples estrategias, detecte si alguna entra en un ciclo infinito y la reemplace por otra.
 
-\subsection{Síntesis}
+\subsection{Optimista}
 
 Estamos por elegir una acción. Hacemos esto porque el intento de síntesis para generar un controlador que garantice \textbf{Goal} nos dio como resultado que 
 existe un controlador para algunos refinamientos pero no para otros. En particular existe un controlador para el refinamiento más optimista, llamado 
-controlador optimista. La estrategia Síntesis aprovecha este hecho, ya que por construcción, el controlador optimista evitará las zonas inseguras. Lo que 
+controlador optimista. La estrategia Optimista aprovecha este hecho, ya que por construcción, el controlador optimista evitará las zonas inseguras. Lo que 
 hace la estrategia es elegir de entre las acciones posibles, una acción que esté en el estado inicial del controlador optimista. En cambio, la estrategia 
-Síntesis - Nueva acción lo utiliza para filtrar de entre las acciones posibles, cuáles son las acciones seguras, y así elegir mediante la estrategia Nueva acción 
+Optimista - Nueva acción lo utiliza para filtrar de entre las acciones posibles, cuáles son las acciones seguras, y así elegir mediante la estrategia Nueva acción 
 una acción entre las seguras.
 
 \subsection{Nueva acción}
@@ -203,17 +201,17 @@ anteriormente, y esperar a que los agentes externos nos permitan ejecutarla. Seg
 elegimos la acción que nos permita acercarnos, en caso contrario eligiéremos esperar, ya que es necesaria la interacción de algún agente externo para poder continuar 
 explorando.
 
-\subsection{Síntesis - Nueva acción}
+\subsection{Optimista - Nueva acción}
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=1.0\textwidth]{Imagenes/Algoritmo/Algoritmo_elegir_2.png}
-  \caption{Algoritmo de la estrategia Síntesis - Nueva acción.}
+  \caption{Algoritmo de la estrategia Optimista - Nueva acción.}
   \label{fig:Algoritmo_elegir_2}
 \end{figure}
 
-En esta tesis vamos a presentar únicamente la estrategia Síntesis - Nueva acción, la cual no entra en ciclos. Dicha estrategia es la composición de la estrategia 
-Síntesis, la cual busca evitar caer en zonas inseguras utilizando la información proporcionada por \textbf{Model}, y la estrategia Nueva acción, la cual busca siempre 
+En esta tesis vamos a presentar únicamente la estrategia Optimista - Nueva acción, la cual no entra en ciclos. Dicha estrategia es la composición de la estrategia 
+Optimista, la cual busca evitar caer en zonas inseguras utilizando la información proporcionada por \textbf{Model}, y la estrategia Nueva acción, la cual busca siempre 
 adquirir conocimiento nuevo utilizando información proporcionada por \textbf{Knowledge}.
 
 \section{Ejecución}
