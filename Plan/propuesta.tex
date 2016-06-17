@@ -9,6 +9,7 @@
 \usepackage{pdfpages}
 \usepackage{caratula}
 \usepackage{amssymb}
+\usepackage{cite}
 
 % Acomodamos algunas definicines tipográficas.
 \parskip=1.5ex % ex es la altura de una x
@@ -29,7 +30,6 @@
 \grupo{\large{Director: Nicolas D'Ippolito} \\ \small{Mail: srdipi@gmail.com}}
 \integrante{Pasquini, Ivan}{141/09}{pasquiniivan@gmail.com}
 
-
 \begin{document}
 
 \maketitle
@@ -41,42 +41,42 @@
 %TODO ver como es el modelo de Jackson. "The World and the Machine" A Critical Perspective on Process Technol
 %TODO Es suficiente la definición del problema de control que es una composición de un LTS con la futura solucion del problema para la satisfacción de los objetivos.
 
-El modelo del mundo y la máquina de Michael Jackson establece un marco desde el cual aproximarse a la ingeniería de requerimientos. En este modelo, los requerimientos R son declaraciones prescriptivas sobre el mundo expresadas en términos de fenómenos sobre la interfaz entre la máquina que queremos construir y el mundo en el cual viven los problemas que queremos resolver. Dichos problemas son capturados como declaraciones prescriptivas expresadas en término de fenómenos del mundo llamados objetivos G, y declaraciones descriptivas sobre lo que nosotros asumimos que es verdad en el mundo, suposiciones de dominio D.
+El modelo del mundo y la máquina de Michael Jackson \cite{MundoMaquina} establece un marco desde el cual aproximarse a la ingeniería de requerimientos. En este modelo, los requerimientos R son declaraciones prescriptivas sobre el mundo expresadas en términos de fenómenos sobre la interfaz entre la máquina que queremos construir y el mundo en el cual viven los problemas que queremos resolver. Dichos problemas son capturados como declaraciones prescriptivas expresadas en término de fenómenos del mundo llamados objetivos G, y declaraciones descriptivas sobre lo que nosotros asumimos que es verdad en el mundo, suposiciones de dominio D.
 
 La tarea clave de la ingeniera de requerimientos es comprender y documentar los objetivos y las características del entorno. Teniendo estos modelos se pueden formular un conjunto de requerimientos para la máquina de forma que en conjunto con el entorno satisfagan los objetivos. Más formalmente R, D $\vDash$ G.
 
-Esto puede ser formulado como un problema de síntesis. Dados un conjunto de suposiciones del dominio y un conjunto de objetivos del sistema, construir  automáticamente un modelo operacional de la maquina tal que compuesto con el modelo del entorno, los objetivos sean alcanzados. Para cumplir los objetivos, 
+Esto puede ser formulado como un problema de síntesis \cite{Sintesis}. Dados un conjunto de suposiciones del dominio y un conjunto de objetivos del sistema, construir automáticamente un modelo operacional de la máquina tal que compuesto con el modelo del entorno, los objetivos sean alcanzados. Para cumplir los objetivos, 
 el modelo restringe la ocurrencia de eventos controlables basándose en la observación de los eventos que ya ocurrieron. Este problema se conoce como el problema de síntesis de controladores y está siendo estudiado exhaustivamente en varios aspectos de la ingeniería de los requerimientos.
 
-Los Labelled Transition Systems (LTSs) son ampliamente utilizados para modelar y analizar el comportamiento de sistemas concurrentes y distribuidos. Son un sistema de transición de estados en el cual las transiciones son etiquetadas con acciones. El conjunto de acciones de un LTS se conoce como alfabeto comunicacional y constituye las interacciones que el sistema modelado puede tener con el entorno.
+Los Labelled Transition Systems (LTSs) \cite{LTS} \cite{LTSControl} son ampliamente utilizados para modelar y analizar el comportamiento de sistemas concurrentes y distribuidos. Son un sistema de transición de estados en el cual las transiciones son etiquetadas con acciones. El conjunto de acciones de un LTS se conoce como alfabeto comunicacional y constituye las interacciones que el sistema modelado puede tener con el entorno.
 
-Los fluents nos permiten especificar propiedades basadas en estados en modelos basados en eventos. FLTL es una lógica temporal lineal que nos permite razonar sobre fluents. Un fluent está compuesto por un conjunto de acciones  que lo activa, un conjunto de acciones que lo terminan y un valor booleano que indica si comienza activo o no.
+Los fluents nos permiten especificar propiedades basadas en estados en modelos basados en eventos. FLTL \cite{FLTL} es una lógica temporal lineal que nos permite razonar sobre fluents. Un fluent está compuesto por un conjunto de acciones que lo activa, un conjunto de acciones que lo terminan y un valor booleano que indica si comienza activo o no.
 
-Podemos describir la síntesis de controladores de la siguiente forma. Dados un LTS que describe el comportamiento del entorno, un conjunto de acciones controlables, un conjunto de fórmulas FLTL que representan las suposiciones del dominio y un conjunto de fórmulas FLTL que representan los objetivos del sistema, el problema de control de LTS es encontrar un LTS que solo restrinja la ocurrencia de acciones controlables y garantice que la composición en paralelo entre el ambiente y el LTS es deadlock free y que si las suposiciones de dominio se satisfacen, entonces los objetivos del sistema también son satisfechos.
+Podemos describir la síntesis de controladores de la siguiente forma. Dados un LTS que describe el comportamiento del entorno, un conjunto de acciones controlables, un conjunto de fórmulas FLTL que representan las suposiciones del dominio y un conjunto de fórmulas FLTL que representan los objetivos del sistema, el problema de control de LTS es encontrar un LTS que solamente
+restrinja la ocurrencia de acciones controlables y garantice que la composición en paralelo entre el ambiente y el LTS es deadlock free y que si las suposiciones de dominio se satisfacen, entonces los objetivos del sistema también son satisfechos.
 
 \subsection{La exploración en robótica}
 
 % párrafo 3
 % Explicar la relavancia de la exploración en le mundo científico. (está relacionado con lo que ya escribiste arriba)
 
-En el área de robótica, el problema de la exploración consiste en recorrer mediante un vehículo autónomo una zona
-desconocida para obtener el conocimiento total de este o en caso de no poder reconocerlo en su totalidad, maximizar el
-espacio explorado. La utilización de robots es muy importante para la
-cartografía o búsqueda y rescate en lugares que son peligrosos o inaccesibles para las personas. En el caso de la
-utilización de robots autónomos, se utiliza la técnica de localización y modelado simultáneos, para construir un mapa de
-un entorno desconocido en el que se encuentra el robot, a la vez que estima su trayectoria al desplazarse dentro del
-entorno.
+En el área de robótica, el problema de la exploración consiste en recorrer mediante un vehículo autónomo una zona 
+desconocida para obtener el conocimiento total de este o en caso de no poder reconocerlo en su totalidad, maximizar el 
+espacio explorado. La utilización de robots es muy importante para la 
+cartografía o búsqueda y rescate en lugares que son peligrosos o inaccesibles para las personas. En el caso de la 
+utilización de robots autónomos, se utiliza la técnica de localización y modelado simultáneos, para construir un mapa de 
+un entorno desconocido en el que se encuentra el robot, a la vez que estima su trayectoria al desplazarse dentro del entorno.
 
 % párrafo 2
 % Explicar que es un MTS. Como se aplica los MTSs al problema de exploración y porque es dificil usarlos.
 
-Nuestro modelo matemático para atacar dichos problemas consiste en los MTS (Modal Transition System), que son nociones
+Nuestro modelo matemático para atacar dichos problemas consiste en los MTS (Modal Transition System) \cite{MTS} \cite{MTSControl}, los cuales son nociones 
 abstractas de los LTSs. Extienden a los LTSs ya que las transiciones que los MTSs poseen pueden denotar eventos 
-requeridos o bien posibles. Debido a esta particularidad de los MTSs, es que podemos modelar mediante este formalismo
+requeridos o bien posibles. Debido a esta particularidad de los MTSs, es que podemos modelar mediante este formalismo 
 información parcial del mundo.
 
-Hay una relación de refinamiento entre los MTSs y los LTSs. Un LTS se puede ver como un MTS en donde la función de
-transición de las acciones posibles es igual que la función de transición de las acciones requeridas. Los LTSs que
+Hay una relación de refinamiento entre los MTSs y los LTSs. Un LTS se puede ver como un MTS en donde la función de 
+transición de las acciones posibles es igual que la función de transición de las acciones requeridas. Los LTSs que 
 refinan un MTS son descripciones completas del comportamiento del sistema y se llaman implementaciones.
 
 % párrafo 1
@@ -94,7 +94,7 @@ Cuando comenzamos la exploración, la información que tenemos sobre el mundo es p
 
 El problema de la síntesis de controladores para MTSs consiste en ver si todas, alguna o ninguna de sus implementaciones pueden ser controladas por un controlador LTS. Al responder esta pregunta, también estamos respondiendo la pregunta de si el problema es realizable, ya que si la respuesta es ninguno el problema no es realizable.
 
-Cuando exploramos, lo hacemos para poder realizar un objetivo. Si intentamos sintetizar una maquina tal que al componerla con el MTS que representa nuestro conocimiento del mundo, para todas las implementaciones posibles, el objetivo es alcanzable, sabemos que podemos cumplir el objetivo, ya que el mundo puede representarse como un LTS que refina nuestro modelo. Cuando no es posible sintetizar un controlador que pueda garantizar que los objetivos se alcanzen para ninguna de las implementaciones de nuestro modelo, podemos afirmar que el objetivo no es realizable en el mundo. Pero si para algunas de las implementaciones existe un controlador, y para otras no, no podemos afirmar nada sobre nuestro objetivo.
+Cuando exploramos, lo hacemos para poder realizar un objetivo. Si intentamos sintetizar una máquina tal que al componerla con el MTS que representa nuestro conocimiento del mundo, para todas las implementaciones posibles, el objetivo es alcanzable, sabemos que podemos cumplir el objetivo, ya que el mundo puede representarse como un LTS que refina nuestro modelo. Cuando no es posible sintetizar un controlador que pueda garantizar que los objetivos se alcancen para ninguna de las implementaciones de nuestro modelo, podemos afirmar que el objetivo no es realizable en el mundo. Pero si para algunas de las implementaciones existe un controlador, y para otras no, no podemos afirmar nada sobre nuestro objetivo.
 
 % Hacer un resumen de lo que vamos a hacer y porque es importante. (podes usar itemize o lo que quieras)
 %  - poder obtener más resultados favorables a partir de un resulta SOME que es poco expresivo
@@ -117,13 +117,13 @@ El trabajo de esta tesis consistirá en:
 % Hacer un párrafo por objetivo:
 
 % objetivo 1: identificar posibles Inputs y Outputs
-Nuestro primer objetivo es identificar los posibles inputs y outputs.
-Necesitamos saber que información es necesario proporcionarle al robot para que pueda explorar, y en que forma vamos a proporcionarle dicha información.
+Nuestro primer objetivo es identificar los posibles inputs y outputs. 
+Necesitamos saber que información es necesario proporcionarle al robot para que pueda explorar, y en qué forma vamos a proporcionarle dicha información. 
 También es importante definir que esperamos obtener de la exploración y como vamos a mostrarlo.
 
 % objetivo 2: identificar de que condiciones debemos proveer para garantizar que hay una solución de exploracion
-Lo siguiente es identificar que condiciones debemos proveer para garantizar que hay una solución de exploración.
-Tenemos que averiguar si podemos garantizarlo, si requerimos cumplir algunas condiciones para que esto ocurra, y en que casos serían necesarias estas condiciones.
+Lo siguiente es identificar que condiciones debemos proveer para garantizar que hay una solución de exploración. 
+Tenemos que averiguar si podemos garantizarlo, si requerimos cumplir algunas condiciones para que esto ocurra, y en qué casos serían necesarias estas condiciones.
 
 % objetivo 3: definir formalmente el problema de exploración
 El próximo paso es definir formalmente el problema de exploración.
@@ -134,7 +134,7 @@ Vamos a elaborar la implementación que resuelva computacionalmente el problema d
 Lo haremos sobre la herramienta MTSA. Necesitamos una herramienta que nos permita investigar la exploración en detalle.
 
 % objetivo 5: probar casos de uso relevantes a la solucion propuesta (sacar casos de estudio de bibliografia)
-Por ultimo vamos a probar casos de uso relevantes a la solución propuesta.
+Por último vamos a probar casos de uso relevantes a la solución propuesta.
 Serán casos que consideremos útiles para ver las particularidades de la exploración, y casos de estudio de la bibliografía.
 
 
@@ -148,7 +148,7 @@ Serán casos que consideremos útiles para ver las particularidades de la explorac
 
 \section{Plan de trabajo}
 
-Presentamos un plan de trabajo cascada simplificado que tiene como objetivo mostrar las tareas que se llevan la mayor parte del esfuerzo en cada momento. En la práctica, se utiliza un proceso iterativo. Representaremos a continuación de una manera abstracta las siguiente tareas candidatas:
+Presentamos un plan de trabajo cascada simplificado que tiene como objetivo mostrar las tareas que se llevan la mayor parte del esfuerzo en cada momento. En la práctica, se utiliza un proceso iterativo. Representaremos a continuación de una manera abstracta las siguientes tareas candidatas:
 
 \begin{itemize}
 	\item Formalización del problema identificando distintos escenarios posibles [Formalización]
