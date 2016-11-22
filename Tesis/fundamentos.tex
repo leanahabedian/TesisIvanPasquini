@@ -7,7 +7,7 @@ eventos cuya existencia puede observarse, la máquina es una porción del sistem
 porción de la realidad afectada por la máquina. El mundo y la máquina interactúan en la interfaz de la máquina. Un problema 
 del mundo describe una parte del mundo real que nosotros queremos mejorar construyendo la solución como una máquina.
 
-\vspace{\baselineskip} 
+
 En este modelo, los requerimientos R son declaraciones prescriptivas (propiedades deseadas que pueden cumplirse o no) sobre 
 el mundo expresadas en términos de fenómenos sobre la interfaz entre la máquina que queremos construir y el mundo en el cual 
 viven los problemas que queremos resolver. Los requerimientos deben ser forzados por la máquina independientemente de cómo 
@@ -16,7 +16,7 @@ fenómenos del mundo llamados objetivos G, y declaraciones descriptivas (propied
 independientes a cómo se comporta el sistema) sobre lo que nosotros asumimos que es verdad en el mundo, suposiciones 
 de dominio D. Las suposiciones de dominio podrían no mantenerse y deben ser satisfechas por el mundo.
 
-\vspace{\baselineskip}
+
 La tarea clave de la ingeniería de requerimientos es comprender y documentar los objetivos y las características del entorno. 
 Teniendo estos modelos se pueden formular un conjunto de requerimientos para la máquina de forma que en conjunto con el 
 entorno satisfagan los objetivos. Más formalmente R, D $\vDash$ G. 
@@ -24,7 +24,7 @@ Esto puede ser formulado como un problema de síntesis \cite{Sintesis}. Dados un
 objetivos del sistema, construir  automáticamente un modelo operacional de la máquina tal que compuesto con el modelo del 
 entorno, los objetivos sean alcanzados.
 
-\vspace{\baselineskip}
+
 Diremos que un evento es controlable si es controlable por la máquina. Un evento es observable, o no controlable, si es 
 controlable por el mundo. 
 Para cumplir los objetivos, el modelo operacional restringe la ocurrencia de eventos controlables basándose en la observación 
@@ -48,9 +48,8 @@ relación de transición y $s_{0}^{E} \in S_{E}$ es el estado inicial.
 Dado $(s, l, s$’$) \subseteq \Delta_{E}$ decimos que $l$ está habilitada desde $s$ en $E$. Decimos que un LTS es 
 determinístico si desde un estado, al realizar una acción, existe solamente un estado posible al que llegamos.
 
-\section{Composición en paralelo}
-
-Sean $M$ y $E$ dos LTSs. La composición en paralelo $\parallel$ es un operador simétrico que crea un nuevo LTS $M \parallel E$, 
+Sean $M$ y $E$ dos LTSs. La composición en paralelo $\parallel$ es un operador 
+simétrico que crea un nuevo LTS $M \parallel E$, 
 tal que sus estados son el producto cartesiano de los estados de $M$ y $E$, sus acciones la unión de las acciones de $M$ y $E$, 
 y su función de transición sincroniza el movimiento de las dos máquinas en las acciones compartidas, mientras que se 
 mueven independientemente en sus acciones propias.
@@ -60,7 +59,7 @@ Sean $M = (S_{M}, A_{M}, \Delta_{M}, s_{0}^{M})$ y\\
 $N = (S_{N}, A_{N}, \Delta_{N}, s_{0}^{N})$ dos LTSs. Composición en paralelo $\parallel$ es un operador simétrico tal que 
 $M \parallel N$ es el LTS $P = (S_{M} \times S_{N}, A_{M} \cup A_{N}, \Delta_{P}, (s_{0}^{M}, s_{0}^{N}))$, donde $\Delta_{P}$ es 
 la menor relación que satisface las siguientes reglas:
-
+\begin{center}
 \vspace{\baselineskip}
 $\dfrac{(s, l, s') \in \Delta_{M}}{((s, t), l, (s', t)) \in \Delta_{P}}$ con $l \in A_{M} \setminus A_{N}$
 
@@ -68,58 +67,52 @@ $\dfrac{(s, l, s') \in \Delta_{M}}{((s, t), l, (s', t)) \in \Delta_{P}}$ con $l 
 $\dfrac{(t, l, t') \in \Delta_{N}}{((s, t), l, (s, t')) \in \Delta_{P}}$ con $l \in A_{N} \setminus A_{M}$
 
 \vspace{\baselineskip}
-$\dfrac{(s, l, s') \in \Delta_{M}, t, l, t') \in \Delta_{N}}{((s, t), l, (s', t')) \in \Delta_{P}}$ con $l \in A_{M} \cap A_{N}$
+$\dfrac{(s, l, s') \in \Delta_{M}, t, l, t') \in \Delta_{N}}{((s, t), l, (s', 
+t')) \in \Delta_{P}}$ con $l \in A_{M} \cap A_{N}$
+\end{center}
 \end{definition}
 
-\section{LTS Legal}
-Dados dos LTSs $N$ y $M$, y $A_{N_{u}} \subseteq A_{N}$, decimos que $M$ es un Legal LTS para $N$ respecto a $A_{N_{u}}$ si por cada 
-estado en $E\parallel$$M$, realizar una acción perteneciente a $A_{N_{u}}$ es igual a realizar la acción en $N$. 
-Intuitivamente, en la composición una acción es deshabilitada si y sólo si también es deshabilitada en el LTS original. 
-En otras palabras, $M$ no restringe a $N$ respecto a $A_{N_{u}}$.
 
-\begin{definition}{(LTS Legal)}
-Sean $M = (S_{M}, A_{M}, \Delta_{M}, s_{0}^{M})$ y $N = (S_{N}, A_{N}, \Delta_{N}, s_{0}^{N})$ dos LTSs y sea $A_{N_{u}} \in A_{N}$ un estado. 
-Decimos que $M$ es un LTS legal para $N$ respecto a $A_{N_{u}}$, si para todo ($s_{n}, s_{m}) \in E \parallel M$ pasa que 
-$\Delta_{E \parallel M}((s_{n}, s_{m})) \cap A_{N_{u}} = \Delta_{N}(s_{N}) \cap A_{N_{u}}$.
-\end{definition}
-
-\section{Traza}
-Una traza es una secuencia de acciones ejecutadas en un LTS. Una traza puede ser finita o infinita.
+Una traza es una secuencia de acciones ejecutadas en un LTS. Una traza puede 
+ser finita o infinita.
 
 \begin{definition}{(Traza)}
-Sea $E = (S_{E}, A_{E}, \Delta_{E}, s_{0}^{E})$ un LTS. Una secuencia $\pi = l_{0}, l_{1}, ...$ es una traza en $E$ si existe una 
-secuencia $s_{0}, l_{0}, s_{1}, l_{1}, ...$ en donde para todo $i \geq 0$ vale $(s_{i}, l_{i}, s_{i + 1}) \in \Delta_{E}$.
+Sea $E = (S_{E}, A_{E}, \Delta_{E}, s_{0}^{E})$ un LTS. Una secuencia $\pi = 
+l_{0}, l_{1}, ...$ es una traza en $E$ si existe una 
+secuencia $s_{0}, l_{0}, s_{1}, l_{1}, ...$ en donde para todo $i \geq 0$ vale 
+$(s_{i}, l_{i}, s_{i + 1}) \in \Delta_{E}$.
 \end{definition}
-
-\section{Bisimulación}
 
 La bisimulación es una relación de equivalencia entre LTSs.
 
 \begin{definition}{(Bisimulación)}
-Sea $L$ el universo de todos los LTSs. Una relación binaria $R \subseteq L \times L$ es una bisimulación si y sólo si cuando  
+Sea $L$ el universo de todos los LTSs. Una relación binaria $R \subseteq L 
+\times L$ es una bisimulación si y sólo si cuando  
 $(P, Q) \in R$ entonces para cada acción $a \in A_{P} \cup A_{Q}$:
 
 \begin{itemize}
 
 \item
-$(P \xrightarrow{a} P') \Rightarrow (\exists Q' \cdot Q \xrightarrow{a} Q' \land (P', Q') \in R)$
+$(P \xrightarrow{a} P') \Rightarrow (\exists Q' \cdot Q \xrightarrow{a} Q' 
+\land (P', Q') \in R)$
 
 \item
-$(Q \xrightarrow{a} Q') \Rightarrow (\exists P' \cdot P \xrightarrow{a} P' \land (P', Q') \in R)$
+$(Q \xrightarrow{a} Q') \Rightarrow (\exists P' \cdot P \xrightarrow{a} P' 
+\land (P', Q') \in R)$
 
 \end{itemize}
 
 \end{definition}
 
 
-\section{Bisimilaridad}
-
 La equivalencia entre LTSs se define mediante la noción de bisimilaridad.
 
 \begin{definition}{(Bisimilaridad)}
-Sea $L$ el universo de todos los LTSs. Dos LTSs $P, Q \in L$ son bisimilares si y sólo si existe una bisimulación $R$ tal que $(P, Q) \in R$.
+Sea $L$ el universo de todos los LTSs. Dos LTSs $P, Q \in L$ son bisimilares si 
+y sólo si existe una bisimulación $R$ tal que $(P, Q) \in R$.
 
 \end{definition}
+
 
 \section{Modal Transition System}
 Los Modal Transition System \cite{MTS} (MTS), son nociones abstractas de los LTSs. Extienden a los LTSs ya que las transiciones 
@@ -138,90 +131,118 @@ $\Delta_{M}^{r} \subseteq \Delta_{M}^{p} \subseteq (S_{M} \times A_{M} \times S_
 y posibles respectivamente, y $s_{0}^{M} \in S_{M}$ es el estado inicial.
 \end{definition}
 
-\section{Refinamiento}
-Hay una relación de refinamiento entre los MTSs y los LTSs. Un LTS se puede ver como un MTS en donde la función de 
+Hay una relación de refinamiento entre los MTSs y los LTSs. Un LTS se puede ver 
+como un MTS en donde la función de 
 transición de las acciones posibles es igual que la función de transición de las acciones requeridas. Los LTSs que 
 refinan un MTS son descripciones completas del comportamiento del sistema y se llaman implementaciones.
 
-\begin{definition}{(Refinamiento)}
+\begin{definition}{(Refinamiento de MTS)}
 Sean $M = (S_{M}, A, \Delta_{M}^{r}, \Delta_{M}^{p}, s_{0}^{M})$ y\\
 $N = (S_{N}, A, \Delta_{N}^{r}, \Delta_{N}^{p}, s_{0}^{N})$ dos MTSs. La relación $H \subseteq S_{M} \times S_{N}$ es un refinamiento 
 entre $M$ y $N$ si para todo $l \in A$, $(s_{M}, s_{N}) \in H$ se cumple:
 
 \begin{itemize}
-
 \item
 Si $(s_{M}, l, s_{M}') \in \Delta_{M}^{r}$ entonces existe $s_{N}'$ tal que $(s_{N}, l, s_{N}') \in \Delta_{N}^{r}$ y $(s_{M}', s_{N}') \in H$.
-
 \item
 Si $(s_{N}, l, s_{N}') \in \Delta_{N}^{p}$ entonces existe $s_{M}'$ tal que $(s_{M}, l, s_{M}') \in \Delta_{M}^{p}$ y $(s_{M}', s_{N}') \in H$.
-
 \end{itemize}
 
 Decimos que $N$ refina a $M$ si existe una relación de refinamiento $H$ entre $M$ y $N$ tal que $(s_{0}^{M}, s_{0}^{N}) \in H$, denotada como $M \preceq N$.
 
 \end{definition}
 
-\section{Implementación}
+Para facilitar el lenguaje, permitimos hablar de la relación inversa entre MTSs 
+llamada implementación.
 
-\begin{definition}{(Implementación)}
+\begin{definition}{(Implementación de MTS)}
 Un LTS $L$ es una implementación de un MTS $M$ si y sólo si $M \preceq L$.
 \end{definition}
 
 Una implementación es deadlock free si todos sus estados tienen transiciones salientes. 
 Un MTS es determinístico si ninguna de sus acciones conduce desde un estado a más de un estado.
 
-\section{Fluent}
+\section{Fluent Linear Temporal Logic}
 
-Los fluents nos permiten especificar propiedades basadas en estados, en modelos basados en eventos.
+Linear Temporal Logic (LTL) es una logica ampliamente utilizada para describir 
+requerimientos~\cite{vanLamsweerde:2000:HOG:357525.357521}. La motivación para 
+utilizar LTL sobre fluents es que 
+nos provee de un framework uniforme para especificar propiedades temporales de 
+los estados en modelos basados en 
+eventos~\cite{vanLamsweerde:2000:HOG:357525.357521}.
+FLTL~\cite{FLTL} es una logica lineal temporal para predicar sobre fluents.
 
 \begin{definition}{(Fluent)}
 Sea $Acciones$ el conjunto universal de etiquetas de acciones. 
-Un fluent es es una tupla $Fl = \langle I_{fl}, T_{fl}, Init_{fl} \rangle$ en donde $I_{fl} \subseteq Acciones$ son las acciones 
-que inicializan, $T_{fl} \subseteq Acciones$ las que terminan y $Init_{fl} \in \{true, false\}$ indica el estado inicial.
+Un fluent es es una tupla $fl = \langle I_{fl}, T_{fl}, Init_{fl} \rangle$ en 
+donde $I_{fl} \subseteq Acciones$ son las acciones 
+que inicializan, $T_{fl} \subseteq Acciones$ las que terminan, tales que 
+$T_{fl} \cap I_{fl} = \emptyset$ y $Init_{fl} \in \{true, false\}$ indica el 
+estado inicial del fluent $fl$. Notaremos a $\mathcal{F}$ al universo de todos 
+los posibles fluents sobre $Acciones$.
 \end{definition}
 
-\section{Fluent Linear Temporal Logic}
-Fluent Linear Temporal Logic \cite{FLTL} (FLTL) es una lógica temporal lineal que nos permite razonar sobre fluents.
+La logica Fluent Linear Temporal Logic \cite{FLTL} (FLTL) nos permite razonar 
+sobre fluents.
 
 \begin{definition}{(Fluent Linear Temporal Logic)}
 Sea $Acciones$ el conjunto universal de etiquetas de acciones y $\Pi$ el conjunto de posibles trazas infinitas sobre $Acciones$. 
 Una fórmula FLTL se define inductivamente usando los conectores Booleanos standard y los operadores temporales \textbf{X} (Next) y 
-\textbf{U} (strong until) de la siguiente forma:\\
-$\varphi ::= Fl | \neg\varphi | \varphi \lor \psi | \textbf{X}\varphi | \varphi\textbf{U}\psi$ donde $Fl \in Fluents$.
+\textbf{U} (strong until) de la siguiente forma:
+
+\begin{center}
+$\varphi ::= fl \;|\; \neg\varphi \;|\; \varphi \lor \psi \;|\; 
+\textbf{X}\varphi \;|\; \varphi\textbf{U}\psi$ 
+\end{center}
+
 \end{definition}
 
-Dada una traza, por cada posición en la traza podemos decidir si el fluent está activo o no.
+donde $fl \in \mathcal{F}$. Dada una traza, por cada posición en la traza 
+podemos 
+decidir si el fluent está activo o no.
 
 \begin{definition}{(Satisfacción)}
-Sea $Acciones$ el conjunto universal de etiquetas de acciones, $Fluents$ el conjunto de todos los posibles fluents sobre $Acciones$, 
+Sea $Acciones$ el conjunto universal de etiquetas de acciones, $Fluents$ el 
+conjunto de todos los posibles $\mathcal{F}$ sobre $Acciones$, 
 y $\Pi$ el conjunto de posibles trazas infinitas sobre $Acciones$. La traza $\pi \in \Pi$ satisface el fluent $Fl \in Fluents$ en 
 la posición $i$ si y sólo si vale alguna de las siguientes condiciones:
 
 \begin{itemize}
 
 \item
-$Init_{Fl} \land (\forall j \in \mathbb{N} \cdot 0 \leq j \leq i \rightarrow l_{j} \notin T_{Fl})$
+$Init_{Fl} \land (\forall j \in \mathbb{N} \cdot 0 \leq j \leq i \rightarrow 
+l_{j} \notin T_{Fl})$
 
 \item
-$\exists j \in \mathbb{N} \cdot (j \leq i \land l_{j} \in I_{Fl}) \land (\forall k \in \mathbb{N} \cdot j \leq k \leq i \rightarrow 	l_{k} \notin T_{Fl})$
+$\exists j \in \mathbb{N} \cdot (j \leq i \land l_{j} \in I_{Fl}) \land 
+(\forall k \in \mathbb{N} \cdot j \leq k \leq i \rightarrow 	l_{k} \notin 
+T_{Fl})$
 
 \end{itemize}
 
-Dada una traza infinita $\pi$, la satisfacción de una fórmula $\varphi$ en la posición $i$, denotada $\pi, i\vDash \varphi$ se define de la siguiente forma:
+Dada una traza infinita $\pi$, la satisfacción de una fórmula $\varphi$ en la 
+posición $i$, denotada $\pi, i\vDash \varphi$ se define segun la 
+Figura~\ref{fig:satisfactionop}.
 
-\begin{itemize}
-\item
-$\pi, i\vDash Fl \triangleq \pi, i\vDash Fl$
-\item
-$\pi, i\vDash \neg\varphi \triangleq \neg(\pi, i\vDash \varphi)$
-\item
-$\pi, i\vDash \varphi \lor \psi \triangleq (\pi, i\vDash \varphi) \lor (\pi, i\vDash \psi)$
-\item
-$\pi, i\vDash \textbf{X}\varphi \triangleq \pi, 1\vDash \varphi$
-\item
-$\pi, i\vDash \varphi\textbf{U}\psi \triangleq \exists j \geq i \cdot \pi, j \vDash \psi \land \forall i \leq k < j \cdot \pi, k \vDash \varphi$
-\end{itemize}
+\begin{figure}[b]
+
+$$\begin{array}{lcl}
+\pi,i \models_{d} f &\triangleq & \pi,i \models_{d} f  \\
+\pi,i \models_{d} \neg \varphi & \triangleq & \neg(\pi,i \models_{d} \varphi) \\
+\pi,i \models_{d} \varphi \vee \psi &\triangleq& (\pi,i\models_{d} \varphi) 
+\vee (\pi,i \models_{d} 
+\psi) \\
+\pi,i \models_{d} \mathbf{X} \varphi &\triangleq & \pi,i+1 \models_{d} \varphi 
+\\
+\pi,i \models_{d} \varphi \mathbf{U} \psi &\triangleq&\exists j \geq i \cdot 
+\pi,j \models_{d} \psi 
+\quad \wedge \\
+& & \qquad \quad \forall \mbox{ }i \leq k < j \cdot \pi,k \models_{d} \varphi\\
+\end{array}$$
+\caption{Semantics for the satisfaction operator.}
+\label{fig:satisfactionop}
+
+\end{figure}
 
 Decimos que $\varphi$ se sostiene en $\pi$ si $\pi, 0\vDash \varphi$. Una fórmula $\varphi \in FLTL$ se sostiene en un LTS $E$ si se sostiene en cada traza
 infinita producida por $E$.
@@ -244,6 +265,24 @@ o bien para algun $i$ vale $inf(p)\cap\phi_{i} = \varnothing$ o para todo $j$ va
 \end{definition}
 
 \section{Síntesis de controladores}
+
+Dados dos LTSs $N$ y $M$, y $A_{N_{u}} \subseteq A_{N}$, decimos que $M$ es un 
+LTS Legal para $N$ respecto a $A_{N_{u}}$ si por cada 
+estado en $E\parallel$$M$, realizar una acción perteneciente a $A_{N_{u}}$ es 
+igual a realizar la acción en $N$. 
+Intuitivamente, en la composición una acción es deshabilitada si y sólo si 
+también es deshabilitada en el LTS original. 
+En otras palabras, $M$ no restringe a $N$ respecto a $A_{N_{u}}$.
+
+\begin{definition}{(LTS Legal)}
+Sean $M = (S_{M}, A_{M}, \Delta_{M}, s_{0}^{M})$ y $N = (S_{N}, A_{N}, 
+\Delta_{N}, s_{0}^{N})$ dos LTSs y sea $A_{N_{u}} \in A_{N}$ un estado. 
+Decimos que $M$ es un LTS legal para $N$ respecto a $A_{N_{u}}$, si para todo 
+($s_{n}, s_{m}) \in E \parallel M$ pasa que 
+$\Delta_{E \parallel M}((s_{n}, s_{m})) \cap A_{N_{u}} = \Delta_{N}(s_{N}) \cap 
+A_{N_{u}}$.
+\end{definition}
+
 
 La síntesis de controladores se encarga de producir automáticamente una máquina que restringe la ocurrencia de eventos 
 controlables basándose en la observación de los eventos que ya ocurrieron. Cuando esta máquina es desplegada en un entorno 
@@ -303,4 +342,5 @@ $\varepsilon = \langle M, \varphi, A_{c} \rangle$ es responder:
 
 \section{Finite State Process}
 El Finite State Process (FSP) \cite{FSP} es un lenguaje de especificación semántica bien definida en términos de LTSs que nos permite describirlos 
-en forma concisa. El lenguaje puede extenderse para poder describir MTSs.
+en forma concisa. El lenguaje que utilizaremos es una extensión de FSP que 
+puede describir MTSs.
