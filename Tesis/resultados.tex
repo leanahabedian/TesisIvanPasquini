@@ -1,7 +1,6 @@
 \chapter{Resultados}
 
-A continuación, vamos a plantear algunos casos de estudio para analizar en detalle el comportamiento del algoritmo. 
-Para este análisis utilizaremos la estrategia Optimista - Nueva acción.
+A continuación, vamos a plantear algunos casos de estudio para analizar en detalle el comportamiento del algoritmo.
 
 \section{Laberinto de 25 posiciones}
 
@@ -16,6 +15,7 @@ este caso de estudio es ver como el robot encuentra la salida en un laberinto co
 	\label{fig:25}
 \end{figure}
 
+\newpage
 \subsection{Especificación en MTSA}
 
 \begin{Code}[commandchars=&\[\]]
@@ -65,24 +65,68 @@ este caso de estudio es ver como el robot encuentra la salida en un laberinto co
 }
 \end{Code}
 
-\subsection{Análisis preliminar}
+\subsection{Estrategia Optimista}
 
-El robot logra salir del laberinto en 116 pasos, pasando en promedio 4.64 veces por cada posición. 
-Podemos observar a simple vista que las posiciones más visitadas forman parte del camino hacia la salida.
-
-\vspace{\baselineskip}
-Podemos ver el paso a paso de la exploración en el siguiente video \url{https://youtu.be/8XwPYquCUB4}.
+El robot logra salir del laberinto en 79 pasos, pasando en promedio 3.16 veces por cada posición.
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[scale=0.2]{Imagenes/Laberintos/25_calor.jpg}
-	\caption{Mapa de calor del robot en el laberinto de 25 posiciones.}
+		\includegraphics[scale=0.2]{Imagenes/Laberintos/25_calor_optimista.jpg}
+	\caption{Mapa de calor del robot en el laberinto de 25 posiciones utilizando la estrategia Optimista.}
 	\label{fig:25_calor}
+\end{figure}
+
+En el siguiente video \url{https://youtu.be/KakVlfLrIx4} podemos observar, paso a paso, como se mueve el
+robot a través del entorno mientras realiza la exploración.
+
+\clearpage
+
+\subsubsection{Análisis de los modelos}
+
+Para lograr dar una respuesta sobre si es posible o no garantizar el cumplimiento del objetivo fue necesario 
+explorar el entorno casi por completo. Únicamente siete acciones no fueron ejecutadas.
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=1.0\textwidth]{Imagenes/Laberintos/25_view.jpg}
+	\caption{LTS que representa al mapa del laberinto de 25 posiciones.}
+	\label{fig:25_view}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=1.0\textwidth]{Imagenes/Laberintos/25_knowledge_optimista.jpg}
+	\caption{MTS que representa al conocimiento adquirido sobre el laberinto de 25 posiciones utilizando la estrategia Optimista.}
+	\label{fig:25_knowledge}
 \end{figure}
 
 \clearpage
 
-\subsection{Análisis de los modelos}
+\subsection{Estrategia Optimista - Nueva acción}
+
+En este caso de prueba, el modelo de conocimiento con el cual contamos al inicio de la exploración, no aporta información sobre
+zonas inseguras, por lo cual las estrategias Nueva acción y Optimista - Nueva acción obtienen exactamente el mismo resultado.
+
+\subsubsection{Análisis preliminar}
+
+El robot logra salir del laberinto en 116 pasos, pasando en promedio 4.64 veces por cada posición. 
+Podemos observar a simple vista que las posiciones más visitadas forman parte del camino hacia la salida.
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.2]{Imagenes/Laberintos/25_calor.jpg}
+	\caption{Mapa de calor del robot en el laberinto de 25 posiciones utilizando la estrategia Optimista - Nueva acción.}
+	\label{fig:25_calor}
+\end{figure}
+
+En el siguiente video \url{https://youtu.be/8XwPYquCUB4} podemos observar, paso a paso, como se mueve el
+robot a través del entorno mientras realiza la exploración. El video nos permite ver de una forma más
+clara que regiones explora primero, y como va aprendiendo caminos que le permiten llegar a posiciones prometedoras
+para la exploración.
+
+\clearpage
+
+\subsubsection{Análisis de los modelos}
 
 Para lograr dar una respuesta sobre si es posible o no garantizar el cumplimiento del objetivo fue necesario 
 explorar el entorno casi por completo. Las únicas dos acciones no ejecutadas fueron norte y oeste desde la posición 
@@ -98,7 +142,7 @@ final, por lo cual en el modelo del conocimiento van hacia \textit{La nube}.
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=1.0\textwidth]{Imagenes/Laberintos/25_knowledge.jpg}
-	\caption{MTS que representa al conocimiento adquirido sobre el laberinto de 25 posiciones.}
+	\caption{MTS que representa al conocimiento adquirido sobre el laberinto de 25 posiciones utilizando la estrategia Optimista - Nueva acción.}
 	\label{fig:25_knowledge}
 \end{figure}
 
@@ -121,6 +165,8 @@ mucho más reducido que el modelo del mapa.
 	\caption{MTS que representa al conocimiento adquirido sobre el laberinto de 25 posiciones con salida en la posición 8.}
 	\label{fig:25_knowledge_alternativo}
 \end{figure}
+
+Tanto utilizando la estrategia Optimista como la estrategia Optimista - Nueva acción, el resultado es el mismo con ambas variantes.
 
 \clearpage
 
@@ -194,7 +240,7 @@ llegando así a un estado sin salida. Fue necesario realizar un reset para luego
 	\label{fig:unsafe_sintesis}
 \end{figure}
 
-En cambio, utilizando la estrategia Optimista - Nueva Acción, por construcción, el controlador optimista evita las zonas inseguras. Al elegir la acción, 
+En cambio, utilizando la estrategia Optimista u Optimista - Nueva Acción, por construcción, el controlador optimista evita las zonas inseguras. Al elegir la acción, 
 se descarta norte, por lo cual el robot llega a un estado ganador sin la necesidad de realizar un reset, como puede observarse en la figura 4.9.
 
 \clearpage
@@ -319,9 +365,12 @@ ya que la acción bajar nos puede llevar a un estado perdedor desde un estado ga
 	\label{fig:down_calor}
 \end{figure}
 
-El robot logra salir del laberinto en 58 pasos, para lo cual fue necesario realizar un reset en 4 oportunidades. 
-Al no poder distinguir los estados seguros de los que nos pueden llevar a estados perdedores, la estrategia elige arbitrariamente 
-cualquier acción nueva, cayendo varias veces en estados perdedores.
+Utilizando la estrategia Nueva Acción o la estrategia Optimista - Nueva Acción, el robot logra salir del laberinto en 58 pasos, para lo cual fue necesario
+realizar un reset en 4 oportunidades. Al no poder distinguir los estados seguros de los que nos pueden llevar a estados perdedores, la estrategia elige arbitrariamente cualquier acción nueva, cayendo varias veces en estados perdedores.
+
+\vspace{\baselineskip}
+
+Utilizando la estrategia Optimista, el robot logra salir del laberinto en 61 pasos, para lo cual fue necesario realizar un reset en 4 oportunidades.
 
 \clearpage
 
@@ -413,6 +462,11 @@ En caso de que hubiera más de un agente externo, deberíamos definir estos cuat
 
 \clearpage
 
+\subsection{Estrategias}
+
+Este ejemplo cuenta con un agente externo. La estrategia Optimista no está preparada para estos casos, por lo cual entra en un ciclo que le impide adquirir
+nuevo conocimiento. Al utilizar las estrategias Nueva Acción u Optimista - Nueva Acción, el resultado es el mismo.
+
 \subsection{Análisis de los modelos}
 
 Como el robot observa todas las acciones del agente externo, al final de la exploración, el MTS que representa su comportamiento está completamente refinado.
@@ -435,7 +489,12 @@ En cuanto al mapa, la única acción no ejecutada es cruzar desde el estado 8 al
 
 \subsection{Análisis de la traza}
 
-El robot logra salir del laberinto en 30 pasos. Podemos ver el paso a paso de la exploración en el siguiente video \url{https://youtu.be/R80I_TFB-mA}.
+El robot logra salir del laberinto en 30 pasos. En el siguiente video \url{https://youtu.be/wec0GPml9dc} podemos observar, movimiento a movimiento,
+como cambian los modelos de conocimiento que el robot tiene sobre el entorno, el cual en este caso es el camino que tiene un puente, y sobre el agente
+externo, que en este caso, es quien decide cuando el puente se abre o se cierra. El video nos permite ver de una forma más clara como las acciones
+nunca antes realizadas aportan información, y como el robot necesita volver a posiciones no completamente exploradas para incrementar su conocimiento.
+
+\vspace{\baselineskip}
 Podemos observar que cuando el robot termina de explorar completamente los estados 1 a 7, 
 va hasta el estado 7 a esperar que el agente externo abra el puente, en vez de esperarlo en su estado actual, ya que solamente desde el estado 7 
 puede beneficiarse de las acciones del agente externo.
@@ -447,7 +506,7 @@ en vez de esperar, el robot asumiría que no se puede garantizar el cumplimiento
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=0.8\textwidth]{Imagenes/Laberintos/puente_traza.png}
+		\includegraphics[width=0.7\textwidth]{Imagenes/Laberintos/puente_traza.png}
 	\caption{Traza del robot en el laberinto con puente.}
 	\label{fig:puente_traza}
 \end{figure}
