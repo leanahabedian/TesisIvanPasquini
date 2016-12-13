@@ -33,6 +33,8 @@ Este problema se conoce como el problema de síntesis de controladores y está s
 aspectos de la ingeniería de los requerimientos.
 
 \section{Labelled Transition Systems}
+\label{sec:LTS}
+
 Los Labelled Transition Systems \cite{LTS} (LTSs) son ampliamente utilizados para modelar y analizar el comportamiento de 
 sistemas concurrentes y distribuidos. Son un sistema de transición de estados en el cual las transiciones son etiquetadas 
 con acciones. El conjunto de acciones de un LTS se conoce como alfabeto comunicacional y constituye las interacciones que 
@@ -115,7 +117,10 @@ y sólo si existe una bisimulación $R$ tal que $(P, Q) \in R$.
 
 
 \section{Modal Transition System}
-Los Modal Transition System \cite{MTS} (MTS), son nociones abstractas de los LTSs. Extienden a los LTSs ya que las transiciones 
+\label{sec:MTS}
+
+Los Modal Transition System~\cite{MTS} (MTS), son nociones abstractas de los 
+LTSs. Extienden a los LTSs ya que las transiciones 
 que los MTSs poseen, pueden denotar eventos requeridos o bien posibles. Debido a esta particularidad de los MTSs, es 
 que podemos modelar mediante este formalismo información parcial del mundo.
 
@@ -163,6 +168,7 @@ Una implementación es deadlock free si todos sus estados tienen transiciones sa
 Un MTS es determinístico si ninguna de sus acciones conduce desde un estado a más de un estado.
 
 \section{Fluent Linear Temporal Logic}
+\label{sec:FLTL}
 
 Linear Temporal Logic (LTL) es una logica ampliamente utilizada para describir 
 requerimientos~\cite{vanLamsweerde:2000:HOG:357525.357521}. La motivación para 
@@ -312,6 +318,7 @@ El LTS Control Problem es decidible en tiempo exponencial y en caso de ser decid
 misma complejidad. Para esto es necesario que el modelo sea determinístico.
 
 \subsection{MTS	control problem}
+\label{sec:MTS_control}
 
 El problema de la síntesis de controladores para MTSs \cite{MTSControl} consiste en ver si todas, alguna o ninguna de sus 
 implementaciones pueden ser controladas por un controlador LTS. Al responder esta pregunta, también estamos respondiendo 

@@ -1,28 +1,57 @@
-\chapter{Problema de síntesis de controladores en entornos parcialmente conocidos}
+\chapter{Síntesis de controladores en entornos parcialmente conocidos}
 
-Nuestro problema consiste en un robot, situado en un entorno parcialmente conocido. 
-El entorno puede ser tanto estático como dinámico. Será dinámico en caso de que sea afectado por el comportamiento 
-de agentes externos. Tenemos un objetivo, pero no sabemos lo suficiente sobre el entorno como para decidir si es 
-posible satisfacerlo. Debemos obtener el conocimiento necesario sobre el entorno para poder decidir sobre el objetivo. 
-Para lograrlo, vamos a utilizar los sensores del robot, los cuales nos aportan información, y una estrategia que 
+Nuestro problema consiste en dado una posición inicial del sistema y un punto 
+fisico objetivo dentro de una area/habitación, es requerido transladarnos al 
+punto deseado. La particularidad de el problema a resolver es la falta de 
+información que tenemos sombre el area donde transitar. Diremos entonces que 
+buscaremos soluciones al problema de navegación de robots cuando el entorno es 
+parcialmente conocido.
+Tenemos un objetivo, pero no sabemos lo suficiente sobre el entorno como para 
+decidir si es 
+posible satisfacerlo. Debemos obtener el conocimiento necesario sobre el 
+entorno para poder decidir sobre el objetivo. 
+Por otro lado, el entorno puede ser tanto estático como dinámico. Será dinámico 
+en caso de que mientras el robot intenta santisfacer su objetivo, existan 
+componentes externos cuyas acciones modifican la configuración inicial del area 
+a explorar.
+Para lograrlo, vamos a utilizar los sensores del robot, los cuales nos aportan 
+información, y una estrategia que 
 utilice el conocimiento adquirido para obtener conocimiento nuevo.
 
-\section{Definición}
+\section{Problema}
 
-La solución al problema de la síntesis de controladores en entornos parcialmente conocidos es un LTS $x$ (llamado controlador) tal que 
-$M$ $\parallel$ $x$ $\models$ $G$, en donde $M$ es el MTS que modela el entorno y $G$ son los objetivos de tipo GR(1). Mediante la 
-síntesis de controladores sobre MTS, podemos intentar generar automáticamente el LTS $x$. La síntesis tiene tres escenarios posibles:
+Una posible solución al problema de la síntesis de controladores en entornos 
+parcialmente conocidos es un LTS $x$ (ver sección~\ref{sec:LTS}) tal que 
+$M$ $\parallel$ $x$ $\models$ $G$, en donde $M$ es el MTS (ver 
+sección~\ref{sec:MTS}) que modela el entorno y $G$ es un fórmula en FLTL (ver 
+sección~\ref{sec:FLTL}) que describe cual es el sector objetivo. 
+
+El estado del arte en cuanto a síntesis de controladores sobre Modal Transition 
+Systems, nos otorga una respuesta trivaluada como mostramos previamente en la 
+sección~\ref{sec:MTS_control}. Sin embargo, actualmente no existe forma de 
+obtener un LTS solución ($x$). Si bien una de nuestras contribuciones es 
+generar automáticamente el LTS $x$, la complejidad de producir dicho output 
+depende de la configuración inicial de nuestros inputs. 
+Por lo tanto podemos detallar tres casos al momento inicial de la ejecución:
 
 \begin{itemize}
 
 \item
-Es posible sintetizar el LTS $x$ para cualquier implementación de $M$.
+\textit{Es posible sintetizar el LTS $x$ para cualquier implementación de $M$.} 
+En otras 
+palabras, sabemos que para toda incertidumbre que se encuentre en el area, sin 
+importar qué encontremos al explorar esa zona, tenemos una estrategia que nos 
+lleva al punto objetivo.
 
 \item
-No es posible sintetizar el LTS $x$ para ninguna implementación de $M$.
+\textit{No es posible sintetizar el LTS $x$ para ninguna implementación de 
+$M$.} Esto es que sin importar como se resuelvan las incertidumbres, el sistema 
+nunca va a poder alcanzar el objetivo.
 
 \item
-Es posible sintetizar el LTS $x$ para algunas implementaciones de $M$, pero no se puede sintetizar para otras implementaciones de $M$.
+\textit{Algunas implementaciones de $M$ ofrecen buenas garantías para 
+satisfacer el 
+objetivo pero otras no. }
 Por lo tanto, no sabemos si es posible sintetizar un controlador para la implementación de $M$ que representa al mundo real, el cual no conocemos.
 
 \end{itemize}
@@ -88,8 +117,9 @@ que están en \textit{La nube} y los que representan el conocimiento.
 \textit{La nube} representa la incertidumbre. Es una copia del MTS de \textbf{Model}. Sus estados y acciones se mantienen inmutables en todas las 
 iteraciones de \textbf{Knowledge}. 
 El resto de los estados representan el conocimiento adquirido hasta el momento. Su cantidad de estados irá creciendo a medida que el robot adquiera información. 
-En cada estado, las acciones que nunca fueron ejecutadas irán a un estado de \textit{La nube}, mientras que las que ya fueron ejecutadas, irán a un estado del 
-conocimiento.
+En cada estado, las acciones que nunca fueron ejecutadas irán a un estado de 
+\textit{La nube}, mientras que las que ya fueron ejecutadas, irán a un estado 
+del conocimiento.
 
 
 En la implementación del algoritmo en la herramienta MTSA, hay dos cuestiones importantes de inicialización. 
