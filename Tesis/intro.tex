@@ -29,21 +29,27 @@ de los MTS (Modal Transition System) como modelos matemáticos sobre entornos di
 
 \section{Resumen de la contribución}
 
-Cuando comenzamos la exploración, la información que tenemos sobre el mundo es parcial. Los MTSs nos permiten codificar 
-la incertidumbre, ya que podemos distinguir la información que poseemos como transiciones requeridas y la información 
+Cuando comenzamos la exploración, la información que tenemos sobre el mundo es parcial. Los MTSs nos permiten codificar
+la incertidumbre, ya que podemos distinguir la información que poseemos como transiciones requeridas y la información
 que podemos adquirir mediante exploración como transiciones posibles. El mundo real, el cual estamos explorando, puede 
 representarse como un LTS (Labelled Transition System) que refina nuestro MTS inicial.
 
+Además del LTS que representa al mundo real, otros LTSs pueden refinar al MTS que representa nuestro conocimiento. Estos
+LTSs representan a todas las posibles formas que puede llegar a tener el mundo real a partir del conocimiento que poseemos
+actualmente. En cada uno de estos LTSs, las acciones posibles o bien van a ser acciones requeridas, o bien no van a formar
+parte del LTS, y en caso de que sean acciones requeridas, puede variar la cantidad de veces que puede ejecutarse dicha acción.
+Por estas razones, la cantidad de LTSs que refinan a nuestro MTS puede llegar a ser infinita. Cada uno de estos LTSs está
+decidiendo sobre la incertidumbre del MTS que representa nuestro conocimiento actual.
 
 Cuando exploramos, lo hacemos para poder realizar un objetivo. Mediante la síntesis de controladores, podemos intentar 
 generar automáticamente una máquina, tal que al componerla en paralelo con el MTS que representa nuestro conocimiento 
-del mundo, garantice el cumplimiento del objetivo. 
-Si para todas las implementaciones posibles, el objetivo es alcanzable, sabemos que podemos garantizar el objetivo, ya 
-que el mundo puede representarse como un LTS que refina nuestro modelo. 
-Cuando no es posible sintetizar un controlador que pueda garantizar que los objetivos se alcancen para ninguna de las 
-implementaciones de nuestro modelo, podemos afirmar que el objetivo no es realizable en el mundo. Pero si para algunas 
-de las implementaciones existe un controlador, y para otras no, no podemos afirmar nada sobre nuestro objetivo.
+del mundo, garantice el cumplimiento del objetivo.
 
+Si para cada uno de los LTSs que refinan a nuestro MTS, el objetivo es alcanzable, sabemos que podemos garantizar el
+cumplimiento del objetivo, ya que el mundo puede representarse como un LTS que refina nuestro modelo. Cuando no es posible
+sintetizar un controlador que pueda garantizar que los objetivos se alcancen para ninguno de los LTSs que refinan a nuestro
+modelo, podemos afirmar que el objetivo no es realizable en el mundo real. Pero si para algunos de estos LTSs existe un
+controlador, y para otros no, no podemos afirmar nada sobre nuestro objetivo.
 
 Lo que queremos es poder dar una respuesta certera a si es posible garantizar el cumplimiento del objetivo. 
 Para lograrlo necesitamos explorar para adquirir nueva información en caso de que la información que poseemos no sea 
