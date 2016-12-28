@@ -3,7 +3,7 @@
 %% generated with the docstrip utility.
 %% 
 %% The original source files were:
-%% 
+%%  
 %% thesis.dtx  (with options: `thesis')
 %% 
 %% Copyright (C) 1991, 1996 by Wenzel Matiaske, mati1831@perform.ww.tu-berlin.de 
