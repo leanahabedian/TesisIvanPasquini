@@ -18,13 +18,61 @@ Para lograrlo, vamos a utilizar los sensores del robot, los cuales nos aportan
 información, y una estrategia que 
 utilice el conocimiento adquirido para obtener conocimiento nuevo.
 
+
+Cuando comenzamos la exploración, la información que tenemos sobre el mundo es 
+parcial. Los MTSs nos permiten codificar
+la incertidumbre, ya que podemos distinguir la información que poseemos como 
+transiciones requeridas y la información
+que podemos adquirir mediante exploración como transiciones posibles. El mundo 
+real, el cual estamos explorando, puede 
+representarse como un LTS (Labelled Transition System) que refina nuestro MTS 
+inicial.
+
+Además del LTS que representa al mundo real, otros LTSs pueden refinar al MTS 
+que representa nuestro conocimiento. Estos
+LTSs representan a todas las posibles formas que puede llegar a tener el mundo 
+real a partir del conocimiento que poseemos
+actualmente. En cada uno de estos LTSs, las acciones posibles o bien van a ser 
+acciones requeridas, o bien no van a formar
+parte del LTS, y en caso de que sean acciones requeridas, puede variar la 
+cantidad de veces que puede ejecutarse dicha acción.
+Por estas razones, la cantidad de LTSs que refinan a nuestro MTS puede llegar a 
+ser infinita. Cada uno de estos LTSs está
+decidiendo sobre la incertidumbre del MTS que representa nuestro conocimiento 
+actual.
+
+Cuando exploramos, lo hacemos para poder realizar un objetivo. Mediante la 
+síntesis de controladores, podemos intentar 
+generar automáticamente una máquina, tal que al componerla en paralelo con el 
+MTS que representa nuestro conocimiento 
+del mundo, garantice el cumplimiento del objetivo.
+
+Si para cada uno de los LTSs que refinan a nuestro MTS, el objetivo es 
+alcanzable, sabemos que podemos garantizar el
+cumplimiento del objetivo, ya que el mundo puede representarse como un LTS que 
+refina nuestro modelo. Cuando no es posible
+sintetizar un controlador que pueda garantizar que los objetivos se alcancen 
+para ninguno de los LTSs que refinan a nuestro
+modelo, podemos afirmar que el objetivo no es realizable en el mundo real. Pero 
+si para algunos de estos LTSs existe un
+controlador, y para otros no, no podemos afirmar nada sobre nuestro objetivo.
+
+
 \section{Problema}
+
+
+
+
 
 Una posible solución al problema de la síntesis de controladores en entornos 
 parcialmente conocidos es un LTS $x$ (ver sección~\ref{sec:LTS}) tal que 
 $M$ $\parallel$ $x$ $\models$ $G$, en donde $M$ es el MTS (ver 
 sección~\ref{sec:MTS}) que modela el entorno y $G$ es un fórmula en FLTL (ver 
 sección~\ref{sec:FLTL}) que describe cual es el sector objetivo. 
+
+
+
+
 
 El estado del arte en cuanto a síntesis de controladores sobre Modal Transition 
 Systems, nos otorga una respuesta trivaluada como mostramos previamente en la 
