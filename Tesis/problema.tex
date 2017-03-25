@@ -155,6 +155,24 @@ cada MTS debe contar con un estado, y por cada acción en su correspondiente LTS
 \textbf{Goal} es el objetivo del robot. Exploramos para poder decidir si es posible garantizar el cumplimiento de \textbf{Goal}. Está expresado con una 
 fórmula GR\big(1\big).
 
+\section{Pseudocódigo}
+\begin{algorithm}
+\begin{algorithmic}
+\REQUIRE {LTS} View, {MTS} Model, GR(1) Goal
+\ENSURE All si se puede satisfacer Goal en el Knowledge actual y None en caso contrario
+\STATE Knowledge = Model $\cup$ estados iniciales
+\STATE Respuesta = Sintetizar(Knowledge, Goal)
+\WHILE {Respuesta == Some}
+\STATE Acciones habilitadas = \{a$_{1}$, ..., a$_{k}$\} tal que \{a$_{1}$, ..., a$_{k}$\} $\subseteq$ acciones(View[0]) $\cup$ acciones individuales $\cup$ acciones compartidas disponibles
+\STATE Acción = Elegir(Knowledge, Acciones habilitadas)
+\STATE Ejecutar(View, Model, Knowledge, Acciones controlables, Acción)
+\STATE Respuesta = Sintetizar(Knowledge, Goal)
+\ENDWHILE
+\RETURN Respuesta
+\end{algorithmic}
+\caption{Algoritmo de exploración}
+\end{algorithm}
+
 \section{Inicialización}
 
 \textbf{Knowledge} es una lista de MTSs que representa el conocimiento que vamos adquiriendo en cada iteración del algoritmo. En cada iteración, los MTSs 
