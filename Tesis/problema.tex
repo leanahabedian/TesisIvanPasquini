@@ -57,22 +57,13 @@ modelo, podemos afirmar que el objetivo no es realizable en el mundo real. Pero
 si para algunos de estos LTSs existe un
 controlador, y para otros no, no podemos afirmar nada sobre nuestro objetivo.
 
-
 \section{Problema}
-
-
-
-
 
 Una posible solución al problema de la síntesis de controladores en entornos 
 parcialmente conocidos es un LTS $x$ (ver sección~\ref{sec:LTS}) tal que 
 $M$ $\parallel$ $x$ $\models$ $G$, en donde $M$ es el MTS (ver 
 sección~\ref{sec:MTS}) que modela el entorno y $G$ es un fórmula en FLTL (ver 
 sección~\ref{sec:FLTL}) que describe cual es el sector objetivo. 
-
-
-
-
 
 El estado del arte en cuanto a síntesis de controladores sobre Modal Transition 
 Systems, nos otorga una respuesta trivaluada como mostramos previamente en la 
@@ -104,12 +95,10 @@ Por lo tanto, no sabemos si es posible sintetizar un controlador para la impleme
 
 \end{itemize}
 
-
 En los dos primeros escenarios tenemos una respuesta a nuestro problema. De estar en el tercer escenario, queremos poder sintetizar 
 el controlador en caso de ser posible, o tener garantías de que es imposible sintetizar dicho controlador. Para lograr nuestro objetivo 
 debemos agregar información a M, para poder reducir su cantidad de posibles implementaciones, y que, de esta forma, su síntesis caiga 
 en uno de los dos primeros escenarios.
-
 
 La exploración nos permite adquirir conocimiento, ya que al observar mediante los sensores del robot lugares del entorno en los cuales 
 no habíamos estado, podemos despejar la incertidumbre en nuestro modelo del entorno, representado por M. Vamos a realizar la exploración 
@@ -130,6 +119,24 @@ Sea $G$ una fórmula en FLTL que representa los requerimientos del sistema y $M$
   \caption{Algoritmo de exploración.}
   \label{fig:Algoritmo}
 \end{figure}
+
+\subsection{Pseudocódigo}
+\begin{algorithm}
+\begin{algorithmic}
+\REQUIRE \{LTS\} View, \{MTS\} Model, GR(1) Goal
+\ENSURE All si se puede satisfacer Goal en el Knowledge actual y None en caso contrario
+\STATE Knowledge = Model $\cup$ estados iniciales
+\STATE Respuesta = Sintetizar(Knowledge, Goal)
+\WHILE {Respuesta == Some}
+\STATE Acciones habilitadas = \{a$_{1}$, ..., a$_{k}$\} tal que \{a$_{1}$, ..., a$_{k}$\} $\subseteq$ acciones(View[0]) $\cup$ acciones individuales $\cup$ acciones compartidas disponibles
+\STATE Acción = Elegir(Knowledge, Acciones habilitadas)
+\STATE Ejecutar(View, Model, Knowledge, Acciones controlables, Acción)
+\STATE Respuesta = Sintetizar(Knowledge, Goal)
+\ENDWHILE
+\RETURN Respuesta
+\end{algorithmic}
+\caption{Algoritmo de exploración}
+\end{algorithm}
 
 \section{Inputs}
 
@@ -154,24 +161,6 @@ cada MTS debe contar con un estado, y por cada acción en su correspondiente LTS
 \subsection{Goal}
 \textbf{Goal} es el objetivo del robot. Exploramos para poder decidir si es posible garantizar el cumplimiento de \textbf{Goal}. Está expresado con una 
 fórmula GR\big(1\big).
-
-\section{Pseudocódigo}
-\begin{algorithm}
-\begin{algorithmic}
-\REQUIRE {LTS} View, {MTS} Model, GR(1) Goal
-\ENSURE All si se puede satisfacer Goal en el Knowledge actual y None en caso contrario
-\STATE Knowledge = Model $\cup$ estados iniciales
-\STATE Respuesta = Sintetizar(Knowledge, Goal)
-\WHILE {Respuesta == Some}
-\STATE Acciones habilitadas = \{a$_{1}$, ..., a$_{k}$\} tal que \{a$_{1}$, ..., a$_{k}$\} $\subseteq$ acciones(View[0]) $\cup$ acciones individuales $\cup$ acciones compartidas disponibles
-\STATE Acción = Elegir(Knowledge, Acciones habilitadas)
-\STATE Ejecutar(View, Model, Knowledge, Acciones controlables, Acción)
-\STATE Respuesta = Sintetizar(Knowledge, Goal)
-\ENDWHILE
-\RETURN Respuesta
-\end{algorithmic}
-\caption{Algoritmo de exploración}
-\end{algorithm}
 
 \section{Inicialización}
 
@@ -204,50 +193,82 @@ extenderse la herramienta con estrategias diferentes.
   \label{fig:Algoritmo_sintetizar}
 \end{figure}
 
+\subsection{Pseudocódigo}
+\begin{algorithm}
+\begin{algorithmic}
+\REQUIRE MTS Knowledge, GR(1) Goal
+\ENSURE La respuesta decide la realizabilidad de Goal sobre las implementaciónes de Knowledge, tanto si el estado inicial de Knowledge es el estado actual o si es el estado en donde comienza la exploración
+\STATE Knowledge en posición actual = cambiar estado inicial a actual(Knowledge)
+\STATE Respuesta = Sintetizar sin tomar en cuenta el estado inicial(Knowledge en posición actual, Goal)
+\IF{Respuesta == None}
+\STATE Respuesta = Sintetizar sin tomar en cuenta el estado inicial(Knowledge, Goal)
+\IF{Respuesta == None}
+\RETURN None
+\ELSE
+\RETURN Reset
+\ENDIF
+\ELSE
+\RETURN Respuesta
+\ENDIF
+\end{algorithmic}
+\caption{Algoritmo general de síntesis}
+\end{algorithm}
+
+\begin{algorithm}
+\begin{algorithmic}
+\REQUIRE MTS Knowledge, GR(1) Goal
+\ENSURE La respuesta decide la realizabilidad de Goal sobre las implementaciónes de Knowledge sin tomar consideraciones sobre su estado inicial
+\STATE Acciones controlables = Obtener acciones controlables(Knowledge)
+\STATE Acciones no controlables = Obtener acciones no controlables(Knowledge)
+\STATE Agregar accion wait(Knowledge)
+\STATE LTS de turnos = Crear LTS de turnos(Knowledge, Acciones controlables, Acciones no controlables)
+\STATE Respuesta = Síntesis(Knowledge $||$ LTS de turnos, Goal, Acciones controlables $\cup$ \{wait\})
+\RETURN Respuesta
+\end{algorithmic}
+\caption{Algoritmo particular de síntesis}
+\end{algorithm}
+
+\subsection{Detalle}
+
 Al principio de cada iteración, lo primero que hacemos es intentar dar una respuesta a la pregunta sobre si podemos garantizar el cumplimiento del objetivo. 
 En otras palabras, queremos ver si podemos sintetizar un controlador que garantice el cumplimiento de \textbf{Goal}.
-
 
 La síntesis la haremos sobre un MTS basado en \textbf{Knowledge}, pero con algunas modificaciones necesarias para modelar correctamente el problema. 
 Primero cambiamos el estado inicial del primer MTS de \textbf{Knowledge}, el que representa el mapa, para que su estado inicial sea el estado en el que está 
 situado actualmente el robot. Esto es para que el controlador garantice el objetivo desde nuestra posición actual.
 
-
 Luego, al primer MTS de \textbf{Knowledge} (el mapa), le agregaremos en cada estado la acción controlable wait, que irá al mismo estado. 
 Esto es para representar la posibilidad de que el robot espere en su posición actual un cambio en los agentes externos.
-
 
 Por último, creamos un LTS de turnos que permita al robot moverse a cualquier estado antes de que los agentes externos realicen cambios. Esto es para evitar que los 
 agentes externos esperen que el robot esté lejos para realizar una acción que beneficie al robot. El LTS de turnos permitirá que el robot se mueva una cantidad 
 de veces igual a la cantidad de estados del primer MTS del \textbf{Knowledge} (el mapa) antes de que los agentes externos se muevan.
 
-
 De esta forma, con la posibilidad de moverse y esperar en cualquier estado conocido, puede estar en el estado necesario para beneficiarse de las acciones de 
 los agentes externos. Sintetizaremos el controlador para \textbf{Goal} sobre la composición en paralelo de los MTSs de \textbf{Knowledge}, incluyendo el MTS al 
 cual le agregamos las acciones wait, con el LTS de turnos.
 
-
 Si el resultado de la síntesis es que puede generarse un controlador para cualquier LTS que sea un refinamiento del MTS que armamos, significa que el robot 
 puede cumplir el objetivo sin importar como sean las zonas inexploradas del entorno. El algoritmo termina, dando como resultado la garantía del cumplimiento 
 de \textbf{Goal}.
-
 
 En caso de que no pueda generarse un controlador mara ningún LTS que sea un refinamiento del MTS que armamos, hay que volver a realizar la síntesis, pero sin 
 realizar el cambio del estado inicial. Si nuevamente no puede generarse un controlador, significa que es imposible cumplir \textbf{Goal}, sin importar como sean 
 las zonas inexploradas del entorno, y el algoritmo termina confirmando la imposibilidad de cumplimiento de \textbf{Goal}. En caso contrario, significa que 
 llegamos a un punto sin retorno, pero todavía hay zonas inexploradas que pueden ser alcanzadas desde el inicio, en las cuales podríamos o no cumplir el objetivo. 
 
-
 En caso de que nuestro robot tenga la capacidad de volver al inicio, o utilizar otro robot desde la zona inicial, podemos seguir explorando cambiando los 
 estados iniciales de los primeros componentes de \textbf{View}, \textbf{Model} y \textbf{Knowledge} (los que representan al mapa) al estado inicial del comienzo 
 de la exploración. Al hacer esto contamos con la información recolectada hasta el momento, la cual puede utilizar la estrategia para no volver a caer en el 
 punto sin retorno.
 
-
 Por último, si la síntesis puede generar un controlador para algunas de las implementaciones del MTS que armamos, pero para otras no, significa que no tenemos 
 suficiente información sobre el entorno como para decidir sobre el objetivo, y necesitamos seguir explorando para refinar el \textbf{Knowledge}.
 
 \section{Estrategia}
+
+En caso de que sea necesario seguir explorando, necesitamos que la estrategia decida la próxima acción a ejecutar. El algoritmo está preparado para que, 
+al utilizar múltiples estrategias, detecte si alguna entra en un ciclo infinito y la reemplace por otra.
 
 \begin{figure}[H]
   \centering
@@ -256,8 +277,19 @@ suficiente información sobre el entorno como para decidir sobre el objetivo, y 
   \label{fig:Algoritmo_elegir_1}
 \end{figure}
 
-En caso de que sea necesario seguir explorando, necesitamos que la estrategia decida la próxima acción a ejecutar. El algoritmo está preparado para que, 
-al utilizar múltiples estrategias, detecte si alguna entra en un ciclo infinito y la reemplace por otra.
+\subsection{Pseudocódigo}
+\begin{algorithm}
+\begin{algorithmic}
+\REQUIRE MTS Knowledge, {Accion} Acciones habilitadas
+\ENSURE Cambia la estrategia actual si entro en un ciclo
+\IF{en un ciclo()}
+\STATE cambiar estrategia()
+\ENDIF
+\STATE Elegir(Knowledge, Acciones habilitadas)
+\end{algorithmic}
+\caption{Algoritmo general de síntesis}
+\end{algorithm}
+
 
 \subsection{Optimista}
 
