@@ -394,16 +394,44 @@ adquirir conocimiento nuevo utilizando información proporcionada por \textbf{Kn
   \label{fig:Algoritmo_ejecutar}
 \end{figure}
 
+\begin{algorithm}
+\begin{algorithmic}
+\REQUIRE \{LTS\} View, \{MTS\} Model, MTS Knowledge, {Accion} Acciones controlables, Accion Acción a ejecutar
+\FOR{i = 0; i $<$ $|$View$|$; i++}
+\IF{Acción a ejecutar $\notin$ Acciones(View[i])}
+\STATE continue
+\ENDIF
+\STATE ejecutar(Accion acción a ejecutar, View[i])
+\STATE ejecutar(Accion acción a ejecutar, Model[i])
+\IF{Knowledge[i] == null}
+\STATE Knowledge[i] = Model[i]
+\ENDIF
+\STATE Actualizar estado actual(Knowledge[i], View[i])
+\STATE Eliminar transicion posible(Knowledge[i], Acción a ejecutar)
+\STATE Agregar transicion(Knowledge[i], Acción a ejecutar)
+\FOR{Accion posible in Acciones posibles(Knowledge[i])}
+\IF{Accion posible $\notin$ Acciones posibles(View[i])}
+\STATE Eliminar accion(Knowledge[i], Accion posible)
+\ENDIF
+\ENDFOR
+\ENDFOR
+\FOR{i = 1; i $<$ $|$View$|$; i++}
+\STATE Ejecutar accion no controlable(View[i])
+\STATE Ejecutar accion no controlable(Model[i])
+\STATE Ejecutar accion no controlable(Knowledge[i])
+\ENDFOR
+\end{algorithmic}
+\caption{Algoritmo de ejecución}
+\end{algorithm}
+
 Al ejecutar la acción elegida, el robot puede, o no, cambiar de ubicación en el entorno. Esto implica un cambio en el estado actual del primer componente tanto 
 de \textbf{View}, como de \textbf{Model} y \textbf{Knowledge}. El primer componente de \textbf{Knowledge} también puede cambiar su estructura, refinando el MTS, 
 como consecuencia de la nueva información aportada por los sensores del robot en su nueva ubicación.
-
 
 Si es la primera vez que el robot se encuentra en la ubicación actual, se va a agregar un nuevo estado en el primer componente de \textbf{Knowledge}, en el que todas 
 sus acciones se dirigen hacia \textit{La nube}. En caso de haber ejecutado una acción que se dirigía hacia \textit{La nube}, ahora podemos observar a que ubicación 
 en el entorno nos lleva, por lo cual vamos a poder transformar en nuestro modelo dicha acción en una acción requerida que va hacia el estado correspondiente 
 a la ubicación actual.
-
 
 Luego de ejecutar la acción elegida, hay que ejecutar las acciones ejecutadas por los agentes externos. Los cambios en los agentes externos afectan el estado actual 
 de las restantes componentes de \textbf{View}, \textbf{Model} y \textbf{Knowledge}, y la estructura de las restantes componentes de \textbf{Knowledge}. El proceso se 
@@ -420,29 +448,22 @@ realiza en la forma descripta por la figura 3.4.
 
 La figura 3.5 nos muestra cómo interactúan los diferentes objetos durante un ciclo de exploración.
 
-
 Lo primero que hacemos es comprobar que la estrategia actual no haya entrado en un ciclo, ya que de no visitar estados nuevos no puede aportar información nueva.
-
 
 En caso de que la estrategia actual esté en un ciclo la reemplazamos por otra. Una vez que tenemos la estrategia adecuada, observamos mediante los sensores que 
 acciones tenemos disponibles en la ubicación actual, con el estado actual de los agentes externos. Le pedimos a la estrategia que elija una acción entre las 
 acciones disponibles.
 
-
 Cuando tenemos definida la siguiente acción, necesitamos ejecutarla. Primero la ejecutamos en \textbf{View}. Al hacerlo podemos censar en qué ubicación nos 
 encontramos y qué acciones tenemos disponibles.
 
-
 Luego la ejecutamos en \textbf{Model}, para que su estado actual se corresponda al estado que modela al estado actual de \textbf{View}.
-
 
 A continuación, ejecutamos la acción en \textbf{Knowledge}, y en caso de que la acción vaya a un nuevo estado, utilizamos como nuevo estado el estado actual 
 de \textbf{Model} (En este nuevo estado todas las acciones se dirigen hacia \textit{La nube}).
 
-
 Por último, tenemos que agregar a \textbf{Knowledge} la nueva información obtenida, eliminando de su estado actual las acciones que no están disponibles, y 
 transformando la acción que acabamos de ejecutar en caso de que originalmente estuviera dirigida hacia \textit{La nube}.
-
 
 Luego de ejecutar la acción elegida, hay que ejecutar las acciones elegidas por los agentes externos. Cada componente extra en nuestros modelos representa a un agente 
 externo, por lo tanto, hay que realizarlo una vez por componente. El proceso es el mismo que al ejecutar la acción elegida por nosotros, la única diferencia es que 
