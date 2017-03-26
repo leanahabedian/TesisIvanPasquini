@@ -18,7 +18,6 @@ Para lograrlo, vamos a utilizar los sensores del robot, los cuales nos aportan
 información, y una estrategia que 
 utilice el conocimiento adquirido para obtener conocimiento nuevo.
 
-
 Cuando comenzamos la exploración, la información que tenemos sobre el mundo es 
 parcial. Los MTSs nos permiten codificar
 la incertidumbre, ya que podemos distinguir la información que poseemos como 
@@ -120,7 +119,6 @@ Sea $G$ una fórmula en FLTL que representa los requerimientos del sistema y $M$
   \label{fig:Algoritmo}
 \end{figure}
 
-\subsection{Pseudocódigo}
 \begin{algorithm}
 \begin{algorithmic}
 \REQUIRE \{LTS\} View, \{MTS\} Model, GR(1) Goal
@@ -193,7 +191,6 @@ extenderse la herramienta con estrategias diferentes.
   \label{fig:Algoritmo_sintetizar}
 \end{figure}
 
-\subsection{Pseudocódigo}
 \begin{algorithm}
 \begin{algorithmic}
 \REQUIRE MTS Knowledge, GR(1) Goal
@@ -277,7 +274,6 @@ al utilizar múltiples estrategias, detecte si alguna entra en un ciclo infinito
   \label{fig:Algoritmo_elegir_1}
 \end{figure}
 
-\subsection{Pseudocódigo}
 \begin{algorithm}
 \begin{algorithmic}
 \REQUIRE MTS Knowledge, {Accion} Acciones habilitadas
@@ -287,7 +283,7 @@ al utilizar múltiples estrategias, detecte si alguna entra en un ciclo infinito
 \ENDIF
 \STATE Elegir(Knowledge, Acciones habilitadas)
 \end{algorithmic}
-\caption{Algoritmo general de síntesis}
+\caption{Algoritmo de elección de estrategia}
 \end{algorithm}
 
 
@@ -331,6 +327,10 @@ explorando.
 
 \subsection{Optimista - Nueva acción}
 
+En esta tesis vamos a presentar únicamente la estrategia Optimista - Nueva acción, la cual no entra en ciclos. Dicha estrategia es la composición de la estrategia 
+Optimista, la cual busca evitar caer en zonas inseguras utilizando la información proporcionada por \textbf{Model}, y la estrategia Nueva acción, la cual busca siempre 
+adquirir conocimiento nuevo utilizando información proporcionada por \textbf{Knowledge}.
+
 \begin{figure}[H]
   \centering
     \includegraphics[scale=0.8]{Imagenes/Algoritmo/Algoritmo_elegir_2.png}
@@ -338,9 +338,52 @@ explorando.
   \label{fig:Algoritmo_elegir_2}
 \end{figure}
 
-En esta tesis vamos a presentar únicamente la estrategia Optimista - Nueva acción, la cual no entra en ciclos. Dicha estrategia es la composición de la estrategia 
-Optimista, la cual busca evitar caer en zonas inseguras utilizando la información proporcionada por \textbf{Model}, y la estrategia Nueva acción, la cual busca siempre 
-adquirir conocimiento nuevo utilizando información proporcionada por \textbf{Knowledge}.
+\begin{algorithm}
+\begin{algorithmic}
+\REQUIRE MTS Knowledge, {Accion} Acciones habilitadas
+\ENSURE Una accion que pertenece a Acciones habilitadas o Wait
+\STATE Controlador optimista = Sintetizar(Knowledge)
+\STATE Acciones del controlador optimista = obtener acciones habilitadas(Controlador optimista)
+\STATE Acciones habilitadas = Acciones habilitadas $\cap$ Acciones del controlador optimista
+\STATE Acciones habilitadas no ejecutadas = Acciones habilitadas $\cap$ acciones posibles(estado actual(Knowledge))
+\IF{Acciones habilitadas no ejecutadas != $\emptyset$}
+\RETURN Acciones habilitadas no ejecutadas[0]
+\ELSE
+\FOR{Estado $\in$ Estados(Knowledge)}
+\IF{Estado == Estado inicial}
+\STATE continue
+\ENDIF
+\STATE Acciones posibles no compartidas = acciones posibles no compartidas(Estado)
+\IF{Acciones posibles no compartidas != $\emptyset$}
+\STATE Controlador al estado = sintetizar para encontrar camino(Knowledge, Estado)
+\STATE Acciones del controlador al estado = obtener acciones habilitadas(Controlador al estado)
+\STATE Acciones habilitadas que llevan al estado = Acciones habilitadas $\cap$ Acciones del controlador al estado
+\IF{Acciones habilitadas que llevan al estado != $\emptyset$}
+\RETURN Acciones habilitadas que llevan al estado[0]
+\ENDIF
+\ENDIF
+\ENDFOR
+\FOR{Estado $\in$ Estados(Knowledge)}
+\IF{Estado == Estado inicial}
+\STATE continue
+\ENDIF
+\STATE Acciones posibles compartidas = acciones posibles compartidas(Estado)
+\IF{Acciones posibles compartidas != $\emptyset$}
+\STATE Controlador al estado = sintetizar para encontrar camino(Knowledge, Estado)
+\STATE Acciones del controlador al estado = obtener acciones habilitadas(Controlador al estado)
+\STATE Acciones habilitadas que llevan al estado = Acciones habilitadas $\cap$ Acciones del controlador al estado
+\IF{Acciones habilitadas que llevan al estado != $\emptyset$}
+\RETURN Acciones habilitadas que llevan al estado[0]
+\ENDIF
+\ENDIF
+\ENDFOR
+\RETURN Wait
+\ENDIF
+\end{algorithmic}
+\caption{Algoritmo de la estrategia Optimista - Nueva acción}
+\end{algorithm}
+
+\newpage
 
 \section{Ejecución}
 
