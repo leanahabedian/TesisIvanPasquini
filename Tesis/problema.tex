@@ -197,12 +197,12 @@ extenderse la herramienta con estrategias diferentes.
 
 \begin{algorithm}
 \begin{algorithmic}
-\REQUIRE MTS Knowledge, GR(1) Goal
-\ENSURE La respuesta decide la realizabilidad de Goal sobre las implementaciónes de Knowledge, tanto si el estado inicial de Knowledge es el estado actual o si es el estado en donde comienza la exploración
-\STATE Knowledge en posición actual = cambiar estado inicial a actual(Knowledge)
-\STATE Respuesta = Sintetizar sin tomar en cuenta el estado inicial(Knowledge en posición actual, Goal)
+\REQUIRE {MTS} Knowledge, GR(1) Goal
+\ENSURE Devuelve la respuesta al problema de control sobre Knowledge y Goal, o Reset si la respuesta es Some al volver la posición inicial de Knowledge al inicio
+\STATE Knowledge en posición actual := Cambiar estado inicial a actual(Knowledge)
+\STATE Respuesta := Resolver el problema de control(Knowledge en posición actual, Goal)
 \IF{Respuesta == None}
-\STATE Respuesta = Sintetizar sin tomar en cuenta el estado inicial(Knowledge, Goal)
+\STATE Respuesta := Resolver el problema de control(Knowledge, Goal)
 \IF{Respuesta == None}
 \RETURN None
 \ELSE
