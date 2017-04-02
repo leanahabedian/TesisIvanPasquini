@@ -404,17 +404,18 @@ adquirir conocimiento nuevo utilizando información proporcionada por \textbf{Kn
 
 \begin{algorithm}
 \begin{algorithmic}
-\REQUIRE \{LTS\} View, \{MTS\} Model, MTS Knowledge, {Accion} Acciones controlables, Accion Acción a ejecutar
-\FOR{i = 0; i $<$ $|$View$|$; i++}
+\REQUIRE \{LTS\} View, \{MTS\} Model, \{MTS\} Knowledge, \{Accion\} Acciones controlables, Accion Acción a ejecutar
+\FOR{i := 0; i $<$ $|$View$|$; i++}
 \IF{Acción a ejecutar $\notin$ Acciones(View[i])}
 \STATE continue
 \ENDIF
 \STATE ejecutar(Accion acción a ejecutar, View[i])
 \STATE ejecutar(Accion acción a ejecutar, Model[i])
-\IF{Knowledge[i] == null}
-\STATE Knowledge[i] = Model[i]
+\STATE Índice del estado actual := Índice del estado actual(View[i])
+\IF{Knowledge[i][Índice del estado actual] == null}
+\STATE Knowledge[i][Índice del estado actual] := Model[i][Índice del estado actual]
 \ENDIF
-\STATE Actualizar estado actual(Knowledge[i], View[i])
+\STATE Actualizar estado actual(Knowledge[i], Índice del estado actual)
 \STATE Eliminar transicion posible(Knowledge[i], Acción a ejecutar)
 \STATE Agregar transicion(Knowledge[i], Acción a ejecutar)
 \FOR{Accion posible in Acciones posibles(Knowledge[i])}
@@ -423,11 +424,7 @@ adquirir conocimiento nuevo utilizando información proporcionada por \textbf{Kn
 \ENDIF
 \ENDFOR
 \ENDFOR
-\FOR{i = 1; i $<$ $|$View$|$; i++}
-\STATE Ejecutar accion no controlable(View[i])
-\STATE Ejecutar accion no controlable(Model[i])
-\STATE Ejecutar accion no controlable(Knowledge[i])
-\ENDFOR
+\STATE Ejecutar acciones no controlables(View, Model, Knowledge)
 \end{algorithmic}
 \caption{Algoritmo de ejecución}
 \end{algorithm}
