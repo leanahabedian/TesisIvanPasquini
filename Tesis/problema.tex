@@ -197,12 +197,12 @@ extenderse la herramienta con estrategias diferentes.
 
 \begin{algorithm}
 \begin{algorithmic}
-\REQUIRE {MTS} Knowledge, GR(1) Goal
+\REQUIRE \{MTS\} Knowledge, GR(1) Goal
 \ENSURE Devuelve la respuesta al problema de control sobre Knowledge y Goal, o Reset si la respuesta es Some al volver la posición inicial de Knowledge al inicio
 \STATE Knowledge en posición actual := Cambiar estado inicial a actual(Knowledge)
-\STATE Respuesta := Resolver el problema de control(Knowledge en posición actual, Goal)
+\STATE Respuesta := Problema de control(Knowledge en posición actual, Goal)
 \IF{Respuesta == None}
-\STATE Respuesta := Resolver el problema de control(Knowledge, Goal)
+\STATE Respuesta := Problema de control(Knowledge, Goal)
 \IF{Respuesta == None}
 \RETURN None
 \ELSE
@@ -217,17 +217,21 @@ extenderse la herramienta con estrategias diferentes.
 
 \begin{algorithm}
 \begin{algorithmic}
-\REQUIRE MTS Knowledge, GR(1) Goal
-\ENSURE La respuesta decide la realizabilidad de Goal sobre las implementaciónes de Knowledge sin tomar consideraciones sobre su estado inicial
-\STATE Acciones controlables = Obtener acciones controlables(Knowledge)
-\STATE Acciones no controlables = Obtener acciones no controlables(Knowledge)
-\STATE Agregar accion wait(Knowledge)
-\STATE LTS de turnos = Crear LTS de turnos(Knowledge, Acciones controlables, Acciones no controlables)
-\STATE Respuesta = Síntesis(Knowledge $||$ LTS de turnos, Goal, Acciones controlables $\cup$ \{wait\})
+\REQUIRE \{MTS\} Knowledge, GR(1) Goal
+\ENSURE La respuesta decide la realizabilidad de Goal sobre las implementaciónes de Knowledge
+\STATE Acciones controlables := Obtener acciones controlables(Knowledge)
+\STATE Acciones no controlables := Obtener acciones no controlables(Knowledge)
+\FOR{Estado $\in$ Estados(Knowledge[0])}
+	\STATE Agregar acción(Knowledge[0], WAIT, Estado, Estado)
+\ENDFOR
+\STATE LTS de turnos := Crear LTS de turnos(Knowledge, Acciones controlables, Acciones no controlables)
+\STATE Respuesta := Síntesis(Knowledge $||$ LTS de turnos, Goal, Acciones controlables $\cup$ \{wait\})
 \RETURN Respuesta
 \end{algorithmic}
-\caption{Algoritmo particular de síntesis}
+\caption{Algoritmo del problema de control sobre MTSs}
 \end{algorithm}
+
+\newpage
 
 \subsection{Detalle}
 
