@@ -123,13 +123,17 @@ Sea $G$ una fórmula en FLTL que representa los requerimientos del sistema y $M$
 \begin{algorithmic}
 \REQUIRE \{LTS\} View, \{MTS\} Model, GR(1) Goal
 \ENSURE All si se puede satisfacer Goal en el Knowledge actual y None en caso contrario
-\STATE Knowledge = Model $\cup$ estados iniciales
-\STATE Respuesta = Sintetizar(Knowledge, Goal)
-\WHILE {Respuesta == Some}
-\STATE Acciones habilitadas = \{a$_{1}$, ..., a$_{k}$\} tal que \{a$_{1}$, ..., a$_{k}$\} $\subseteq$ acciones(View[0]) $\cup$ acciones individuales $\cup$ acciones compartidas disponibles
-\STATE Acción = Elegir(Knowledge, Acciones habilitadas)
+\STATE Knowledge := Model $\cup$ estados iniciales
+\STATE Respuesta := Sintetizar(Knowledge, Goal)
+\WHILE {Respuesta == Some $||$ Respuesta == Reset}
+\IF{Respuesta == Some}
+\STATE Acciones habilitadas := \{a$_{1}$, ..., a$_{k}$\} tal que \{a$_{1}$, ..., a$_{k}$\} $\subseteq$ Acciones individuales(Knowledge[0]) $\cup$ Acciones compartidas disponibles(Knowledge[0])
+\STATE Acción := Elegir(Knowledge, Acciones habilitadas)
 \STATE Ejecutar(View, Model, Knowledge, Acciones controlables, Acción)
-\STATE Respuesta = Sintetizar(Knowledge, Goal)
+\ELSE
+\STATE Reiniciar estados iniciales(View, Model, Knowledge)
+\ENDIF
+\STATE Respuesta := Sintetizar(Knowledge, Goal)
 \ENDWHILE
 \RETURN Respuesta
 \end{algorithmic}
