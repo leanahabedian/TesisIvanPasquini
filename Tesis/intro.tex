@@ -25,32 +25,32 @@ entornos dinámicos \cite{TP1} \cite{TP3}. También existen trabajos previos que
 
 
 En este trabajo estamos interesados en decidir si es posible alcanzar un 
-objetivo (posición) en el mapa evitando lo maximo posible que el robot explore 
+objetivo (posición) en el mapa evitando lo máximo posible que el robot explore 
 la totalidad del mapa. 
 Dicho problema fue explorado 
 en~\cite{melchior2007particle} ampliando el algoritmo tradicional que otorga 
-un camino hacia el objetivo para que soporte incertidumbre del area a recorrer. 
+un camino hacia el objetivo para que soporte incertidumbre del área a recorrer. 
 
 \section{Resumen de la contribución}
 
 Las contribuciones de esta tesis pueden verse desde un punto de vista teórico. 
 Durante los últimos años, para resolver problemas de alcanzabilidad de un 
-objetivo en una area, se han usado algoritmos basados en camino mínimo como 
+objetivo en un área, se han usado algoritmos basados en camino mínimo como 
 Dijkstra, A*, entre otros. Sin embargo, este trabajo queda como evidencia de 
 que nuevas estrategias pueden usarse. Decidimos utilizar algoritmos de síntesis 
 de controladores para poder resolver el problema descrito.
 
 Por otro lado, las técnicas existentes de síntesis de controladores nos 
-permiten hallar una estrategia para el robot cuando el area a transitar es 
+permiten hallar una estrategia para el robot cuando el área a transitar es 
 totalmente conocida. Para casos donde esta suposición del ambiente es muy 
-fuerte, actualmente, no existe forma de obtener un plan adecuado. La forma 
-natural de modelar un area parcialmente conocida es mediante el modelado de un 
+fuerte, actualmente no existe forma de obtener un plan adecuado. La forma 
+natural de modelar un área parcialmente conocida es mediante el modelado de un 
 MTS (Modal Transition System), formalismo matemático que introduciremos en la 
 sección~\ref{sec:MTS}. 
 
 Previo a nuestro trabajo, la síntesis de controladores para dichos ambientes 
 genera una respuesta trivaluada: ``Sin importar cómo se resuelvan las 
-incertidumbre del ambiente, SIEMPRE obtendremos un plan para llegar al 
+incertidumbres del ambiente, SIEMPRE obtendremos un plan para llegar al 
 objetivo'', ``Sin importar cómo se resuelvan las incertidumbres del ambiente, 
 NUNCA obtendremos un plan para llegar al objetivo'' o ``depende de cómo se 
 resuelvan las incertidumbres''. Como contribución, extenderemos esta respuesta 
@@ -81,8 +81,8 @@ y una posible estrategia de exploración que garantice encontrar una respuesta a
 este problema. El capítulo 4 muestra resultados de nuestra técnica.
 Para ello, mostraremos como se comporta nuestro algoritmo y nuestra estrategia 
 frente a una serie de problemas que servirán para mostrar las características 
-de nuestra implementación. Despues en el capítulo 5, daremos conclusiones de 
+de nuestra implementación. Después, en el capítulo 5, daremos conclusiones de 
 este trabajo. Analizaremos el algoritmo y la estrategia, y plantearemos que 
 trabajos a futuro podrían hacerse a partir de esta tesis. 
-Finalmente, en el capítulo 6 y a modo de apendice, adjuntamos el manual de 
+Finalmente, en el capítulo 6 y a modo de apéndice, adjuntamos el manual de 
 usuario para exploración en la herramienta MTSA basado en un ejemplo.
