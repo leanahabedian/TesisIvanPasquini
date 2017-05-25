@@ -257,7 +257,7 @@ Si el resultado de la síntesis es que puede generarse un controlador para cualq
 puede cumplir el objetivo sin importar como sean las zonas inexploradas del entorno. El algoritmo termina, dando como resultado la garantía del cumplimiento 
 de \textbf{Goal}.
 
-En caso de que no pueda generarse un controlador mara ningún LTS que sea un refinamiento del MTS que armamos, hay que volver a realizar la síntesis, pero sin 
+En caso de que no pueda generarse un controlador para ningún LTS que sea un refinamiento del MTS que armamos, hay que volver a realizar la síntesis, pero sin 
 realizar el cambio del estado inicial. Si nuevamente no puede generarse un controlador, significa que es imposible cumplir \textbf{Goal}, sin importar como sean 
 las zonas inexploradas del entorno, y el algoritmo termina confirmando la imposibilidad de cumplimiento de \textbf{Goal}. En caso contrario, significa que 
 llegamos a un punto sin retorno, pero todavía hay zonas inexploradas que pueden ser alcanzadas desde el inicio, en las cuales podríamos o no cumplir el objetivo. 
@@ -350,10 +350,10 @@ adquirir conocimiento nuevo utilizando información proporcionada por \textbf{Kn
 \begin{algorithmic}
 \REQUIRE MTS Knowledge, {Accion} Acciones habilitadas
 \ENSURE Una accion que pertenece a Acciones habilitadas o Wait
-\STATE Controlador optimista = Sintetizar(Knowledge)
-\STATE Acciones del controlador optimista = obtener acciones habilitadas(Controlador optimista)
-\STATE Acciones habilitadas = Acciones habilitadas $\cap$ Acciones del controlador optimista
-\STATE Acciones habilitadas no ejecutadas = Acciones habilitadas $\cap$ acciones posibles(estado actual(Knowledge))
+\STATE Controlador optimista := Sintetizar(Knowledge)
+\STATE Acciones del controlador optimista := obtener acciones habilitadas(Controlador optimista)
+\STATE Acciones habilitadas := Acciones habilitadas $\cap$ Acciones del controlador optimista
+\STATE Acciones habilitadas no ejecutadas := Acciones habilitadas $\cap$ acciones posibles(estado actual(Knowledge))
 \IF{Acciones habilitadas no ejecutadas != $\emptyset$}
 \RETURN Acciones habilitadas no ejecutadas[0]
 \ELSE
@@ -361,11 +361,11 @@ adquirir conocimiento nuevo utilizando información proporcionada por \textbf{Kn
 \IF{Estado == Estado inicial}
 \STATE continue
 \ENDIF
-\STATE Acciones posibles no compartidas = acciones posibles no compartidas(Estado)
+\STATE Acciones posibles no compartidas := acciones posibles no compartidas(Estado)
 \IF{Acciones posibles no compartidas != $\emptyset$}
-\STATE Controlador al estado = sintetizar para encontrar camino(Knowledge, Estado)
-\STATE Acciones del controlador al estado = obtener acciones habilitadas(Controlador al estado)
-\STATE Acciones habilitadas que llevan al estado = Acciones habilitadas $\cap$ Acciones del controlador al estado
+\STATE Controlador al estado := sintetizar para encontrar camino(Knowledge, Estado)
+\STATE Acciones del controlador al estado := obtener acciones habilitadas(Controlador al estado)
+\STATE Acciones habilitadas que llevan al estado := Acciones habilitadas $\cap$ Acciones del controlador al estado
 \IF{Acciones habilitadas que llevan al estado != $\emptyset$}
 \RETURN Acciones habilitadas que llevan al estado[0]
 \ENDIF
@@ -375,11 +375,11 @@ adquirir conocimiento nuevo utilizando información proporcionada por \textbf{Kn
 \IF{Estado == Estado inicial}
 \STATE continue
 \ENDIF
-\STATE Acciones posibles compartidas = acciones posibles compartidas(Estado)
+\STATE Acciones posibles compartidas := acciones posibles compartidas(Estado)
 \IF{Acciones posibles compartidas != $\emptyset$}
-\STATE Controlador al estado = sintetizar para encontrar camino(Knowledge, Estado)
-\STATE Acciones del controlador al estado = obtener acciones habilitadas(Controlador al estado)
-\STATE Acciones habilitadas que llevan al estado = Acciones habilitadas $\cap$ Acciones del controlador al estado
+\STATE Controlador al estado := sintetizar para encontrar camino(Knowledge, Estado)
+\STATE Acciones del controlador al estado := obtener acciones habilitadas(Controlador al estado)
+\STATE Acciones habilitadas que llevan al estado := Acciones habilitadas $\cap$ Acciones del controlador al estado
 \IF{Acciones habilitadas que llevan al estado != $\emptyset$}
 \RETURN Acciones habilitadas que llevan al estado[0]
 \ENDIF
@@ -451,7 +451,7 @@ realiza en la forma descripta por la figura 3.4.
   \label{fig:Secuencia_explorar}
 \end{figure}
 
-La figura 3.5 nos muestra cómo interactúan los diferentes objetos durante un ciclo de exploración.
+La figura 3.6 nos muestra cómo interactúan los diferentes objetos durante un ciclo de exploración.
 
 Lo primero que hacemos es comprobar que la estrategia actual no haya entrado en un ciclo, ya que de no visitar estados nuevos no puede aportar información nueva.
 
