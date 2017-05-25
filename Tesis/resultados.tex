@@ -152,7 +152,7 @@ final, por lo cual en el modelo del conocimiento van hacia \textit{La nube}.
 
 Si eliminamos la acción salir, el robot descubre que el laberinto no tiene salida en 122 pasos, formando un modelo 
 de conocimiento de dos componentes conexas, en cual una componente conexa es bisimilar al LTS que representa al mapa, 
-mientras que la otra componente conexa \textit{La nube}.
+mientras que la otra componente conexa es \textit{La nube}.
 
 \vspace{\baselineskip}
 Si modificamos el mapa para que la acción salir se encuentre en \textcolor[HTML]{0000A0}{P08} en vez de encontrarse 
@@ -220,7 +220,7 @@ En este ejemplo veremos como la estrategia Optimista utiliza nuestro conocimient
 	\label{fig:unsafe_inicio}
 \end{figure}
 
-En la figura 4.7 podemos observar nuestro conocimiento sobre el entorno al iniciar la exploración. Los estados 0, 1 y 2 pertenecen a \textit{La nube}, 
+En la figura 4.10 podemos observar nuestro conocimiento sobre el entorno al iniciar la exploración. Los estados 0, 1 y 2 pertenecen a \textit{La nube}, 
 el estado 3 es el estado inicial.
 
 \begin{figure}[H]
@@ -230,7 +230,7 @@ el estado 3 es el estado inicial.
 	\label{fig:unsafe_nueva_accion}
 \end{figure}
 
-Si utilizamos la estrategia Nueva Acción, lo único que importa es elegir una acción nueva. En el caso de la figura 4.8, la estrategia eligió primero norte, 
+Si utilizamos la estrategia Nueva Acción, lo único que importa es elegir una acción nueva. En el caso de la figura 4.11, la estrategia eligió primero norte, 
 llegando así a un estado sin salida. Fue necesario realizar un reset para luego elegir sur y llegar a un estado ganador.
 
 \begin{figure}[H]
@@ -241,7 +241,7 @@ llegando así a un estado sin salida. Fue necesario realizar un reset para luego
 \end{figure}
 
 En cambio, utilizando la estrategia Optimista u Optimista - Nueva Acción, por construcción, el controlador optimista evita las zonas inseguras. Al elegir la acción, 
-se descarta norte, por lo cual el robot llega a un estado ganador sin la necesidad de realizar un reset, como puede observarse en la figura 4.9.
+se descarta norte, por lo cual el robot llega a un estado ganador sin la necesidad de realizar un reset, como puede observarse en la figura 4.12.
 
 \clearpage
 
